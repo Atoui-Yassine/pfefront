@@ -172,24 +172,29 @@ class SignUpScreen extends GetView<ProfileController> {
                   const SizedBox(
                     height: 15,
                   ),
-                  TextFormField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      label: const Text("Password"),
-                      hintText: "tapez votre password ",
-                      border: const OutlineInputBorder(),
-                      prefixIcon: const Icon(
-                        Icons.lock,
-                        color: Colors.grey,
-                      ),
-                      suffixIcon: IconButton(
-                        //()=> fonction fleche   (){ } fonction anonyme
-                        onPressed: () => print('print tcon'),
-                        icon: const Icon(
-                          Icons.visibility,
-                        ),
+                   GetBuilder<ProfileController>(
+                builder: (controller) => TextFormField(
+                  obscureText: controller.isVisible,
+                 // controller: passworsController,
+                  decoration: InputDecoration(
+                    label: const Text("Password"),
+                    hintText: "tapez votre password ",
+                    border: const OutlineInputBorder(),
+                    prefixIcon: const Icon(
+                      Icons.lock,
+                      color: Colors.grey,
+                    ),
+                    suffixIcon: IconButton(
+                      //()=> fonction fleche   (){ } fonction anonyme
+                      onPressed: () => controller.showPassword(),
+                      icon: Icon(
+                        // if else  condition   ? condition true : conditionfalse
+                        controller.isVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                       ),
                     ),
+                  ),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return " sil vous plait tapez votre password";
@@ -199,6 +204,7 @@ class SignUpScreen extends GetView<ProfileController> {
                       return null;
                     },
                   ),
+                   ),
                   const SizedBox(
                     height: 30,
                   ),

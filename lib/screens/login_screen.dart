@@ -11,14 +11,11 @@ class LoginScreen extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    final keyForm = GlobalKey<FormState>();
-    TextEditingController emailController = TextEditingController();
-    TextEditingController? passworsController = TextEditingController();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Form(
-          key: keyForm,
+          key: controller.keyForm,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -37,7 +34,7 @@ class LoginScreen extends GetView<ProfileController> {
                 height: 25,
               ),
               TextFormField(
-                controller: emailController,
+                controller: controller.emailController,
                 decoration: const InputDecoration(
                   label: Text("Email"),
                   hintText: "tapez votre email ",
@@ -62,7 +59,7 @@ class LoginScreen extends GetView<ProfileController> {
               GetBuilder<ProfileController>(
                 builder: (controller) => TextFormField(
                   obscureText: controller.isVisible,
-                  controller: passworsController,
+                  controller: controller.passworsController,
                   decoration: InputDecoration(
                     label: const Text("Password"),
                     hintText: "tapez votre password ",
@@ -107,9 +104,10 @@ class LoginScreen extends GetView<ProfileController> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 150, vertical: 20)),
                 onPressed: () {
-                  if (keyForm.currentState!.validate()) {
+                  if (controller.keyForm.currentState!.validate()) {
                     print('form valide');
-                    print('email===========>${emailController.text}');
+                    print(
+                        'email===========>${controller.emailController.text}');
                   }
                 },
                 child: const Text(

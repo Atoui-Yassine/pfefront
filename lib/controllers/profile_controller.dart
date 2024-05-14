@@ -7,13 +7,18 @@ import 'dart:typed_data';
 import 'package:image_picker/image_picker.dart';
 
 class ProfileController extends GetxController {
+  final keyForm = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController? passworsController = TextEditingController();
+   TextEditingController userNameController = TextEditingController();
+  TextEditingController? phoneController = TextEditingController();
   bool isVisible = true;
   void showPassword() {
     isVisible = !isVisible;
     update(); // refrsh l page
   }
 
-  final keyForm = GlobalKey<FormState>();
+  
   bool visibility = true;
   String? selectedValue;
   List<String> listRole = ["Vendeur", "Client"];

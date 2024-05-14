@@ -3,11 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'dart:html' as html;
-import 'dart:html';
-import 'dart:typed_data';
 
-import 'package:image_picker/image_picker.dart';
 import 'package:pfefront/controllers/profile_controller.dart';
 import 'package:pfefront/screens/login_screen.dart';
 
@@ -42,6 +38,7 @@ class SignUpScreen extends GetView<ProfileController> {
                     height: 25,
                   ),
                   TextFormField(
+                    controller: controller.userNameController,
                     decoration: const InputDecoration(
                       label: Text("UserName"),
                       hintText: "tapez votre username ",
@@ -62,6 +59,7 @@ class SignUpScreen extends GetView<ProfileController> {
                     height: 15,
                   ),
                   TextFormField(
+                    controller: controller.emailController,
                     decoration: const InputDecoration(
                       label: Text("Email"),
                       hintText: "tapez votre email ",
@@ -84,6 +82,7 @@ class SignUpScreen extends GetView<ProfileController> {
                     height: 15,
                   ),
                   TextFormField(
+                    controller: controller.phoneController,
                     decoration: const InputDecoration(
                       label: Text("Phone"),
                       hintText: "tapez votre phone ",
@@ -172,39 +171,40 @@ class SignUpScreen extends GetView<ProfileController> {
                   const SizedBox(
                     height: 15,
                   ),
-                   GetBuilder<ProfileController>(
-                builder: (controller) => TextFormField(
-                  obscureText: controller.isVisible,
-                 // controller: passworsController,
-                  decoration: InputDecoration(
-                    label: const Text("Password"),
-                    hintText: "tapez votre password ",
-                    border: const OutlineInputBorder(),
-                    prefixIcon: const Icon(
-                      Icons.lock,
-                      color: Colors.grey,
-                    ),
-                    suffixIcon: IconButton(
-                      //()=> fonction fleche   (){ } fonction anonyme
-                      onPressed: () => controller.showPassword(),
-                      icon: Icon(
-                        // if else  condition   ? condition true : conditionfalse
-                        controller.isVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,
+                  GetBuilder<ProfileController>(
+                    builder: (controller) => TextFormField(
+                      controller: controller.passworsController,
+                      obscureText: controller.isVisible,
+                      // controller: passworsController,
+                      decoration: InputDecoration(
+                        label: const Text("Password"),
+                        hintText: "tapez votre password ",
+                        border: const OutlineInputBorder(),
+                        prefixIcon: const Icon(
+                          Icons.lock,
+                          color: Colors.grey,
+                        ),
+                        suffixIcon: IconButton(
+                          //()=> fonction fleche   (){ } fonction anonyme
+                          onPressed: () => controller.showPassword(),
+                          icon: Icon(
+                            // if else  condition   ? condition true : conditionfalse
+                            controller.isVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                          ),
+                        ),
                       ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return " sil vous plait tapez votre password";
+                        } else if (value.length < 6) {
+                          return "tapez un password valide";
+                        }
+                        return null;
+                      },
                     ),
                   ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return " sil vous plait tapez votre password";
-                      } else if (value.length < 6) {
-                        return "tapez un password valide";
-                      }
-                      return null;
-                    },
-                  ),
-                   ),
                   const SizedBox(
                     height: 30,
                   ),

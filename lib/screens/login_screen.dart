@@ -1,9 +1,12 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pfefront/controllers/profile_controller.dart';
 import 'package:pfefront/screens/signup_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+//-------------------liaison etre interface et conteroller
+class LoginScreen extends GetView<ProfileController> {
   const LoginScreen({super.key});
 
   @override
@@ -56,32 +59,38 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              TextFormField(
-                controller: passworsController,
-                decoration: InputDecoration(
-                  label: const Text("Password"),
-                  hintText: "tapez votre password ",
-                  border: const OutlineInputBorder(),
-                  prefixIcon: const Icon(
-                    Icons.lock,
-                    color: Colors.grey,
-                  ),
-                  suffixIcon: IconButton(
-                    //()=> fonction fleche   (){ } fonction anonyme
-                    onPressed: () => print('print tcon'),
-                    icon: const Icon(
-                      Icons.visibility,
+              GetBuilder<ProfileController>(
+                builder: (controller) => TextFormField(
+                  obscureText: controller.isVisible,
+                  controller: passworsController,
+                  decoration: InputDecoration(
+                    label: const Text("Password"),
+                    hintText: "tapez votre password ",
+                    border: const OutlineInputBorder(),
+                    prefixIcon: const Icon(
+                      Icons.lock,
+                      color: Colors.grey,
+                    ),
+                    suffixIcon: IconButton(
+                      //()=> fonction fleche   (){ } fonction anonyme
+                      onPressed: () => controller.showPassword(),
+                      icon: Icon(
+                        // if else  condition   ? condition true : conditionfalse
+                        controller.isVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                      ),
                     ),
                   ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return " sil vous plait tapez votre password";
+                    } else if (value.length < 6) {
+                      return "tapez un password valide";
+                    }
+                    return null;
+                  },
                 ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return " sil vous plait tapez votre password";
-                  } else if (value.length < 6) {
-                    return "tapez un password valide";
-                  }
-                  return null;
-                },
               ),
               const Align(
                 alignment: Alignment.topRight,

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_native_splash/flutter_native_splash_web.dart';
+import 'package:get/get.dart';
+import 'package:pfefront/core/bindings.dart';
 import 'package:pfefront/screens/login_screen.dart';
 
 void main() {
@@ -22,9 +24,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return GetMaterialApp(
+      initialBinding: AllBindings(),
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: const LoginScreen(),
     );
   }
 }

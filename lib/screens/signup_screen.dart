@@ -2,50 +2,18 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'dart:html' as html;
 import 'dart:html';
 import 'dart:typed_data';
 
 import 'package:image_picker/image_picker.dart';
+import 'package:pfefront/controllers/profile_controller.dart';
 import 'package:pfefront/screens/login_screen.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen extends GetView<ProfileController> {
   const SignUpScreen({super.key});
 
-  @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
-}
-
-class _SignUpScreenState extends State<SignUpScreen> {
-  bool visibility = true;
-  String? selectedValue;
-  List<String> listRole = ["Vendeur", "Client"];
-  String? tempPath;
-  List<File> images = [];
-  XFile? image;
-  html.File? pickedFile;
-  Uint8List? fileBytes;
-  void pickFile() {
-    html.FileUploadInputElement uploadInput = html.FileUploadInputElement();
-    uploadInput.click();
-    uploadInput.onChange.listen((event) {
-      final files = uploadInput.files;
-      if (files != null && files.isNotEmpty) {
-        final reader = html.FileReader();
-        reader.readAsArrayBuffer(files[0]);
-        reader.onLoadEnd.listen((event) {
-          setState(() {
-            pickedFile = files[0];
-            print('file=========================$pickedFile');
-            fileBytes = reader.result as Uint8List?;
-            visibility = false;
-          });
-        });
-      }
-    });
-  }
-
-  final keyForm = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +21,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Form(
-            key: keyForm,
+            key: controller.keyForm,
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -137,66 +105,69 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const SizedBox(
                     height: 15,
                   ),
-                  DropdownButton(
-                      hint: const Text('role'),
-                      // Initial Value
-                      value: selectedValue,
+                  GetBuilder<ProfileController>(
+                    builder: (controller) => DropdownButton(
+                        hint: const Text('role'),
+                        // Initial Value
+                        value: controller.selectedValue,
 
-                      // Down Arrow Icon
-                      icon: const Icon(
-                        Icons.keyboard_arrow_down,
-                        color: Colors.grey,
-                      ),
+                        // Down Arrow Icon
+                        icon: const Icon(
+                          Icons.keyboard_arrow_down,
+                          color: Colors.grey,
+                        ),
 
-                      // Array list of items
-                      items: listRole.map((String items) {
-                        return DropdownMenuItem(
-                          value: items,
-                          child: Text(
-                            items,
-                            style: const TextStyle(color: Colors.grey),
-                          ),
-                        );
-                      }).toList(),
-                      // After selecting the desired option,it will
-                      // change button value to selected value
-                      onChanged: (value) {
-                        setState(() {
-                          selectedValue = value;
-                        });
-                      }),
+                        // Array list of items
+                        items: controller.listRole.map((String items) {
+                          return DropdownMenuItem(
+                            value: items,
+                            child: Text(
+                              items,
+                              style: const TextStyle(color: Colors.grey),
+                            ),
+                          );
+                        }).toList(),
+                        // After selecting the desired option,it will
+                        // change button value to selected value
+                        onChanged: (value) {
+                          controller.onChnagedDropDown(value!);
+                        }),
+                  ),
                   const SizedBox(
                     height: 15,
                   ),
-                  Row(
-                    children: [
-                      Visibility(
-                        visible: visibility,
-                        child: InkWell(
-                          child: Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey),
-                              ),
-                              child: const Text('ajouter un image')),
-                          onTap: () {
-                            pickFile();
-                          },
-                        ),
-                      ),
-                      pickedFile != null && fileBytes != null
-                          ? Column(
-                              children: [
-                                Image.memory(
-                                  fileBytes!,
-                                  width: 50,
-                                  height: 50,
+                  GetBuilder<ProfileController>(
+                    builder: (controller) => Row(
+                      children: [
+                        Visibility(
+                          visible: controller.visibility,
+                          child: InkWell(
+                            child: Container(
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey),
                                 ),
-                                Text(pickedFile!.name),
-                              ],
-                            )
-                          : const SizedBox(),
-                    ],
+                                child: const Text('ajouter un image')),
+                            onTap: () {
+                              controller.pickFile();
+                            },
+                          ),
+                        ),
+                        controller.pickedFile != null &&
+                                controller.fileBytes != null
+                            ? Column(
+                                children: [
+                                  Image.memory(
+                                    controller.fileBytes!,
+                                    width: 50,
+                                    height: 50,
+                                  ),
+                                  Text(controller.pickedFile!.name),
+                                ],
+                              )
+                            : const SizedBox(),
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 15,
@@ -237,7 +208,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 150, vertical: 20)),
                     onPressed: () {
-                      if (keyForm.currentState!.validate()) {
+                      if (controller.keyForm.currentState!.validate()) {
                         print('form valide');
                       }
                     },

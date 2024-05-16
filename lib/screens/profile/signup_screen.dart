@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import 'package:pfefront/controllers/profile_controller.dart';
-import 'package:pfefront/screens/login_screen.dart';
+import 'package:pfefront/screens/profile/login_screen.dart';
 
 class SignUpScreen extends GetView<ProfileController> {
   const SignUpScreen({super.key});

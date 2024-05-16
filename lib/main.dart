@@ -6,16 +6,18 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_native_splash/flutter_native_splash_web.dart';
 import 'package:get/get.dart';
 import 'package:pfefront/core/bindings.dart';
-import 'package:pfefront/screens/login_screen.dart';
+import 'package:pfefront/screens/profile/login_screen.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  runApp(DevicePreview(
-    enabled: !kReleaseMode,
-    builder: (context) => const MyApp(),
-  ));
+  runApp(const MyApp()
+      // DevicePreview(
+      //   enabled: !kReleaseMode,
+      //   builder: (context) => const MyApp(),
+      // ),
+      );
   FlutterNativeSplash.remove();
 }
 

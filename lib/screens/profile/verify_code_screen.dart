@@ -129,7 +129,7 @@ class VerifyCodeScreen extends GetView<ProfileController> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 100, vertical: 20)),
                 onPressed: () {
-                  Get.to(const NawPasswordScreen());
+                  Get.to(const NewPasswordScreen());
                 },
                 child: const Text(
                   "Verify",

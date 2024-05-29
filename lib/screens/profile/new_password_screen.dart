@@ -7,8 +7,8 @@ import 'package:pfefront/controllers/profile_controller.dart';
 import 'package:pfefront/screens/profile/login_screen.dart';
 import 'package:pfefront/screens/profile/signup_screen.dart';
 
-class NawPasswordScreen extends GetView<ProfileController> {
-  const NawPasswordScreen({super.key});
+class NewPasswordScreen extends GetView<ProfileController> {
+  const NewPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

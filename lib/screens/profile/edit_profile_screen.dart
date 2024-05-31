@@ -10,8 +10,8 @@ import 'package:pfefront/core/widgets/base_layout.dart';
 import 'package:pfefront/core/widgets/custom_drop_dow_button.dart';
 import 'package:pfefront/screens/profile/login_screen.dart';
 
-class SignUpScreen extends GetView<ProfileController> {
-  const SignUpScreen({super.key});
+class EditProfileScreen extends GetView<ProfileController> {
+  const EditProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +24,10 @@ class SignUpScreen extends GetView<ProfileController> {
       "Prefer Not to say"
     ];
     return BaseLayout(
+      appBar: AppBar(
+          //  backgroundColor: Colors.blue,
+
+          ),
       widget: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Form(
@@ -34,13 +38,16 @@ class SignUpScreen extends GetView<ProfileController> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  "Create Account",
+                  "Modifie Profile",
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-
+                Image.asset(
+                  "assets/images/edit-profile-.png",
+                  width: 180,
+                ),
                 const SizedBox(
                   height: 25,
                 ),
@@ -55,12 +62,6 @@ class SignUpScreen extends GetView<ProfileController> {
                       color: Colors.grey,
                     ),
                   ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return " sil vous plait tapez votre username";
-                    }
-                    return null;
-                  },
                 ),
                 const SizedBox(
                   height: 15,
@@ -76,14 +77,6 @@ class SignUpScreen extends GetView<ProfileController> {
                       color: Colors.grey,
                     ),
                   ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return " sil vous plait tapez votre email";
-                    } else if (!EmailValidator.validate(value)) {
-                      return "tapez un email valide";
-                    }
-                    return null;
-                  },
                 ),
                 const SizedBox(
                   height: 15,
@@ -99,14 +92,6 @@ class SignUpScreen extends GetView<ProfileController> {
                       color: Colors.grey,
                     ),
                   ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return " sil vous plait tapez votre phone";
-                    } else if (value.length < 8) {
-                      return "tapez un phone number valide";
-                    }
-                    return null;
-                  },
                 ),
                 const SizedBox(
                   height: 15,
@@ -190,14 +175,6 @@ class SignUpScreen extends GetView<ProfileController> {
                       color: Colors.grey,
                     ),
                   ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return " sil vous plait tapez votre code postale ";
-                    } else if (value.length < 4) {
-                      return "tapez un code postale valide";
-                    }
-                    return null;
-                  },
                 ),
                 // GetBuilder<ProfileController>(builder: (controller) {
                 //   return CustomDropDowButton(
@@ -208,113 +185,9 @@ class SignUpScreen extends GetView<ProfileController> {
                 //         controller.onChnagedDropDownCivilityTitle(p0!),
                 //   );
                 // }),
-                GetBuilder<ProfileController>(
-                  builder: (controller) => DropdownButton(
-                      hint: const Text('role'),
-                      // Initial Value
-                      value: controller.selectedValue,
 
-                      // Down Arrow Icon
-                      icon: const Icon(
-                        Icons.keyboard_arrow_down,
-                        color: Colors.grey,
-                      ),
-
-                      // Array list of items
-                      items: controller.listRole.map((String items) {
-                        return DropdownMenuItem(
-                          value: items,
-                          child: Text(
-                            items,
-                            style: const TextStyle(color: Colors.grey),
-                          ),
-                        );
-                      }).toList(),
-                      // After selecting the desired option,it will
-                      // change button value to selected value
-                      onChanged: (value) {
-                        controller.onChnagedDropDown(value!);
-                      }),
-                ),
                 const SizedBox(
                   height: 15,
-                ),
-                GetBuilder<ProfileController>(
-                  builder: (controller) => Row(
-                    children: [
-                      Visibility(
-                        visible: controller.visibility,
-                        child: InkWell(
-                          child: Container(
-                              width: MediaQuery.sizeOf(context).width *
-                                  0.9, // Largeur du container
-                              //   height: 150, // Hauteur du container
-                              padding: const EdgeInsets.all(
-                                  18), // Espace intérieur du container
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(
-                                    color: Colors
-                                        .black), // Bordure arrondie du container
-                              ),
-                              child: const Text('ajouter un image')),
-                          onTap: () {
-                            controller.pickFile();
-                          },
-                        ),
-                      ),
-                      controller.pickedFile != null &&
-                              controller.fileBytes != null
-                          ? Column(
-                              children: [
-                                Image.memory(
-                                  controller.fileBytes!,
-                                  width: 50,
-                                  height: 50,
-                                ),
-                                Text(controller.pickedFile!.name),
-                              ],
-                            )
-                          : const SizedBox(),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                GetBuilder<ProfileController>(
-                  builder: (controller) => TextFormField(
-                    controller: controller.passworsController,
-                    obscureText: controller.isVisible,
-                    // controller: passworsController,
-                    decoration: InputDecoration(
-                      label: const Text("Password"),
-                      hintText: "tapez votre password ",
-                      border: const OutlineInputBorder(),
-                      prefixIcon: const Icon(
-                        Icons.lock,
-                        color: Colors.grey,
-                      ),
-                      suffixIcon: IconButton(
-                        //()=> fonction fleche   (){ } fonction anonyme
-                        onPressed: () => controller.showPassword(),
-                        icon: Icon(
-                          // if else  condition   ? condition true : conditionfalse
-                          controller.isVisible
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                        ),
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return " sil vous plait tapez votre password";
-                      } else if (value.length < 6) {
-                        return "tapez un password valide";
-                      }
-                      return null;
-                    },
-                  ),
                 ),
                 const SizedBox(
                   height: 30,
@@ -330,7 +203,7 @@ class SignUpScreen extends GetView<ProfileController> {
                     }
                   },
                   child: const Text(
-                    "Sign up",
+                    "Modeifie",
                     style: TextStyle(
                       color: Colors.white,
                     ),
@@ -339,22 +212,6 @@ class SignUpScreen extends GetView<ProfileController> {
                 const SizedBox(
                   height: 8,
                 ),
-                Text.rich(
-                  TextSpan(text: "Already have an account? ", children: [
-                    TextSpan(
-                      text: "Login",
-                      style: const TextStyle(
-                        color: Colors.blue,
-                      ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => const LoginScreen(),
-                              ),
-                            ),
-                    )
-                  ]),
-                )
               ],
             ),
           ),

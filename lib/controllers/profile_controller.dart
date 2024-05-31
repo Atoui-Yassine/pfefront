@@ -14,6 +14,8 @@ class ProfileController extends GetxController {
   GlobalKey<FormState> keyFormNewP = GlobalKey<FormState>();
 
   TextEditingController emailController = TextEditingController();
+  TextEditingController codePostaleController = TextEditingController();
+
   TextEditingController? passworsController = TextEditingController();
   TextEditingController userNameController = TextEditingController();
   TextEditingController? phoneController = TextEditingController();
@@ -33,12 +35,25 @@ class ProfileController extends GetxController {
 
   bool visibility = true;
   String? selectedValue;
+  String? selectedValueCivilityTitle = "civility";
+  String selectedValueCountry = "country";
+
   List<String> listRole = ["Vendeur", "Client"];
   String? tempPath;
   List<File> images = [];
   XFile? image;
   html.File? pickedFile;
   Uint8List? fileBytes;
+  void selectCountry(String country) {
+    selectedValueCountry = country;
+    update();
+  }
+
+  void onChnagedDropDownCivilityTitle(String? v) {
+    selectedValueCivilityTitle = v;
+    update();
+  }
+
   void pickFile() {
     html.FileUploadInputElement uploadInput = html.FileUploadInputElement();
     uploadInput.click();
@@ -62,4 +77,9 @@ class ProfileController extends GetxController {
     selectedValue = value;
     update();
   }
+
+
+
+
+
 }

@@ -39,21 +39,19 @@ class LoginScreen extends GetView<ProfileController> {
                   height: 35,
                 ),
                 TextFormField(
-                  controller: controller.emailController,
+                  controller: controller.userNameController,
                   decoration: const InputDecoration(
-                    label: Text("Email"),
-                    hintText: "tapez votre email ",
+                    label: Text("UserName"),
+                    hintText: "tapez votre name ",
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(
-                      Icons.email,
+                      Icons.person,
                       color: Colors.grey,
                     ),
                   ),
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return " sil vous plait tapez votre email";
-                    } else if (!EmailValidator.validate(value)) {
-                      return "tapez un email valide";
+                      return " sil vous plait tapez votre nom";
                     }
                     return null;
                   },
@@ -126,10 +124,7 @@ class LoginScreen extends GetView<ProfileController> {
                     print('form valide');
                     print(
                         'email===========>${controller.emailController.text}');
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          const PropositionFinancementScreen(),
-                    ));
+                    controller.login();
                     // }
                   },
                   child: const Text(

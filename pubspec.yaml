@@ -43,6 +43,11 @@ dependencies:
   country_picker: ^2.0.26
   flutter_screenutil: ^5.9.1
   babstrap_settings_screen: ^0.1.6
+  carousel_slider: ^4.2.1
+  fan_carousel_image_slider: ^1.0.1
+  widget_slider: ^0.1.0
+  flip_carousel: ^0.0.3
+  dio: ^5.4.3+1
 
 dev_dependencies:
   flutter_test:

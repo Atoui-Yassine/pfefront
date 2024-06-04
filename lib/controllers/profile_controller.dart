@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:html' as html;
@@ -5,6 +6,8 @@ import 'dart:html';
 import 'dart:typed_data';
 
 import 'package:image_picker/image_picker.dart';
+import 'package:pfefront/core/networking/app_api.dart';
+import 'package:pfefront/screens/home/proposition_financement_screen.dart';
 
 class ProfileController extends GetxController {
   GlobalKey<FormState> keyForm = GlobalKey<FormState>();
@@ -78,8 +81,20 @@ class ProfileController extends GetxController {
     update();
   }
 
-
-
-
-
+  final dio = Dio();
+  login() async {
+    Map<String, dynamic> data = {
+      "username": userNameController.text,
+      "password": passworsController!.text
+    };
+    try {
+      var response = await dio.post(AppApi.loginUrl, data: data);
+      if (response.statusCode == 200) {
+        print('login success');
+        Get.to(const PropositionFinancementScreen());
+      }
+    } catch (e) {
+      print('error================$e');
+    }
+  }
 }

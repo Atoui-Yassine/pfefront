@@ -7,6 +7,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_native_splash/flutter_native_splash_web.dart';
 import 'package:get/get.dart';
 import 'package:pfefront/core/bindings.dart';
+import 'package:pfefront/screens/home/echange_client_vendeur_screen.dart';
 import 'package:pfefront/screens/profile/login_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -77,7 +78,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      home: const LoginScreen(),
+      home:  LoginScreen(),
     );
   }
 }

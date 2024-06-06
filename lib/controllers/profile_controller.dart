@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:dio/dio.dart' as dio_;
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:html' as html;
@@ -8,10 +10,12 @@ import 'dart:typed_data';
 import 'package:image_picker/image_picker.dart';
 import 'package:pfefront/core/networking/app_api.dart';
 import 'package:pfefront/screens/home/proposition_financement_screen.dart';
+import 'package:pfefront/screens/profile/login_screen.dart';
 
 class ProfileController extends GetxController {
   GlobalKey<FormState> keyForm = GlobalKey<FormState>();
   GlobalKey<FormState> keyFormForgot = GlobalKey<FormState>();
+  GlobalKey<FormState> keyFormSignUp = GlobalKey<FormState>();
 
   GlobalKey<FormState> keyFormVeify = GlobalKey<FormState>();
   GlobalKey<FormState> keyFormNewP = GlobalKey<FormState>();
@@ -21,6 +25,10 @@ class ProfileController extends GetxController {
 
   TextEditingController? passworsController = TextEditingController();
   TextEditingController userNameController = TextEditingController();
+  TextEditingController civiliteController = TextEditingController();
+  TextEditingController nationnaliteController = TextEditingController();
+  TextEditingController villeDeNaissanceController = TextEditingController();
+
   TextEditingController? phoneController = TextEditingController();
   TextEditingController? confirmPassworsController = TextEditingController();
 
@@ -38,7 +46,7 @@ class ProfileController extends GetxController {
 
   bool visibility = true;
   String? selectedValue;
-  String? selectedValueCivilityTitle = "civility";
+  String? selectedValueCivilityTitle;
   String selectedValueCountry = "country";
 
   List<String> listRole = ["Vendeur", "Client"];
@@ -52,7 +60,7 @@ class ProfileController extends GetxController {
     update();
   }
 
-  void onChnagedDropDownCivilityTitle(String? v) {
+  void onChnagedDropDownCivilityTitle(String v) {
     selectedValueCivilityTitle = v;
     update();
   }
@@ -92,6 +100,37 @@ class ProfileController extends GetxController {
       if (response.statusCode == 200) {
         print('login success');
         Get.to(const PropositionFinancementScreen());
+      }
+    } catch (e) {
+      print('error================$e');
+    }
+  }
+
+  signUp() async {
+    Map<String, dynamic> data = {
+      "username": userNameController.text,
+      "email": emailController.text,
+      "phone": phoneController!.text,
+      "role": selectedValue,
+      "password": passworsController!.text,
+      "villedenaissance": villeDeNaissanceController.text,
+      "codepostaledenaissance": codePostaleController.text,
+      "paysdenaissance": selectedValueCountry,
+      "nationnalité": nationnaliteController.text,
+      "civilité": selectedValueCivilityTitle
+    };
+    dio_.FormData data_ = dio_.FormData.fromMap({
+      "file": dio_.MultipartFile.fromBytes(
+        fileBytes!,
+        filename: pickedFile!.name,
+      ),
+    });
+    try {
+      var response =
+          await dio.post(AppApi.signupUrl, queryParameters: data, data: data_);
+      if (response.statusCode == 200) {
+        print('signUp success---------------------');
+        Get.to(const LoginScreen());
       }
     } catch (e) {
       print('error================$e');

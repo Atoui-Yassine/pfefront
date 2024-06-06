@@ -27,7 +27,7 @@ class SignUpScreen extends GetView<ProfileController> {
       widget: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Form(
-          key: controller.keyForm,
+          key: controller.keyFormSignUp,
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,7 +40,6 @@ class SignUpScreen extends GetView<ProfileController> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-
                 const SizedBox(
                   height: 25,
                 ),
@@ -104,6 +103,48 @@ class SignUpScreen extends GetView<ProfileController> {
                       return " sil vous plait tapez votre phone";
                     } else if (value.length < 8) {
                       return "tapez un phone number valide";
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                TextFormField(
+                  controller: controller.nationnaliteController,
+                  decoration: const InputDecoration(
+                    label: Text("Nationalite"),
+                    hintText: "tapez votre nationalite ",
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(
+                      Icons.location_on_outlined,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return " sil vous plait tapez votre nationalite";
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                TextFormField(
+                  controller: controller.villeDeNaissanceController,
+                  decoration: const InputDecoration(
+                    label: Text("Ville De Naissance"),
+                    hintText: "tapez votre Ville De Naissance ",
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(
+                      Icons.villa,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return " sil vous plait tapez votre Ville De Naissance";
                     }
                     return null;
                   },
@@ -199,15 +240,6 @@ class SignUpScreen extends GetView<ProfileController> {
                     return null;
                   },
                 ),
-                // GetBuilder<ProfileController>(builder: (controller) {
-                //   return CustomDropDowButton(
-                //     hintText: "civility tilte",
-                //     selectedValue: controller.selectedValueCivilityTitle,
-                //     list: civilityTitle,
-                //     onChanged: (p0) =>
-                //         controller.onChnagedDropDownCivilityTitle(p0!),
-                //   );
-                // }),
                 GetBuilder<ProfileController>(
                   builder: (controller) => DropdownButton(
                       hint: const Text('role'),
@@ -234,6 +266,34 @@ class SignUpScreen extends GetView<ProfileController> {
                       // change button value to selected value
                       onChanged: (value) {
                         controller.onChnagedDropDown(value!);
+                      }),
+                ),
+                GetBuilder<ProfileController>(
+                  builder: (controller) => DropdownButton(
+                      hint: const Text("civility tilte"),
+                      // Initial Value
+                      value: controller.selectedValueCivilityTitle,
+
+                      // Down Arrow Icon
+                      icon: const Icon(
+                        Icons.keyboard_arrow_down,
+                        color: Colors.grey,
+                      ),
+
+                      // Array list of items
+                      items: civilityTitle.map((String items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(
+                            items,
+                            style: const TextStyle(color: Colors.black),
+                          ),
+                        );
+                      }).toList(),
+                      // After selecting the desired option,it will
+                      // change button value to selected value
+                      onChanged: (value) {
+                        controller.onChnagedDropDownCivilityTitle(value!);
                       }),
                 ),
                 const SizedBox(
@@ -325,7 +385,8 @@ class SignUpScreen extends GetView<ProfileController> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 150, vertical: 20)),
                   onPressed: () {
-                    if (controller.keyForm.currentState!.validate()) {
+                    if (controller.keyFormSignUp.currentState!.validate()) {
+                      controller.signUp();
                       print('form valide');
                     }
                   },

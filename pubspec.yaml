@@ -48,6 +48,12 @@ dependencies:
   widget_slider: ^0.1.0
   flip_carousel: ^0.0.3
   dio: ^5.4.3+1
+  another_flutter_splash_screen: ^1.2.0
+  pdf: ^3.10.8
+  printing: ^5.12.0
+  syncfusion_flutter_pdf: ^25.2.7
+  open_file: ^3.3.2
+  path_provider: ^2.1.3
 
 dev_dependencies:
   flutter_test:

@@ -107,6 +107,7 @@ class ProfileController extends GetxController {
   }
 
   signUp() async {
+    
     Map<String, dynamic> data = {
       "username": userNameController.text,
       "email": emailController.text,

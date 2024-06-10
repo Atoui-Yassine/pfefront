@@ -3,17 +3,16 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:flutter_native_splash/flutter_native_splash_web.dart';
 import 'package:get/get.dart';
 import 'package:pfefront/core/bindings.dart';
 import 'package:pfefront/screens/home/echange_client_vendeur_screen.dart';
 import 'package:pfefront/screens/profile/login_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 
 void main() {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+// FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   runApp(const MyApp()
       // DevicePreview(
@@ -21,7 +20,7 @@ void main() {
       //   builder: (context) => const MyApp(),
       // ),
       );
-  FlutterNativeSplash.remove();
+  // FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatelessWidget {
@@ -78,7 +77,19 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      home:  LoginScreen(),
+      home: FlutterSplashScreen.gif(
+        gifPath: 'assets/images/example.gif',
+        gifWidth: 269,
+        gifHeight: 474,
+        nextScreen: const LoginScreen(),
+        duration: const Duration(milliseconds: 3515),
+        onInit: () async {
+          debugPrint("onInit");
+        },
+        onEnd: () async {
+          debugPrint("onEnd 1");
+        },
+      ),
     );
   }
 }

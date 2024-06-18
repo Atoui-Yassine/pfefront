@@ -50,7 +50,7 @@ class PropositionFinancementScreen extends GetView<HomeController> {
                     height: 25,
                   ),
                   TextFormField(
-                    //   controller: controller.emailController,
+                    controller: controller.montantTotaleController,
                     decoration: const InputDecoration(
                       label: Text("Montant d'achat TTC"),
                       hintText: "1000 dt",
@@ -60,6 +60,7 @@ class PropositionFinancementScreen extends GetView<HomeController> {
                         color: Colors.grey,
                       ),
                     ),
+                    keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return " sil vous plait tapez montant TTC";
@@ -71,7 +72,7 @@ class PropositionFinancementScreen extends GetView<HomeController> {
                     height: 10,
                   ),
                   TextFormField(
-                    //   controller: controller.emailController,
+                    controller: controller.apportPersonnelController,
                     decoration: const InputDecoration(
                       label: Text("Apport personnel"),
                       hintText: "1000 dt",
@@ -81,18 +82,34 @@ class PropositionFinancementScreen extends GetView<HomeController> {
                         color: Colors.grey,
                       ),
                     ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return " sil vous plait tapez Apport personnel";
+                    keyboardType: TextInputType.number,
+
+                    onChanged: (value) {
+                      if (value.isNotEmpty) {
+                        controller
+                            .montantFinancierController.text = (double.parse(
+                                    controller.montantTotaleController.text) -
+                                double.parse(
+                                    controller.apportPersonnelController.text))
+                            .toString();
                       }
-                      return null;
                     },
+                    // validator: (value) {
+                    //   if (value!.isEmpty) {
+                    //     return " sil vous plait tapez Apport personnel";
+                    //   }
+                    //   return null;
+                    // },
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
-                    //   controller: controller.emailController,
+                    controller:
+                        controller.apportPersonnelController.text.isNotEmpty
+                            ? controller.montantFinancierController
+                            : controller.montantTotaleController,
+                    readOnly: true,
                     decoration: const InputDecoration(
                       label: Text("Montant à fianncier"),
                       hintText: "1000 dt",
@@ -123,7 +140,7 @@ class PropositionFinancementScreen extends GetView<HomeController> {
                     onPressed: () {
                       if (controller.keyForm.currentState!.validate()) {
                         print('form valide');
-                        Get.to(EchangeClientVendeurScreen());
+                        controller.createFinancement();
                       }
                     },
                     child: const Text(

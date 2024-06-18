@@ -90,6 +90,7 @@ class ProfileController extends GetxController {
   }
 
   final dio = Dio();
+  
   login() async {
     Map<String, dynamic> data = {
       "username": userNameController.text,

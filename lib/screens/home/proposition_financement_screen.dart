@@ -23,142 +23,144 @@ class PropositionFinancementScreen extends GetView<HomeController> {
           )),
       drawer: const CustomDrawer(),
       widget: SingleChildScrollView(
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Form(
-              key: controller.keyForm,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    height: 60,
-                  ),
-                  const Text(
-                    "Proposition de financement",
-                    style: TextStyle(
-                      fontSize: 25,
-                      color: Color.fromARGB(255, 93, 68, 68),
-                      fontWeight: FontWeight.bold,
+        child: GetBuilder<HomeController>(builder: (context) {
+          return SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Form(
+                key: controller.keyForm,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      height: 60,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 18,
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  TextFormField(
-                    controller: controller.montantTotaleController,
-                    decoration: const InputDecoration(
-                      label: Text("Montant d'achat TTC"),
-                      hintText: "1000 dt",
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(
-                        Icons.money,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    keyboardType: TextInputType.number,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return " sil vous plait tapez montant TTC";
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  TextFormField(
-                    controller: controller.apportPersonnelController,
-                    decoration: const InputDecoration(
-                      label: Text("Apport personnel"),
-                      hintText: "1000 dt",
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(
-                        Icons.money,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    keyboardType: TextInputType.number,
-
-                    onChanged: (value) {
-                      if (value.isNotEmpty) {
-                        controller
-                            .montantFinancierController.text = (double.parse(
-                                    controller.montantTotaleController.text) -
-                                double.parse(
-                                    controller.apportPersonnelController.text))
-                            .toString();
-                      }
-                    },
-                    // validator: (value) {
-                    //   if (value!.isEmpty) {
-                    //     return " sil vous plait tapez Apport personnel";
-                    //   }
-                    //   return null;
-                    // },
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  TextFormField(
-                    controller:
-                        controller.apportPersonnelController.text.isNotEmpty
-                            ? controller.montantFinancierController
-                            : controller.montantTotaleController,
-                    readOnly: true,
-                    decoration: const InputDecoration(
-                      label: Text("Montant à fianncier"),
-                      hintText: "1000 dt",
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(
-                        Icons.money,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return " sil vous plait tapez Montant à fianncier";
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 100, vertical: 20)),
-                    onPressed: () {
-                      if (controller.keyForm.currentState!.validate()) {
-                        print('form valide');
-                        controller.createFinancement();
-                      }
-                    },
-                    child: const Text(
-                      "Simuler",
+                    const Text(
+                      "Proposition de financement",
                       style: TextStyle(
-                          fontSize: 22,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
+                        fontSize: 25,
+                        color: Color.fromARGB(255, 93, 68, 68),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                ],
+                    const SizedBox(
+                      height: 18,
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    TextFormField(
+                      controller: controller.montantTotaleController,
+                      decoration: const InputDecoration(
+                        label: Text("Montant d'achat TTC"),
+                        hintText: "1000 dt",
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(
+                          Icons.money,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      keyboardType: TextInputType.number,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return " sil vous plait tapez montant TTC";
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      controller: controller.apportPersonnelController,
+                      decoration: const InputDecoration(
+                        label: Text("Apport personnel"),
+                        hintText: "1000 dt",
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(
+                          Icons.money,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      keyboardType: TextInputType.number,
+
+                      onChanged: (value) {
+                        if (value.isNotEmpty) {
+                          controller
+                              .montantFinancierController.text = (double.parse(
+                                      controller.montantTotaleController.text) -
+                                  double.parse(controller
+                                      .apportPersonnelController.text))
+                              .toString();
+                        }
+                      },
+                      // validator: (value) {
+                      //   if (value!.isEmpty) {
+                      //     return " sil vous plait tapez Apport personnel";
+                      //   }
+                      //   return null;
+                      // },
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      controller:
+                          controller.apportPersonnelController.text.isNotEmpty
+                              ? controller.montantFinancierController
+                              : controller.montantTotaleController,
+                      readOnly: true,
+                      decoration: const InputDecoration(
+                        label: Text("Montant à fianncier"),
+                        hintText: "1000 dt",
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(
+                          Icons.money,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return " sil vous plait tapez Montant à fianncier";
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 100, vertical: 20)),
+                      onPressed: () {
+                        if (controller.keyForm.currentState!.validate()) {
+                          print('form valide');
+                          controller.createFinancement();
+                        }
+                      },
+                      child: const Text(
+                        "Simuler",
+                        style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ),
+          );
+        }),
       ),
     );
   }

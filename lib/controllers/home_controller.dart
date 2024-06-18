@@ -33,4 +33,10 @@ class HomeController extends GetxController {
       print('error================$e');
     }
   }
+
+  updateMonatant(String v, String v2) {
+    montantFinancierController.text =
+        (double.parse(v) - double.parse(v2)).toString();
+    update();
+  }
 }

@@ -87,12 +87,9 @@ class PropositionFinancementScreen extends GetView<HomeController> {
 
                       onChanged: (value) {
                         if (value.isNotEmpty) {
-                          controller
-                              .montantFinancierController.text = (double.parse(
-                                      controller.montantTotaleController.text) -
-                                  double.parse(controller
-                                      .apportPersonnelController.text))
-                              .toString();
+                          controller.updateMonatant(
+                              controller.montantTotaleController.text,
+                              controller.apportPersonnelController.text);
                         }
                       },
                       // validator: (value) {

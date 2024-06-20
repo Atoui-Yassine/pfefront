@@ -156,7 +156,7 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
               TextSpan(
                 text: "${controller.m}/${controller.d}/${controller.y}\t\t\t",
                 children: [
-                  TextSpan(text: "         \t\t\t ${controller.m / 3} dt")
+                  TextSpan(text: "         \t\t\t  ${montantFinan! / 3} dt")
                 ],
                 style: const TextStyle(
                   fontSize: 15,
@@ -172,7 +172,7 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
               TextSpan(
                 text: "${controller.m1}/${controller.d}/${controller.y}\t\t\t",
                 children: [
-                  TextSpan(text: "         \t\t\t${controller.m / 3}dt")
+                  TextSpan(text: "         \t\t\t ${montantFinan! / 3}dt")
                 ],
                 style: const TextStyle(
                   fontSize: 15,
@@ -188,7 +188,7 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
               TextSpan(
                 text: "${controller.m2}/${controller.d}/${controller.y}\t\t\t",
                 children: [
-                  TextSpan(text: "         \t\t\t${controller.m / 3} dt")
+                  TextSpan(text: "         \t\t\t ${montantFinan! / 3} dt")
                 ],
                 style: const TextStyle(
                   fontSize: 15,
@@ -202,8 +202,8 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
             ),
             Text.rich(
               TextSpan(
-                text: "$total\t\t\t",
-                children: const [TextSpan(text: "         \t\t\t200 dt")],
+                text: "Total\t\t\t",
+                children: [TextSpan(text: "         \t\t\t$total dt")],
                 style: const TextStyle(
                   fontSize: 15,
                   color: Colors.black,
@@ -274,7 +274,7 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
               TextSpan(
                 text: "${controller.m}/${controller.d}/${controller.y}\t\t\t",
                 children: [
-                  TextSpan(text: "         \t\t\t${controller.m / 4}0 dt")
+                  TextSpan(text: "         \t\t\t ${montantFinan! / 4} dt")
                 ],
                 style: const TextStyle(
                   fontSize: 15,
@@ -290,7 +290,7 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
               TextSpan(
                 text: "${controller.m1}/${controller.d}/${controller.y}\t\t\t",
                 children: [
-                  TextSpan(text: "         \t\t\t${controller.m / 4} dt")
+                  TextSpan(text: "         \t\t\t ${montantFinan! / 4} dt")
                 ],
                 style: const TextStyle(
                   fontSize: 15,
@@ -306,7 +306,7 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
               TextSpan(
                 text: "${controller.m2}/${controller.d}/${controller.y}\t\t\t",
                 children: [
-                  TextSpan(text: "         \t\t\t${controller.m / 4} dt")
+                  TextSpan(text: "         \t\t\t ${montantFinan! / 4} dt")
                 ],
                 style: const TextStyle(
                   fontSize: 15,
@@ -322,7 +322,7 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
               TextSpan(
                 text: "${controller.m3}/${controller.d}/${controller.y}\t\t\t",
                 children: [
-                  TextSpan(text: "         \t\t\t${controller.m / 4}dt")
+                  TextSpan(text: "         \t\t\t ${montantFinan! / 4}dt")
                 ],
                 style: const TextStyle(
                   fontSize: 15,

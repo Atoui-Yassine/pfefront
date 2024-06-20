@@ -4,12 +4,18 @@ import 'package:get/get.dart';
 import 'package:pfefront/core/networking/app_api.dart';
 import 'package:pfefront/screens/home/echange_client_vendeur_screen.dart';
 import 'package:widget_slider/widget_slider.dart';
+import 'package:intl/intl.dart';
 
 class HomeController extends GetxController {
   GlobalKey<FormState> keyForm = GlobalKey<FormState>();
   TextEditingController montantTotaleController = TextEditingController();
   TextEditingController montantFinancierController = TextEditingController();
   TextEditingController apportPersonnelController = TextEditingController();
+  String formattedDate = DateFormat('MMMM dd, yyyy').format(DateTime.now());
+  String d = DateTime.now().day.toString();
+  int m = DateTime.now().month + 1;
+  String y = DateTime.now().year.toString();
+
   final controller = SliderController(
     duration: const Duration(milliseconds: 600),
   );
@@ -27,7 +33,10 @@ class HomeController extends GetxController {
           await dio.post(AppApi.createFinancementUrl, queryParameters: data);
       if (response.statusCode == 200) {
         print('login success');
-        Get.to(EchangeClientVendeurScreen());
+        int m = int.parse(apportPersonnelController.text.isNotEmpty
+            ? montantFinancierController.text
+            : montantTotaleController.text);
+        Get.to( EchangeClientVendeurScreen(m));
       }
     } catch (e) {
       print('error================$e');

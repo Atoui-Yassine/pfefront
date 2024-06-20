@@ -6,351 +6,353 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:pfefront/controllers/home_controller.dart';
 import 'package:pfefront/core/widgets/base_layout.dart';
 import 'package:widget_slider/widget_slider.dart';
+import 'package:intl/intl.dart';
 
 class EchangeClientVendeurScreen extends GetView<HomeController> {
-  EchangeClientVendeurScreen({super.key});
-
-  List<dynamic> cardItems = [
-    Container(
-      //  margin: const EdgeInsets.all(5),
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade50,
-            offset: const Offset(0, 5),
-            spreadRadius: 2,
-            blurRadius: 8,
-          ),
-          // BoxShadow(
-          //   color: Colors.grey.shade100,
-          //   offset: const Offset(0, 5),
-          //   spreadRadius: 2,
-          //   blurRadius: 10,
-          // ),
-        ],
-      ),
-      child: Column(
-        children: [
-          const Text(
-            "x2",
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(
-            height: 25,
-          ),
-          const Text.rich(
-            TextSpan(
-              text: "28/10/2024\t\t\t",
-              children: [TextSpan(text: "         \t\t\t200 dt")],
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const Text.rich(
-            TextSpan(
-              text: "28/10/2024\t\t\t",
-              children: [TextSpan(text: "         \t\t\t200 dt")],
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 50,
-          ),
-          const Text.rich(
-            TextSpan(
-              text: "Total\t\t\t",
-              children: [TextSpan(text: "         \t\t\t200 dt")],
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const Spacer(),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 60, vertical: 20)),
-            onPressed: () {
-              // if (controller.keyForm.currentState!.validate()) {
-              //   print('form valide');
-              // }
-            },
-            child: const Text(
-              "Choisir",
-              style: TextStyle(
-                  fontSize: 22,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          )
-        ],
-      ),
-    ),
-    Container(
-      //  margin: const EdgeInsets.all(5),
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade50,
-            offset: const Offset(0, 5),
-            spreadRadius: 2,
-            blurRadius: 8,
-          ),
-          // BoxShadow(
-          //   color: Colors.grey.shade100,
-          //   offset: const Offset(0, 5),
-          //   spreadRadius: 2,
-          //   blurRadius: 10,
-          // ),
-        ],
-      ),
-      child: Column(
-        children: [
-          const Text(
-            "x3",
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(
-            height: 25,
-          ),
-          const Text.rich(
-            TextSpan(
-              text: "28/10/2024\t\t\t",
-              children: [TextSpan(text: "         \t\t\t200 dt")],
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const Text.rich(
-            TextSpan(
-              text: "28/10/2024\t\t\t",
-              children: [TextSpan(text: "         \t\t\t200 dt")],
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const Text.rich(
-            TextSpan(
-              text: "28/10/2024\t\t\t",
-              children: [TextSpan(text: "         \t\t\t200 dt")],
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 50,
-          ),
-          const Text.rich(
-            TextSpan(
-              text: "Total\t\t\t",
-              children: [TextSpan(text: "         \t\t\t200 dt")],
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const Spacer(),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 60, vertical: 20)),
-            onPressed: () {
-              // if (controller.keyForm.currentState!.validate()) {
-              //   print('form valide');
-              // }
-            },
-            child: const Text(
-              "Choisir",
-              style: TextStyle(
-                  fontSize: 22,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          )
-        ],
-      ),
-    ),
-    Container(
-      //  margin: const EdgeInsets.all(5),
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade50,
-            offset: const Offset(0, 5),
-            spreadRadius: 2,
-            blurRadius: 8,
-          ),
-          // BoxShadow(
-          //   color: Colors.grey.shade100,
-          //   offset: const Offset(0, 5),
-          //   spreadRadius: 2,
-          //   blurRadius: 10,
-          // ),
-        ],
-      ),
-      child: Column(
-        children: [
-          const Text(
-            "x4",
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(
-            height: 25,
-          ),
-          const Text.rich(
-            TextSpan(
-              text: "28/10/2024\t\t\t",
-              children: [TextSpan(text: "         \t\t\t200 dt")],
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const Text.rich(
-            TextSpan(
-              text: "28/10/2024\t\t\t",
-              children: [TextSpan(text: "         \t\t\t200 dt")],
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const Text.rich(
-            TextSpan(
-              text: "28/10/2024\t\t\t",
-              children: [TextSpan(text: "         \t\t\t200 dt")],
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const Text.rich(
-            TextSpan(
-              text: "28/10/2024\t\t\t",
-              children: [TextSpan(text: "         \t\t\t200 dt")],
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 50,
-          ),
-          const Text.rich(
-            TextSpan(
-              text: "Total\t\t\t",
-              children: [TextSpan(text: "         \t\t\t200 dt")],
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const Spacer(),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 60, vertical: 20)),
-            onPressed: () {
-              // if (controller.keyForm.currentState!.validate()) {
-              //   print('form valide');
-              // }
-            },
-            child: const Text(
-              "Choisir",
-              style: TextStyle(
-                  fontSize: 22,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          )
-        ],
-      ),
-    ),
-  ];
+  final int? montantFinan;
+  const EchangeClientVendeurScreen(this.montantFinan, {super.key});
 
   @override
   Widget build(BuildContext context) {
+    List<dynamic> cardItems = [
+      Container(
+        //  margin: const EdgeInsets.all(5),
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade50,
+              offset: const Offset(0, 5),
+              spreadRadius: 2,
+              blurRadius: 8,
+            ),
+            // BoxShadow(
+            //   color: Colors.grey.shade100,
+            //   offset: const Offset(0, 5),
+            //   spreadRadius: 2,
+            //   blurRadius: 10,
+            // ),
+          ],
+        ),
+        child: Column(
+          children: [
+            const Text(
+              "x2",
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+            Text.rich(
+              TextSpan(
+                text:
+                    "${DateFormat('MM/dd/yyyy').format(DateTime.now())}\t\t\t",
+                children:  [TextSpan(text: "         \t\t\ ${montantFinan!/2} dt")],
+                style: const TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text.rich(
+              TextSpan(
+                text: "${controller.m}/${controller.d}/${controller.y}\t\t\t",
+                children: const [TextSpan(text: "         \t\t\t200 dt")],
+                style: const TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            const Text.rich(
+              TextSpan(
+                text: "Total\t\t\t",
+                children: [TextSpan(text: "         \t\t\t200 dt")],
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const Spacer(),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 60, vertical: 20)),
+              onPressed: () {
+                // if (controller.keyForm.currentState!.validate()) {
+                //   print('form valide');
+                // }
+              },
+              child: const Text(
+                "Choisir",
+                style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            )
+          ],
+        ),
+      ),
+      Container(
+        //  margin: const EdgeInsets.all(5),
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade50,
+              offset: const Offset(0, 5),
+              spreadRadius: 2,
+              blurRadius: 8,
+            ),
+            // BoxShadow(
+            //   color: Colors.grey.shade100,
+            //   offset: const Offset(0, 5),
+            //   spreadRadius: 2,
+            //   blurRadius: 10,
+            // ),
+          ],
+        ),
+        child: Column(
+          children: [
+            const Text(
+              "x3",
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+            const Text.rich(
+              TextSpan(
+                text: "28/10/2024\t\t\t",
+                children: [TextSpan(text: "         \t\t\t200 dt")],
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Text.rich(
+              TextSpan(
+                text: "28/10/2024\t\t\t",
+                children: [TextSpan(text: "         \t\t\t200 dt")],
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Text.rich(
+              TextSpan(
+                text: "28/10/2024\t\t\t",
+                children: [TextSpan(text: "         \t\t\t200 dt")],
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            const Text.rich(
+              TextSpan(
+                text: "Total\t\t\t",
+                children: [TextSpan(text: "         \t\t\t200 dt")],
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const Spacer(),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 60, vertical: 20)),
+              onPressed: () {
+                // if (controller.keyForm.currentState!.validate()) {
+                //   print('form valide');
+                // }
+              },
+              child: const Text(
+                "Choisir",
+                style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            )
+          ],
+        ),
+      ),
+      Container(
+        //  margin: const EdgeInsets.all(5),
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade50,
+              offset: const Offset(0, 5),
+              spreadRadius: 2,
+              blurRadius: 8,
+            ),
+            // BoxShadow(
+            //   color: Colors.grey.shade100,
+            //   offset: const Offset(0, 5),
+            //   spreadRadius: 2,
+            //   blurRadius: 10,
+            // ),
+          ],
+        ),
+        child: Column(
+          children: [
+            const Text(
+              "x4",
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+            const Text.rich(
+              TextSpan(
+                text: "28/10/2024\t\t\t",
+                children: [TextSpan(text: "         \t\t\t200 dt")],
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Text.rich(
+              TextSpan(
+                text: "28/10/2024\t\t\t",
+                children: [TextSpan(text: "         \t\t\t200 dt")],
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Text.rich(
+              TextSpan(
+                text: "28/10/2024\t\t\t",
+                children: [TextSpan(text: "         \t\t\t200 dt")],
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Text.rich(
+              TextSpan(
+                text: "28/10/2024\t\t\t",
+                children: [TextSpan(text: "         \t\t\t200 dt")],
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            const Text.rich(
+              TextSpan(
+                text: "Total\t\t\t",
+                children: [TextSpan(text: "         \t\t\t200 dt")],
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const Spacer(),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 60, vertical: 20)),
+              onPressed: () {
+                // if (controller.keyForm.currentState!.validate()) {
+                //   print('form valide');
+                // }
+              },
+              child: const Text(
+                "Choisir",
+                style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            )
+          ],
+        ),
+      ),
+    ];
     return BaseLayout(
       appBar: AppBar(
           backgroundColor: Colors.blue,

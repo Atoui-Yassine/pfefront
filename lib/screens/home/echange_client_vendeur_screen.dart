@@ -188,7 +188,9 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
               TextSpan(
                 text: "${controller.m2}/${controller.d}/${controller.y}\t\t\t",
                 children: [
-                  TextSpan(text: "         \t\t\t ${montantFinan! / 3} dt")
+                  TextSpan(
+                      text:
+                          "         \t\t\t ${(montantFinan! / 3).toStringAsFixed(2)} dt")
                 ],
                 style: const TextStyle(
                   fontSize: 15,

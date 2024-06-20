@@ -10,7 +10,8 @@ import 'package:intl/intl.dart';
 
 class EchangeClientVendeurScreen extends GetView<HomeController> {
   final int? montantFinan;
-  const EchangeClientVendeurScreen(this.montantFinan, {super.key});
+  final String? total;
+  const EchangeClientVendeurScreen(this.montantFinan, this.total, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +52,10 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
             ),
             Text.rich(
               TextSpan(
-                text:
-                    "${DateFormat('MM/dd/yyyy').format(DateTime.now())}\t\t\t",
-                children:  [TextSpan(text: "         \t\t\ ${montantFinan!/2} dt")],
+                text: "${controller.m}/${controller.d}/${controller.y}\t\t\t",
+                children: [
+                  TextSpan(text: "         \t\t ${montantFinan! / 2} dt")
+                ],
                 style: const TextStyle(
                   fontSize: 15,
                   color: Colors.black,
@@ -66,8 +68,10 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
             ),
             Text.rich(
               TextSpan(
-                text: "${controller.m}/${controller.d}/${controller.y}\t\t\t",
-                children: const [TextSpan(text: "         \t\t\t200 dt")],
+                text: "${controller.m1}/${controller.d}/${controller.y}\t\t\t",
+                children: [
+                  TextSpan(text: "         \t\t\t ${montantFinan! / 2}dt")
+                ],
                 style: const TextStyle(
                   fontSize: 15,
                   color: Colors.black,
@@ -78,11 +82,11 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
             const SizedBox(
               height: 50,
             ),
-            const Text.rich(
+            Text.rich(
               TextSpan(
                 text: "Total\t\t\t",
-                children: [TextSpan(text: "         \t\t\t200 dt")],
-                style: TextStyle(
+                children: [TextSpan(text: "         \t\t\t $total dt")],
+                style: const TextStyle(
                   fontSize: 15,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -148,11 +152,13 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
             const SizedBox(
               height: 25,
             ),
-            const Text.rich(
+            Text.rich(
               TextSpan(
-                text: "28/10/2024\t\t\t",
-                children: [TextSpan(text: "         \t\t\t200 dt")],
-                style: TextStyle(
+                text: "${controller.m}/${controller.d}/${controller.y}\t\t\t",
+                children: [
+                  TextSpan(text: "         \t\t\t ${controller.m / 3} dt")
+                ],
+                style: const TextStyle(
                   fontSize: 15,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -162,11 +168,13 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
             const SizedBox(
               height: 20,
             ),
-            const Text.rich(
+            Text.rich(
               TextSpan(
-                text: "28/10/2024\t\t\t",
-                children: [TextSpan(text: "         \t\t\t200 dt")],
-                style: TextStyle(
+                text: "${controller.m1}/${controller.d}/${controller.y}\t\t\t",
+                children: [
+                  TextSpan(text: "         \t\t\t${controller.m / 3}dt")
+                ],
+                style: const TextStyle(
                   fontSize: 15,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -176,11 +184,13 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
             const SizedBox(
               height: 20,
             ),
-            const Text.rich(
+            Text.rich(
               TextSpan(
-                text: "28/10/2024\t\t\t",
-                children: [TextSpan(text: "         \t\t\t200 dt")],
-                style: TextStyle(
+                text: "${controller.m2}/${controller.d}/${controller.y}\t\t\t",
+                children: [
+                  TextSpan(text: "         \t\t\t${controller.m / 3} dt")
+                ],
+                style: const TextStyle(
                   fontSize: 15,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -190,11 +200,11 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
             const SizedBox(
               height: 50,
             ),
-            const Text.rich(
+            Text.rich(
               TextSpan(
-                text: "Total\t\t\t",
-                children: [TextSpan(text: "         \t\t\t200 dt")],
-                style: TextStyle(
+                text: "$total\t\t\t",
+                children: const [TextSpan(text: "         \t\t\t200 dt")],
+                style: const TextStyle(
                   fontSize: 15,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -260,11 +270,13 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
             const SizedBox(
               height: 25,
             ),
-            const Text.rich(
+            Text.rich(
               TextSpan(
-                text: "28/10/2024\t\t\t",
-                children: [TextSpan(text: "         \t\t\t200 dt")],
-                style: TextStyle(
+                text: "${controller.m}/${controller.d}/${controller.y}\t\t\t",
+                children: [
+                  TextSpan(text: "         \t\t\t${controller.m / 4}0 dt")
+                ],
+                style: const TextStyle(
                   fontSize: 15,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -274,11 +286,13 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
             const SizedBox(
               height: 20,
             ),
-            const Text.rich(
+            Text.rich(
               TextSpan(
-                text: "28/10/2024\t\t\t",
-                children: [TextSpan(text: "         \t\t\t200 dt")],
-                style: TextStyle(
+                text: "${controller.m1}/${controller.d}/${controller.y}\t\t\t",
+                children: [
+                  TextSpan(text: "         \t\t\t${controller.m / 4} dt")
+                ],
+                style: const TextStyle(
                   fontSize: 15,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -288,11 +302,13 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
             const SizedBox(
               height: 20,
             ),
-            const Text.rich(
+            Text.rich(
               TextSpan(
-                text: "28/10/2024\t\t\t",
-                children: [TextSpan(text: "         \t\t\t200 dt")],
-                style: TextStyle(
+                text: "${controller.m2}/${controller.d}/${controller.y}\t\t\t",
+                children: [
+                  TextSpan(text: "         \t\t\t${controller.m / 4} dt")
+                ],
+                style: const TextStyle(
                   fontSize: 15,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -302,11 +318,13 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
             const SizedBox(
               height: 20,
             ),
-            const Text.rich(
+            Text.rich(
               TextSpan(
-                text: "28/10/2024\t\t\t",
-                children: [TextSpan(text: "         \t\t\t200 dt")],
-                style: TextStyle(
+                text: "${controller.m3}/${controller.d}/${controller.y}\t\t\t",
+                children: [
+                  TextSpan(text: "         \t\t\t${controller.m / 4}dt")
+                ],
+                style: const TextStyle(
                   fontSize: 15,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -316,11 +334,11 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
             const SizedBox(
               height: 50,
             ),
-            const Text.rich(
+            Text.rich(
               TextSpan(
                 text: "Total\t\t\t",
-                children: [TextSpan(text: "         \t\t\t200 dt")],
-                style: TextStyle(
+                children: [TextSpan(text: "         \t\t\t$total dt")],
+                style: const TextStyle(
                   fontSize: 15,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,

@@ -13,7 +13,13 @@ class HomeController extends GetxController {
   TextEditingController apportPersonnelController = TextEditingController();
   String formattedDate = DateFormat('MMMM dd, yyyy').format(DateTime.now());
   String d = DateTime.now().day.toString();
-  int m = DateTime.now().month + 1;
+  int m = DateTime.now().month;
+  int m1 = DateTime.now().month + 1;
+
+  int m2 = DateTime.now().month + 2;
+  int m3 = DateTime.now().month + 3;
+  int m4 = DateTime.now().month + 4;
+
   String y = DateTime.now().year.toString();
 
   final controller = SliderController(
@@ -36,7 +42,11 @@ class HomeController extends GetxController {
         int m = int.parse(apportPersonnelController.text.isNotEmpty
             ? montantFinancierController.text
             : montantTotaleController.text);
-        Get.to( EchangeClientVendeurScreen(m));
+        Get.to(EchangeClientVendeurScreen(
+            m,
+            apportPersonnelController.text.isNotEmpty
+                ? montantFinancierController.text
+                : montantTotaleController.text));
       }
     } catch (e) {
       print('error================$e');

@@ -7,6 +7,8 @@ import 'dart:html';
 import 'dart:typed_data';
 
 import 'package:image_picker/image_picker.dart';
+import 'package:pfefront/controllers/profile_controller.dart';
+import 'package:pfefront/core/storage/app_storage.dart';
 import 'package:pfefront/screens/profile/edit_profile_screen.dart';
 import 'package:pfefront/screens/profile/new_password_screen.dart';
 
@@ -18,6 +20,7 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
+  ProfileController profileController = Get.put(ProfileController());
   String? tempPath;
   List<File> images = [];
   XFile? image;
@@ -100,15 +103,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
                                 const SizedBox(
                                   height: 20,
                                 ),
-                                const Text(
-                                  'Med', // Afficher dynamiquement le nom d'utilisateur
-                                  style: TextStyle(
+                                Text(
+                                  '${AppStorage.readName()}', // Afficher dynamiquement le nom d'utilisateur
+                                  style: const TextStyle(
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                                 Text(
-                                  'med@gmail.com', // Afficher dynamiquement l'e-mail
+                                  '${AppStorage.readEmail()}', // Afficher dynamiquement l'e-mail
                                   style: TextStyle(
                                     fontSize: 14.0,
                                     color: Colors.grey[600],
@@ -130,7 +133,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         items: [
                           SettingsItem(
                             onTap: () {
-                              Get.to(const EditProfileScreen());
+                              profileController.getUser();
+                           
                             },
                             icons: Icons.edit_outlined,
                             title: "Edit Profile",

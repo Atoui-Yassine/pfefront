@@ -44,7 +44,7 @@ class EditProfileScreen extends GetView<ProfileController> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                Image.asset(
+                Image.network(
                   "assets/images/edit-profile-.png",
                   width: 180,
                 ),
@@ -62,6 +62,12 @@ class EditProfileScreen extends GetView<ProfileController> {
                       color: Colors.grey,
                     ),
                   ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return " sil vous plait tapez votre username";
+                    }
+                    return null;
+                  },
                 ),
                 const SizedBox(
                   height: 15,
@@ -77,6 +83,14 @@ class EditProfileScreen extends GetView<ProfileController> {
                       color: Colors.grey,
                     ),
                   ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return " sil vous plait tapez votre email";
+                    } else if (!EmailValidator.validate(value)) {
+                      return "tapez un email valide";
+                    }
+                    return null;
+                  },
                 ),
                 const SizedBox(
                   height: 15,
@@ -92,6 +106,56 @@ class EditProfileScreen extends GetView<ProfileController> {
                       color: Colors.grey,
                     ),
                   ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return " sil vous plait tapez votre phone";
+                    } else if (value.length < 8) {
+                      return "tapez un phone number valide";
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                TextFormField(
+                  controller: controller.nationnaliteController,
+                  decoration: const InputDecoration(
+                    label: Text("Nationalite"),
+                    hintText: "tapez votre nationalite ",
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(
+                      Icons.location_on_outlined,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return " sil vous plait tapez votre nationalite";
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                TextFormField(
+                  controller: controller.villeDeNaissanceController,
+                  decoration: const InputDecoration(
+                    label: Text("Ville De Naissance"),
+                    hintText: "tapez votre Ville De Naissance ",
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(
+                      Icons.villa,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return " sil vous plait tapez votre Ville De Naissance";
+                    }
+                    return null;
+                  },
                 ),
                 const SizedBox(
                   height: 15,
@@ -175,17 +239,86 @@ class EditProfileScreen extends GetView<ProfileController> {
                       color: Colors.grey,
                     ),
                   ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return " sil vous plait tapez votre code postale ";
+                    } else if (value.length < 4) {
+                      return "tapez un code postale valide";
+                    }
+                    return null;
+                  },
                 ),
-                // GetBuilder<ProfileController>(builder: (controller) {
-                //   return CustomDropDowButton(
-                //     hintText: "civility tilte",
-                //     selectedValue: controller.selectedValueCivilityTitle,
-                //     list: civilityTitle,
-                //     onChanged: (p0) =>
-                //         controller.onChnagedDropDownCivilityTitle(p0!),
-                //   );
-                // }),
+                GetBuilder<ProfileController>(
+                  builder: (controller) => DropdownButton(
+                      hint: const Text("civility tilte"),
+                      // Initial Value
+                      value: controller.selectedValueCivilityTitle,
 
+                      // Down Arrow Icon
+                      icon: const Icon(
+                        Icons.keyboard_arrow_down,
+                        color: Colors.grey,
+                      ),
+
+                      // Array list of items
+                      items: civilityTitle.map((String items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(
+                            items,
+                            style: const TextStyle(color: Colors.black),
+                          ),
+                        );
+                      }).toList(),
+                      // After selecting the desired option,it will
+                      // change button value to selected value
+                      onChanged: (value) {
+                        controller.onChnagedDropDownCivilityTitle(value!);
+                      }),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                GetBuilder<ProfileController>(
+                  builder: (controller) => Row(
+                    children: [
+                      Visibility(
+                        visible: controller.visibility,
+                        child: InkWell(
+                          child: Container(
+                              width: MediaQuery.sizeOf(context).width *
+                                  0.9, // Largeur du container
+                              //   height: 150, // Hauteur du container
+                              padding: const EdgeInsets.all(
+                                  18), // Espace intérieur du container
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(
+                                    color: Colors
+                                        .black), // Bordure arrondie du container
+                              ),
+                              child: const Text('ajouter un image')),
+                          onTap: () {
+                            controller.pickFile();
+                          },
+                        ),
+                      ),
+                      controller.pickedFile != null &&
+                              controller.fileBytes != null
+                          ? Column(
+                              children: [
+                                Image.memory(
+                                  controller.fileBytes!,
+                                  width: 50,
+                                  height: 50,
+                                ),
+                                Text(controller.pickedFile!.name),
+                              ],
+                            )
+                          : const SizedBox(),
+                    ],
+                  ),
+                ),
                 const SizedBox(
                   height: 15,
                 ),
@@ -198,12 +331,13 @@ class EditProfileScreen extends GetView<ProfileController> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 150, vertical: 20)),
                   onPressed: () {
-                    if (controller.keyForm.currentState!.validate()) {
+                    if (controller.keyFormSignUp.currentState!.validate()) {
+                      controller.signUp();
                       print('form valide');
                     }
                   },
                   child: const Text(
-                    "Modeifie",
+                    "Update",
                     style: TextStyle(
                       color: Colors.white,
                     ),

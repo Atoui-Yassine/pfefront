@@ -9,7 +9,11 @@ import 'dart:typed_data';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:pfefront/core/networking/app_api.dart';
+import 'package:pfefront/core/storage/app_storage.dart';
+import 'package:pfefront/models/login_model.dart';
+import 'package:pfefront/models/user_model.dart';
 import 'package:pfefront/screens/home/proposition_financement_screen.dart';
+import 'package:pfefront/screens/profile/edit_profile_screen.dart';
 import 'package:pfefront/screens/profile/login_screen.dart';
 
 class ProfileController extends GetxController {
@@ -90,7 +94,7 @@ class ProfileController extends GetxController {
   }
 
   final dio = Dio();
-  
+  LoginModel? loginModel;
   login() async {
     Map<String, dynamic> data = {
       "username": userNameController.text,
@@ -100,6 +104,10 @@ class ProfileController extends GetxController {
       var response = await dio.post(AppApi.loginUrl, data: data);
       if (response.statusCode == 200) {
         print('login success');
+        loginModel = LoginModel.fromJson(response.data);
+        AppStorage.saveId(loginModel!.id);
+        AppStorage.saveName(loginModel!.username);
+        AppStorage.saveEmail(loginModel!.email!);
         Get.to(const PropositionFinancementScreen());
       }
     } catch (e) {
@@ -107,8 +115,31 @@ class ProfileController extends GetxController {
     }
   }
 
+  UserModel? userModel;
+  getUser() async {
+    try {
+      var response = await dio.get(
+        "${AppApi.getUserUrl}${AppStorage.readId()}",
+      );
+      if (response.statusCode == 200) {
+        print('get success');
+        userModel = UserModel.fromJson(response.data);
+        userNameController.text = userModel!.username!;
+        emailController.text = userModel!.email!;
+        phoneController!.text = userModel!.phone!;
+        nationnaliteController.text = userModel!.nationnalit!;
+        villeDeNaissanceController.text = villeDeNaissanceController.text;
+        selectedValueCountry = userModel!.paysdenaissance!;
+        codePostaleController.text = userModel!.codepostaledenaissance!;
+        selectedValueCivilityTitle = userModel!.civilit;
+        Get.to(const EditProfileScreen());
+      }
+    } catch (e) {
+      print('error================$e');
+    }
+  }
+
   signUp() async {
-    
     Map<String, dynamic> data = {
       "username": userNameController.text,
       "email": emailController.text,

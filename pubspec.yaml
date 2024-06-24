@@ -52,6 +52,7 @@ dependencies:
   pdf: ^3.10.8
   printing: ^5.12.0
   syncfusion_flutter_pdf: ^25.2.7
+  get_storage: ^2.1.1
   
   
 

@@ -84,7 +84,7 @@ class MyApp extends StatelessWidget {
         gifPath: 'assets/images/example.gif',
         gifWidth: 269,
         gifHeight: 474,
-        nextScreen: const EditProfileScreen(),
+        nextScreen: const LoginScreen(),
         duration: const Duration(milliseconds: 3515),
         onInit: () async {
           debugPrint("onInit");

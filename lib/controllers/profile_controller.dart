@@ -105,7 +105,8 @@ class ProfileController extends GetxController {
       if (response.statusCode == 200) {
         print('login success');
         loginModel = LoginModel.fromJson(response.data);
-        AppStorage.saveId(loginModel!.id);
+        print("id");
+        AppStorage.saveId(loginModel!.id.toString());
         AppStorage.saveName(loginModel!.username);
         AppStorage.saveEmail(loginModel!.email!);
         Get.to(const PropositionFinancementScreen());
@@ -128,7 +129,7 @@ class ProfileController extends GetxController {
         emailController.text = userModel!.email!;
         phoneController!.text = userModel!.phone!;
         nationnaliteController.text = userModel!.nationnalit!;
-        villeDeNaissanceController.text = villeDeNaissanceController.text;
+        villeDeNaissanceController.text = userModel!.villedenaissance!;
         selectedValueCountry = userModel!.paysdenaissance!;
         codePostaleController.text = userModel!.codepostaledenaissance!;
         selectedValueCivilityTitle = userModel!.civilit;

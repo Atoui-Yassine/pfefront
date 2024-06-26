@@ -5,7 +5,7 @@ class LoginModel {
   int? id;
   String? username;
   String? email;
-  String? roles;
+  Null? roles;
   String? role;
 
   LoginModel(

@@ -5,4 +5,6 @@ class AppApi {
 
   static const String loginUrl = "${baseUrl}Auth/signin";
   static const String createFinancementUrl = "${baseUrl}financement/create";
+  static const String getImageUrl = "${baseUrl}client/files/";
+  static const String updateUserUrl = "${baseUrl}client/update/";
 }

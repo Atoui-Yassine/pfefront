@@ -32,6 +32,7 @@ class ProfileController extends GetxController {
   TextEditingController civiliteController = TextEditingController();
   TextEditingController nationnaliteController = TextEditingController();
   TextEditingController villeDeNaissanceController = TextEditingController();
+  TextEditingController? photoController = TextEditingController();
 
   TextEditingController? phoneController = TextEditingController();
   TextEditingController? confirmPassworsController = TextEditingController();
@@ -133,6 +134,8 @@ class ProfileController extends GetxController {
         selectedValueCountry = userModel!.paysdenaissance!;
         codePostaleController.text = userModel!.codepostaledenaissance!;
         selectedValueCivilityTitle = userModel!.civilit;
+        photoController!.text = userModel!.photo!;
+
         Get.to(const EditProfileScreen());
       }
     } catch (e) {
@@ -165,6 +168,39 @@ class ProfileController extends GetxController {
       if (response.statusCode == 200) {
         print('signUp success---------------------');
         Get.to(const LoginScreen());
+      }
+    } catch (e) {
+      print('error================$e');
+    }
+  }
+
+  updateUser() async {
+    Map<String, dynamic> data = {
+      "username": userNameController.text,
+      "email": emailController.text,
+      "phone": phoneController!.text,
+      // "role": selectedValue,
+      // "password": passworsController!.text,
+      "villedenaissance": villeDeNaissanceController.text,
+      "codepostaledenaissance": codePostaleController.text,
+      "paysdenaissance": selectedValueCountry,
+      "nationnalité": nationnaliteController.text,
+      "civilité": selectedValueCivilityTitle
+    };
+    dio_.FormData data_ = dio_.FormData.fromMap({
+      "file": dio_.MultipartFile.fromBytes(
+        fileBytes!,
+        filename: pickedFile!.name,
+      ),
+    });
+    try {
+      var response = await dio.put(
+          "${AppApi.updateUserUrl}${AppStorage.readId()}",
+          queryParameters: data,
+          data: data_);
+      if (response.statusCode == 200) {
+        print('update success---------------------');
+        //  Get.to(const LoginScreen());
       }
     } catch (e) {
       print('error================$e');

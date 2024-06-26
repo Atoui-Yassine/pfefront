@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import 'package:pfefront/controllers/profile_controller.dart';
+import 'package:pfefront/core/networking/app_api.dart';
 import 'package:pfefront/core/widgets/base_layout.dart';
 import 'package:pfefront/core/widgets/custom_drop_dow_button.dart';
 import 'package:pfefront/screens/profile/login_screen.dart';
@@ -15,6 +16,7 @@ class EditProfileScreen extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.getUser();
     List<String> civilityTitle = [
       "Ms",
       "Mrs.",
@@ -45,7 +47,7 @@ class EditProfileScreen extends GetView<ProfileController> {
                   ),
                 ),
                 Image.network(
-                  "assets/images/edit-profile-.png",
+                  "${AppApi.getImageUrl}${controller.photoController!.text}",
                   width: 180,
                 ),
                 const SizedBox(
@@ -332,7 +334,7 @@ class EditProfileScreen extends GetView<ProfileController> {
                           horizontal: 150, vertical: 20)),
                   onPressed: () {
                     if (controller.keyFormSignUp.currentState!.validate()) {
-                      controller.signUp();
+                      controller.updateUser();
                       print('form valide');
                     }
                   },

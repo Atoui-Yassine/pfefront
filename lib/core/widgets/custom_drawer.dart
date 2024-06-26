@@ -133,8 +133,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         items: [
                           SettingsItem(
                             onTap: () {
-                              profileController.getUser();
-                           
+                              Get.to(EditProfileScreen());
                             },
                             icons: Icons.edit_outlined,
                             title: "Edit Profile",

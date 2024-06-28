@@ -281,46 +281,47 @@ class EditProfileScreen extends GetView<ProfileController> {
                 const SizedBox(
                   height: 15,
                 ),
-                GetBuilder<ProfileController>(
-                  builder: (controller) => Row(
-                    children: [
-                      Visibility(
-                        visible: controller.visibility,
-                        child: InkWell(
-                          child: Container(
-                              width: MediaQuery.sizeOf(context).width *
-                                  0.9, // Largeur du container
-                              //   height: 150, // Hauteur du container
-                              padding: const EdgeInsets.all(
-                                  18), // Espace intérieur du container
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(
-                                    color: Colors
-                                        .black), // Bordure arrondie du container
-                              ),
-                              child: const Text('ajouter une image')),
-                          onTap: () {
-                            controller.pickFile();
-                          },
-                        ),
-                      ),
-                      controller.pickedFile != null &&
-                              controller.fileBytes != null
-                          ? Column(
-                              children: [
-                                Image.memory(
-                                  controller.fileBytes!,
-                                  width: 50,
-                                  height: 50,
-                                ),
-                                Text(controller.pickedFile!.name),
-                              ],
-                            )
-                          : const SizedBox(),
-                    ],
-                  ),
-                ),
+                // GetBuilder<ProfileController>(
+                //   builder: (controller) => Row(
+                //     children: [
+                //       Visibility(
+                //         visible: controller.visibility,
+                //         child: InkWell(
+                //           child: Container(
+                //               width: MediaQuery.sizeOf(context).width *
+                //                   0.9, // Largeur du container
+                //               //   height: 150, // Hauteur du container
+                //               padding: const EdgeInsets.all(
+                //                   18), // Espace intérieur du container
+                //               decoration: BoxDecoration(
+                //                 borderRadius: BorderRadius.circular(8),
+                //                 border: Border.all(
+                //                     color: Colors
+                //                         .black), // Bordure arrondie du container
+                //               ),
+                //               child: const Text('ajouter un image')),
+                //           onTap: () {
+                //             controller.pickFile();
+                //           },
+                //         ),
+                //       ),
+                //       controller.pickedFile != null &&
+                //               controller.fileBytes != null
+                //           ? Column(
+                //               children: [
+                //                 Image.memory(
+                //                   controller.fileBytes!,
+                //                   width: 50,
+                //                   height: 50,
+                //                 ),
+                //                 Text(controller.pickedFile!.name),
+                //               ],
+                //             )
+                //           : const SizedBox(),
+                //     ],
+                //   ),
+                // ),
+
                 const SizedBox(
                   height: 15,
                 ),

@@ -110,6 +110,7 @@ class ProfileController extends GetxController {
         AppStorage.saveId(loginModel!.id.toString());
         AppStorage.saveName(loginModel!.username);
         AppStorage.saveEmail(loginModel!.email!);
+        getUser();
         Get.to(const PropositionFinancementScreen());
       }
     } catch (e) {

@@ -220,10 +220,30 @@ class EditProfileScreen extends GetView<ProfileController> {
                                   color: Colors
                                       .black), // Bordure arrondie du container
                             ),
-                            child: Text(
-                              controller.selectedValueCountry,
-                              style: const TextStyle(color: Colors.black),
+                            child: TextFormField(
+                              readOnly: true,
+                              controller:
+                                  controller.countryControllerController,
+                              decoration: const InputDecoration(
+                                label: Text("Pays De Naissance"),
+                                //   hintText: "tapez votre Ville De Naissance ",
+                                border: OutlineInputBorder(),
+                                prefixIcon: Icon(
+                                  Icons.villa,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              //   validator: (value) {
+                              //     if (value!.isEmpty) {
+                              //       return " sil vous plait tapez votre Ville De Naissance";
+                              //     }
+                              //     return null;
+                              //   },
                             ),
+                            //  Text(
+                            //   controller.selectedValueCountry,
+                            //   style: const TextStyle(color: Colors.black),
+                            // ),
                           ),
                         )),
                 const SizedBox(

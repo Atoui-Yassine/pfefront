@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:dio/dio.dart' as dio_;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'dart:html' as html;
 import 'dart:html';
@@ -35,8 +36,9 @@ class ProfileController extends GetxController {
   TextEditingController? photoController = TextEditingController();
 
   TextEditingController? phoneController = TextEditingController();
-  TextEditingController? confirmPassworsController = TextEditingController();
+  TextEditingController countryControllerController = TextEditingController();
 
+  TextEditingController? confirmPassworsController = TextEditingController();
   bool isVisible = true;
   void showPassword() {
     isVisible = !isVisible;
@@ -52,7 +54,6 @@ class ProfileController extends GetxController {
   bool visibility = true;
   String? selectedValue;
   String? selectedValueCivilityTitle;
-  String selectedValueCountry = "country";
 
   List<String> listRole = ["Vendeur", "Client"];
   String? tempPath;
@@ -60,8 +61,14 @@ class ProfileController extends GetxController {
   XFile? image;
   html.File? pickedFile;
   Uint8List? fileBytes;
+  @override
+  void onInit() {
+    countryControllerController.text = "country";
+    super.onInit();
+  }
+
   void selectCountry(String country) {
-    selectedValueCountry = country;
+    countryControllerController.text = country;
     update();
   }
 
@@ -132,13 +139,11 @@ class ProfileController extends GetxController {
         phoneController!.text = userModel!.phone!;
         nationnaliteController.text = userModel!.nationnalit!;
         villeDeNaissanceController.text = userModel!.villedenaissance!;
-        selectedValueCountry = userModel!.paysdenaissance!;
+        countryControllerController.text = userModel!.paysdenaissance!;
         codePostaleController.text = userModel!.codepostaledenaissance!;
         print("***********");
         selectedValueCivilityTitle = userModel!.civilit;
         photoController!.text = userModel!.photo!;
-
-        
       }
     } catch (e) {
       print('error================$e');
@@ -154,7 +159,7 @@ class ProfileController extends GetxController {
       "password": passworsController!.text,
       "villedenaissance": villeDeNaissanceController.text,
       "codepostaledenaissance": codePostaleController.text,
-      "paysdenaissance": selectedValueCountry,
+      "paysdenaissance": countryControllerController.text,
       "nationnalité": nationnaliteController.text,
       "civilité": selectedValueCivilityTitle
     };
@@ -185,7 +190,7 @@ class ProfileController extends GetxController {
       // "password": passworsController!.text,
       "villedenaissance": villeDeNaissanceController.text,
       "codepostaledenaissance": codePostaleController.text,
-      "paysdenaissance": selectedValueCountry,
+      "paysdenaissance": countryControllerController.text,
       "nationnalité": nationnaliteController.text,
       "civilité": selectedValueCivilityTitle
     };

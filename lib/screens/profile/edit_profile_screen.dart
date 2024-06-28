@@ -162,10 +162,11 @@ class EditProfileScreen extends GetView<ProfileController> {
                 const SizedBox(
                   height: 15,
                 ),
-                GetBuilder<ProfileController>(
-                    builder: (controller) => InkWell(
-                          onTap: () {
-                            showCountryPicker(
+
+GetBuilder<ProfileController>(
+                    builder: (controller) => TextFormField(
+                      readOnly: true,
+                      onTap: () =>    showCountryPicker(
                               context: context,
                               useSafeArea: true,
                               //Optional.  Can be used to exclude(remove) one ore more country from the countries list (optional).
@@ -206,47 +207,26 @@ class EditProfileScreen extends GetView<ProfileController> {
                                   fontSize: 18,
                                 ),
                               ),
-                            );
-                          },
-                          child: Container(
-                            width: MediaQuery.sizeOf(context)
-                                .width, // Largeur du container
-                            //   height: 150, // Hauteur du container
-                            padding: const EdgeInsets.all(
-                                18), // Espace intérieur du container
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
-                                  color: Colors
-                                      .black), // Bordure arrondie du container
-                            ),
-                            child: TextFormField(
-                              readOnly: true,
-                              controller:
-                                  controller.countryControllerController,
-                              decoration: const InputDecoration(
-                                label: Text("Pays De Naissance"),
-                                //   hintText: "tapez votre Ville De Naissance ",
-                                border: OutlineInputBorder(),
-                                prefixIcon: Icon(
-                                  Icons.villa,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              //   validator: (value) {
-                              //     if (value!.isEmpty) {
-                              //       return " sil vous plait tapez votre Ville De Naissance";
-                              //     }
-                              //     return null;
-                              //   },
-                            ),
-                            //  Text(
-                            //   controller.selectedValueCountry,
-                            //   style: const TextStyle(color: Colors.black),
-                            // ),
-                          ),
-                        )),
-                const SizedBox(
+                            )
+                          ,
+                      controller: controller.countryControllerController,
+                      decoration: const InputDecoration(
+                        label: Text("Pays De Naissance"),
+                        //   hintText: "tapez votre Ville De Naissance ",
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(
+                          Icons.villa,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      //   validator: (value) {
+                      //     if (value!.isEmpty) {
+                      //       return " sil vous plait tapez votre Ville De Naissance";
+                      //     }
+                      //     return null;
+                      //   },
+       )),
+const SizedBox(
                   height: 15,
                 ),
                 TextFormField(

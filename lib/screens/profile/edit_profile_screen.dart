@@ -299,7 +299,7 @@ class EditProfileScreen extends GetView<ProfileController> {
                                     color: Colors
                                         .black), // Bordure arrondie du container
                               ),
-                              child: const Text('ajouter un image')),
+                              child: const Text('ajouter une image')),
                           onTap: () {
                             controller.pickFile();
                           },

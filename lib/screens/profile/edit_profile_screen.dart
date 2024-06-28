@@ -47,18 +47,24 @@ class EditProfileScreen extends GetView<ProfileController> {
                   ),
                 ),
 
-                controller.pickedFile != null && controller.fileBytes != null
-                    ? CircleAvatar(
-                        radius: 50.0,
-                        backgroundImage: MemoryImage(
-                          controller.fileBytes!,
+                GetBuilder<ProfileController>(builder: (controller) => InkWell(
+                  child: controller.pickedFile != null &&
+                          controller.fileBytes != null
+                      ? CircleAvatar(
+                          radius: 50.0,
+                          backgroundImage: MemoryImage(
+                            controller.fileBytes!,
+                          ),
+                        )
+                      : Image.network(
+                          "${AppApi.getImageUrl}${controller.photoController!.text}",
+                          width: 180,
                         ),
-                      )
-                    : Image.network(
-                        "${AppApi.getImageUrl}${controller.photoController!.text}",
-                        width: 180,
-                      ),
-
+                  onTap: () {
+                    controller.pickFile();
+                  },
+                ),
+),
                 const SizedBox(
                   height: 25,
                 ),
@@ -342,10 +348,10 @@ class EditProfileScreen extends GetView<ProfileController> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 150, vertical: 20)),
                   onPressed: () {
-                    if (controller.keyFormSignUp.currentState!.validate()) {
+                   /// if (controller.keyFormSignUp.currentState!.validate()) {
                       controller.updateUser();
                       print('form valide');
-                    }
+                   /// }
                   },
                   child: const Text(
                     "Update",

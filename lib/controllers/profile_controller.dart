@@ -182,6 +182,7 @@ class ProfileController extends GetxController {
   }
 
   updateUser() async {
+    print("update user**** ");
     Map<String, dynamic> data = {
       "username": userNameController.text,
       "email": emailController.text,

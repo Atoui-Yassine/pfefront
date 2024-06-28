@@ -195,10 +195,15 @@ class ProfileController extends GetxController {
       "civilité": selectedValueCivilityTitle
     };
     dio_.FormData data_ = dio_.FormData.fromMap({
-      "file": dio_.MultipartFile.fromBytes(
-        fileBytes!,
-        filename: pickedFile!.name,
-      ),
+      "file": pickedFile != null && fileBytes != null
+          ? dio_.MultipartFile.fromBytes(
+              fileBytes!,
+              filename: pickedFile!.name,
+            )
+          : dio_.MultipartFile.fromString(
+              photoController!.text,
+              //  filename: pickedFile!.name,
+            ),
     });
     try {
       var response = await dio.put(

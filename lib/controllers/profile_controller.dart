@@ -134,10 +134,11 @@ class ProfileController extends GetxController {
         villeDeNaissanceController.text = userModel!.villedenaissance!;
         selectedValueCountry = userModel!.paysdenaissance!;
         codePostaleController.text = userModel!.codepostaledenaissance!;
+        print("***********");
         selectedValueCivilityTitle = userModel!.civilit;
         photoController!.text = userModel!.photo!;
 
-        Get.to(const EditProfileScreen());
+        
       }
     } catch (e) {
       print('error================$e');

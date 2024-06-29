@@ -11,6 +11,7 @@ import 'package:pfefront/screens/profile/edit_profile_screen.dart';
 import 'package:pfefront/screens/profile/login_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
+import 'package:pfefront/screens/profile/verify_code_screen.dart';
 
 Future<void> main() async {
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

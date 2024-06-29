@@ -1,14 +1,14 @@
-import 'package:email_validator/email_validator.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pfefront/controllers/profile_controller.dart';
-import 'package:pfefront/screens/profile/new_password_screen.dart';
-import 'package:pfefront/screens/profile/signup_screen.dart';
+import 'package:pfefront/core/widgets/app_text_form_field.dart';
 
 class VerifyCodeScreen extends GetView<ProfileController> {
-  const VerifyCodeScreen({super.key});
+  VerifyCodeScreen({super.key});
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class VerifyCodeScreen extends GetView<ProfileController> {
           ),
         ),
         leading: IconButton(
-          onPressed: () => Get.back(),
+          onPressed: () => Navigator.of(context).pop(),
           icon: const Icon(
             Icons.arrow_back,
           ),
@@ -33,7 +33,7 @@ class VerifyCodeScreen extends GetView<ProfileController> {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
         child: Form(
-          key: controller.keyFormVeify,
+          key: formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -67,61 +67,120 @@ class VerifyCodeScreen extends GetView<ProfileController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const SizedBox(
-                    width: 20,
+                    width: 5,
                   ),
                   SizedBox(
-                    width: 50,
-                    child: TextFormField(
-                      controller: controller.emailController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                      ),
+                    width: 50.w,
+                    //    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: AppTextFormField(
+                      controller: controller.code1Controller,
+                      hintText: "",
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "";
+                        }
+                      },
                       inputFormatters: [LengthLimitingTextInputFormatter(1)],
+                      backgroundColor: Colors.grey[200],
                     ),
                   ),
-                  SizedBox(
-                    width: 60,
-                    child: TextFormField(
-                      controller: controller.emailController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                      ),
-                      inputFormatters: [LengthLimitingTextInputFormatter(1)],
-                    ),
+                  const SizedBox(
+                    width: 3,
                   ),
                   SizedBox(
-                    width: 50,
-                    child: TextFormField(
-                      controller: controller.emailController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                      ),
+                    width: 50.w,
+                    //padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: AppTextFormField(
+                      controller: controller.code2Controller,
+                      hintText: "",
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "";
+                        }
+                      },
                       inputFormatters: [LengthLimitingTextInputFormatter(1)],
+                      backgroundColor: Colors.grey[200],
                     ),
                   ),
+                  const SizedBox(
+                    width: 3,
+                  ),
                   SizedBox(
-                    width: 50,
-                    child: TextFormField(
-                      controller: controller.emailController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                      ),
+                    width: 50.w,
+                    //  padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: AppTextFormField(
+                      controller: controller.code3Controller,
+                      hintText: "",
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "";
+                        }
+                      },
+                      inputFormatters: [LengthLimitingTextInputFormatter(1)],
+                      backgroundColor: Colors.grey[200],
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 3,
+                  ),
+                  SizedBox(
+                    width: 50.w,
+                    //  padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: AppTextFormField(
+                      controller: controller.code4Controller,
+                      hintText: "",
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "";
+                        }
+                      },
+                      backgroundColor: Colors.grey[200],
                       inputFormatters: [LengthLimitingTextInputFormatter(1)],
                     ),
                   ),
                   const SizedBox(
-                    width: 20,
+                    width: 3,
+                  ),
+                  SizedBox(
+                    width: 50.w,
+                    //padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: AppTextFormField(
+                      controller: controller.code5Controller,
+                      hintText: "",
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "";
+                        }
+                      },
+                      backgroundColor: Colors.grey[200],
+                      inputFormatters: [LengthLimitingTextInputFormatter(1)],
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 3,
+                  ),
+                  SizedBox(
+                    width: 50.w,
+                    // padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: AppTextFormField(
+                      hintText: "",
+                      controller: controller.code6Controller,
+                      backgroundColor: Colors.grey[200],
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "";
+                        }
+                      },
+                      inputFormatters: [LengthLimitingTextInputFormatter(1)],
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
                   ),
                 ],
               ),
               const SizedBox(
-                height: 10,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const SizedBox(
-                height: 30,
+                height: 50,
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -129,7 +188,7 @@ class VerifyCodeScreen extends GetView<ProfileController> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 100, vertical: 20)),
                 onPressed: () {
-                  Get.to(const NewPasswordScreen());
+                  controller.verifyCodePassword(context);
                 },
                 child: const Text(
                   "Verify",

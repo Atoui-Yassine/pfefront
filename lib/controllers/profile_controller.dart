@@ -16,6 +16,8 @@ import 'package:pfefront/models/user_model.dart';
 import 'package:pfefront/screens/home/proposition_financement_screen.dart';
 import 'package:pfefront/screens/profile/edit_profile_screen.dart';
 import 'package:pfefront/screens/profile/login_screen.dart';
+import 'package:pfefront/screens/profile/new_password_screen.dart';
+import 'package:pfefront/screens/profile/verify_code_screen.dart';
 
 class ProfileController extends GetxController {
   GlobalKey<FormState> keyForm = GlobalKey<FormState>();
@@ -39,6 +41,13 @@ class ProfileController extends GetxController {
   TextEditingController countryControllerController = TextEditingController();
 
   TextEditingController? confirmPassworsController = TextEditingController();
+  TextEditingController? newPassworsController = TextEditingController();
+  TextEditingController code1Controller = TextEditingController();
+  TextEditingController code2Controller = TextEditingController();
+  TextEditingController code3Controller = TextEditingController();
+  TextEditingController code4Controller = TextEditingController();
+  TextEditingController code5Controller = TextEditingController();
+  TextEditingController code6Controller = TextEditingController();
   bool isVisible = true;
   void showPassword() {
     isVisible = !isVisible;
@@ -118,7 +127,62 @@ class ProfileController extends GetxController {
         AppStorage.saveName(loginModel!.username);
         AppStorage.saveEmail(loginModel!.email!);
         getUser();
+        emailController.text = '';
+        passworsController!.text = '';
         Get.to(const PropositionFinancementScreen());
+      }
+    } catch (e) {
+      print('error================$e');
+    }
+  }
+
+  forgotPassword(BuildContext context) async {
+    Map<String, dynamic> data = {
+      "email": emailController.text,
+    };
+    try {
+      var response =
+          await dio.post(AppApi.forgetPasswordUrl, queryParameters: data);
+      if (response.statusCode == 200) {
+        print('forogt  success');
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.grey[200],
+            content: const Text(
+              "s'il vous plait verifiez votre boîte de réception",
+              style: TextStyle(color: Colors.blue),
+            ),
+          ),
+        );
+        Get.to(VerifyCodeScreen());
+      }
+    } catch (e) {
+      print('error================$e');
+    }
+  }
+
+  verifyCodePassword(BuildContext context) async {
+    Map<String, dynamic> data = {
+      "newpassword": newPassworsController!.text,
+    };
+    try {
+      var response = await dio.post(
+          "${AppApi.verifyCodePasswordUrl}${code1Controller.text}${code2Controller.text}${code3Controller.text}${code4Controller.text}${code5Controller.text}${code6Controller.text}",
+          queryParameters: data);
+      if (response.statusCode == 200) {
+        print('verifyCodePasswordUrl  success');
+
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   SnackBar(
+        //     backgroundColor: Colors.grey[200],
+        //     content: const Text(
+        //       "s'il vous plait verifiez votre boîte de réception",
+        //       style: TextStyle(color: Colors.blue),
+        //     ),
+        //   ),
+        // );
+        Get.to(const NewPasswordScreen());
       }
     } catch (e) {
       print('error================$e');

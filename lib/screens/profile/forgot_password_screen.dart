@@ -96,11 +96,7 @@ class ForgotPasswordScreen extends GetView<ProfileController> {
                         print('form valide');
                         print(
                             'email===========>${controller.emailController.text}');
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const VerifyCodeScreen(),
-                          ),
-                        );
+                        controller.forgotPassword(context);
                       }
                     },
                     child: const Text(

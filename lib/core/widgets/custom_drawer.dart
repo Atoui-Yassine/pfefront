@@ -50,7 +50,7 @@ class CustomDrawer extends GetView<ProfileController> {
                                       ),
                                     )
                                   : CircleAvatar(
-                                      radius: 50.0,
+                                      radius: 30.0,
                                       backgroundImage: NetworkImage(
                                         "${AppApi.getImageUrl}${controller.photoController!.text}",
                                       ),
@@ -60,6 +60,7 @@ class CustomDrawer extends GetView<ProfileController> {
                               },
                             ),
                           ),
+                          SizedBox(width: 5),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,

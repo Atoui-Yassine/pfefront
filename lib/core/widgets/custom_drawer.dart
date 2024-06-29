@@ -49,9 +49,11 @@ class CustomDrawer extends GetView<ProfileController> {
                                         controller.fileBytes!,
                                       ),
                                     )
-                                  : Image.network(
-                                      "${AppApi.getImageUrl}${controller.photoController!.text}",
-                                      width: 180,
+                                  : CircleAvatar(
+                                      radius: 50.0,
+                                      backgroundImage: NetworkImage(
+                                        "${AppApi.getImageUrl}${controller.photoController!.text}",
+                                      ),
                                     ),
                               onTap: () {
                                 controller.pickFile();

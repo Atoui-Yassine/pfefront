@@ -21,7 +21,7 @@ class PropositionFinancementScreen extends GetView<HomeController> {
               fontWeight: FontWeight.bold,
             ),
           )),
-      drawer: const CustomDrawer(),
+      drawer:  CustomDrawer(),
       widget: SingleChildScrollView(
         child: GetBuilder<HomeController>(builder: (context) {
           return SafeArea(

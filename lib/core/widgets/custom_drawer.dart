@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'dart:html' as html;
 import 'dart:html';
 import 'dart:typed_data';
+import 'package:pfefront/core/networking/app_api.dart';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:pfefront/controllers/profile_controller.dart';
@@ -12,39 +13,10 @@ import 'package:pfefront/core/storage/app_storage.dart';
 import 'package:pfefront/screens/profile/edit_profile_screen.dart';
 import 'package:pfefront/screens/profile/new_password_screen.dart';
 
-class CustomDrawer extends StatefulWidget {
-  const CustomDrawer({super.key});
+class CustomDrawer extends GetView<ProfileController> {
+  CustomDrawer({super.key});
 
-  @override
-  State<CustomDrawer> createState() => _CustomDrawerState();
-}
-
-class _CustomDrawerState extends State<CustomDrawer> {
   ProfileController profileController = Get.put(ProfileController());
-  String? tempPath;
-  List<File> images = [];
-  XFile? image;
-  html.File? pickedFile;
-  Uint8List? fileBytes;
-  void pickFile() {
-    html.FileUploadInputElement uploadInput = html.FileUploadInputElement();
-    uploadInput.click();
-    uploadInput.onChange.listen((event) {
-      final files = uploadInput.files;
-      if (files != null && files.isNotEmpty) {
-        final reader = html.FileReader();
-        reader.readAsArrayBuffer(files[0]);
-        reader.onLoadEnd.listen((event) {
-          setState(() {
-            pickedFile = files[0];
-            print('file=========================$pickedFile');
-            fileBytes = reader.result as Uint8List?;
-            print('filebyte=========================$fileBytes');
-          });
-        });
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,33 +39,23 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: Stack(
-                              children: [
-                                pickedFile != null && fileBytes != null
-                                    ? CircleAvatar(
-                                        radius: 50.0,
-                                        backgroundImage: MemoryImage(
-                                          fileBytes!,
-                                        ),
-                                      )
-                                    : CircleAvatar(
-                                        radius: 50.0,
-                                        backgroundColor: Colors.grey[200],
+                          GetBuilder<ProfileController>(
+                            builder: (controller) => InkWell(
+                              child: controller.pickedFile != null &&
+                                      controller.fileBytes != null
+                                  ? CircleAvatar(
+                                      radius: 50.0,
+                                      backgroundImage: MemoryImage(
+                                        controller.fileBytes!,
                                       ),
-                                Positioned(
-                                  bottom: 5, left: 10,
-                                  //right: 18,
-                                  child: IconButton(
-                                    icon: const Icon(
-                                      Icons.add_a_photo,
+                                    )
+                                  : Image.network(
+                                      "${AppApi.getImageUrl}${controller.photoController!.text}",
+                                      width: 180,
                                     ),
-                                    onPressed: () {
-                                      pickFile();
-                                    },
-                                  ),
-                                )
-                              ],
+                              onTap: () {
+                                controller.pickFile();
+                              },
                             ),
                           ),
                           Expanded(

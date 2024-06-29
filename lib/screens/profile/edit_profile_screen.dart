@@ -47,24 +47,27 @@ class EditProfileScreen extends GetView<ProfileController> {
                   ),
                 ),
 
-                GetBuilder<ProfileController>(builder: (controller) => InkWell(
-                  child: controller.pickedFile != null &&
-                          controller.fileBytes != null
-                      ? CircleAvatar(
-                          radius: 50.0,
-                          backgroundImage: MemoryImage(
-                            controller.fileBytes!,
+                GetBuilder<ProfileController>(
+                  builder: (controller) => InkWell(
+                    child: controller.pickedFile != null &&
+                            controller.fileBytes != null
+                        ? CircleAvatar(
+                            radius: 50.0,
+                            backgroundImage: MemoryImage(
+                              controller.fileBytes!,
+                            ),
+                          )
+                        : CircleAvatar(
+                            radius: 50.0,
+                            backgroundImage: NetworkImage(
+                              "${AppApi.getImageUrl}${controller.photoController!.text}",
+                            ),
                           ),
-                        )
-                      : Image.network(
-                          "${AppApi.getImageUrl}${controller.photoController!.text}",
-                          width: 180,
-                        ),
-                  onTap: () {
-                    controller.pickFile();
-                  },
+                    onTap: () {
+                      controller.pickFile();
+                    },
+                  ),
                 ),
-),
                 const SizedBox(
                   height: 25,
                 ),
@@ -348,10 +351,11 @@ class EditProfileScreen extends GetView<ProfileController> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 150, vertical: 20)),
                   onPressed: () {
-                   /// if (controller.keyFormSignUp.currentState!.validate()) {
-                      controller.updateUser();
-                      print('form valide');
-                   /// }
+                    /// if (controller.keyFormSignUp.currentState!.validate()) {
+                    controller.updateUser();
+                    print('form valide');
+
+                    /// }
                   },
                   child: const Text(
                     "Update",

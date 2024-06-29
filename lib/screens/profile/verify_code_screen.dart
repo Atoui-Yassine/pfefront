@@ -8,7 +8,7 @@ import 'package:pfefront/core/widgets/app_text_form_field.dart';
 
 class VerifyCodeScreen extends GetView<ProfileController> {
   VerifyCodeScreen({super.key});
-  final formKey = GlobalKey<FormState>();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class VerifyCodeScreen extends GetView<ProfileController> {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
         child: Form(
-          key: formKey,
+          key: controller.keyFormCode,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,

@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pfefront/controllers/profile_controller.dart';
+import 'package:pfefront/screens/profile/new_password_screen.dart';
 import 'package:pfefront/screens/profile/signup_screen.dart';
 import 'package:pfefront/screens/profile/verify_code_screen.dart';
 
@@ -96,7 +97,9 @@ class ForgotPasswordScreen extends GetView<ProfileController> {
                         print('form valide');
                         print(
                             'email===========>${controller.emailController.text}');
-                        controller.forgotPassword(context);
+
+                        ///controller.forgotPassword(context);
+                        Get.to(NewPasswordScreen());
                       }
                     },
                     child: const Text(

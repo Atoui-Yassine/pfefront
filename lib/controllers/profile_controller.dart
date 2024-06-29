@@ -21,6 +21,10 @@ import 'package:pfefront/screens/profile/verify_code_screen.dart';
 
 class ProfileController extends GetxController {
   GlobalKey<FormState> keyForm = GlobalKey<FormState>();
+
+
+    GlobalKey<FormState> keyFormCode = GlobalKey<FormState>();
+
   GlobalKey<FormState> keyFormForgot = GlobalKey<FormState>();
   GlobalKey<FormState> keyFormSignUp = GlobalKey<FormState>();
 

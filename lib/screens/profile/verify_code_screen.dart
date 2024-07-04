@@ -7,8 +7,7 @@ import 'package:pfefront/controllers/profile_controller.dart';
 import 'package:pfefront/core/widgets/app_text_form_field.dart';
 
 class VerifyCodeScreen extends GetView<ProfileController> {
-  VerifyCodeScreen({super.key});
-  
+  const VerifyCodeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +69,7 @@ class VerifyCodeScreen extends GetView<ProfileController> {
                     width: 5,
                   ),
                   SizedBox(
-                    width: 50.w,
+                    width: 50,
                     //    padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: AppTextFormField(
                       controller: controller.code1Controller,
@@ -88,7 +87,7 @@ class VerifyCodeScreen extends GetView<ProfileController> {
                     width: 3,
                   ),
                   SizedBox(
-                    width: 50.w,
+                    width: 50,
                     //padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: AppTextFormField(
                       controller: controller.code2Controller,
@@ -106,7 +105,7 @@ class VerifyCodeScreen extends GetView<ProfileController> {
                     width: 3,
                   ),
                   SizedBox(
-                    width: 50.w,
+                    width: 50,
                     //  padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: AppTextFormField(
                       controller: controller.code3Controller,
@@ -124,7 +123,7 @@ class VerifyCodeScreen extends GetView<ProfileController> {
                     width: 3,
                   ),
                   SizedBox(
-                    width: 50.w,
+                    width: 50,
                     //  padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: AppTextFormField(
                       controller: controller.code4Controller,
@@ -142,7 +141,7 @@ class VerifyCodeScreen extends GetView<ProfileController> {
                     width: 3,
                   ),
                   SizedBox(
-                    width: 50.w,
+                    width: 50,
                     //padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: AppTextFormField(
                       controller: controller.code5Controller,
@@ -160,7 +159,7 @@ class VerifyCodeScreen extends GetView<ProfileController> {
                     width: 3,
                   ),
                   SizedBox(
-                    width: 50.w,
+                    width: 50,
                     // padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: AppTextFormField(
                       hintText: "",
@@ -188,7 +187,9 @@ class VerifyCodeScreen extends GetView<ProfileController> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 100, vertical: 20)),
                 onPressed: () {
-                  controller.verifyCodePassword(context);
+                  if (controller.keyFormCode.currentState!.validate()) {
+                    controller.verifyCodePassword(context);
+                  }
                 },
                 child: const Text(
                   "Verify",

@@ -99,7 +99,7 @@ class ForgotPasswordScreen extends GetView<ProfileController> {
                             'email===========>${controller.emailController.text}');
 
                         ///controller.forgotPassword(context);
-                        Get.to(NewPasswordScreen());
+                        Get.to(const VerifyCodeScreen());
                       }
                     },
                     child: const Text(

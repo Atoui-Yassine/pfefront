@@ -41,9 +41,9 @@ class AppTextFormField extends StatelessWidget {
           //uses less vertical space
           isDense: true,
           contentPadding: contentPadding ??
-              EdgeInsets.symmetric(
-                horizontal: 20.w,
-                vertical: 18.h,
+              const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 18,
               ),
           focusedBorder: focusedBorder ??
               OutlineInputBorder(
@@ -76,7 +76,7 @@ class AppTextFormField extends StatelessWidget {
           ),
           hintStyle: hintStyle ??
               TextStyle(
-                fontSize: 14.sp,
+                fontSize: 14,
                 fontWeight: FontWeight.w500,
                 color: Colors.grey,
               ),
@@ -86,7 +86,7 @@ class AppTextFormField extends StatelessWidget {
           filled: true),
       obscureText: obscureText ?? false,
       style: TextStyle(
-        fontSize: 14.sp,
+        fontSize: 14,
         fontWeight: FontWeight.w500,
         color: Colors.grey,
       ),

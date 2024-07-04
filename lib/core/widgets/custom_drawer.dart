@@ -133,7 +133,31 @@ class CustomDrawer extends GetView<ProfileController> {
               ),
               title: const Text('Log out'),
               onTap: () {
-                controller.logOut();
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Confirmation'),
+                      content: const Text(
+                          'Êtes-vous sûr de vouloir vous déconnecter ?'),
+                      actions: <Widget>[
+                        ElevatedButton(
+                          child: const Text('Annuler'),
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pop(); // Fermer le AlertDialog
+                          },
+                        ),
+                        ElevatedButton(
+                          child: const Text('Déconnexion'),
+                          onPressed: () {
+                            controller.logOut();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
             ),
           ],

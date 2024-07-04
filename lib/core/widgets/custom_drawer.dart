@@ -60,7 +60,7 @@ class CustomDrawer extends GetView<ProfileController> {
                               },
                             ),
                           ),
-                          SizedBox(width: 5),
+                          const SizedBox(width: 5),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -133,31 +133,7 @@ class CustomDrawer extends GetView<ProfileController> {
               ),
               title: const Text('Log out'),
               onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: const Text('Confirmation'),
-                      content: const Text(
-                          'Êtes-vous sûr de vouloir vous déconnecter ?'),
-                      actions: <Widget>[
-                        ElevatedButton(
-                          child: const Text('Annuler'),
-                          onPressed: () {
-                            Navigator.of(context)
-                                .pop(); // Fermer le AlertDialog
-                          },
-                        ),
-                        ElevatedButton(
-                          child: const Text('Déconnexion'),
-                          onPressed: () {
-                            //  controller.logOut();
-                          },
-                        ),
-                      ],
-                    );
-                  },
-                );
+                controller.logOut();
               },
             ),
           ],

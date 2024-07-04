@@ -129,6 +129,7 @@ class ProfileController extends GetxController {
         AppStorage.saveId(loginModel!.id.toString());
         AppStorage.saveName(loginModel!.username);
         AppStorage.saveEmail(loginModel!.email!);
+        AppStorage.saveToken(loginModel!.token!);
         getUser();
         emailController.text = '';
         passworsController!.text = '';
@@ -284,6 +285,36 @@ class ProfileController extends GetxController {
       }
     } catch (e) {
       print('error================$e');
+    }
+  }
+
+  //logout
+  Future<void> logOut() async {
+    String? accessToken = AppStorage.readToken();
+    print('Access Token ==> $accessToken');
+
+    if (accessToken != null) {
+      Dio dio = Dio();
+      Options options = Options(
+        headers: {
+          'Authorization': 'Bearer $accessToken',
+        },
+      );
+
+      try {
+        await dio.get(
+          AppApi.logOutUrl,
+          options: options,
+        );
+
+        // AppStorage.clearUserData();
+        Get.to(const LoginScreen());
+        print('Déconnexion réussie');
+      } catch (error) {
+        print('Erreur lors de la déconnexion: $error');
+      }
+    } else {
+      print('Token d\'accès introuvable');
     }
   }
 }

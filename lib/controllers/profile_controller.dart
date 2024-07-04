@@ -22,8 +22,7 @@ import 'package:pfefront/screens/profile/verify_code_screen.dart';
 class ProfileController extends GetxController {
   GlobalKey<FormState> keyForm = GlobalKey<FormState>();
 
-
-    GlobalKey<FormState> keyFormCode = GlobalKey<FormState>();
+  GlobalKey<FormState> keyFormCode = GlobalKey<FormState>();
 
   GlobalKey<FormState> keyFormForgot = GlobalKey<FormState>();
   GlobalKey<FormState> keyFormSignUp = GlobalKey<FormState>();
@@ -159,7 +158,7 @@ class ProfileController extends GetxController {
             ),
           ),
         );
-        Get.to(VerifyCodeScreen());
+        Get.to(const VerifyCodeScreen());
       }
     } catch (e) {
       print('error================$e');
@@ -186,7 +185,7 @@ class ProfileController extends GetxController {
         //     ),
         //   ),
         // );
-        Get.to(const NewPasswordScreen());
+        Get.to(const LoginScreen());
       }
     } catch (e) {
       print('error================$e');

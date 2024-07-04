@@ -61,7 +61,7 @@ class NewPasswordScreen extends GetView<ProfileController> {
               GetBuilder<ProfileController>(
                 builder: (controller) => TextFormField(
                   obscureText: controller.isVisible,
-                  controller: controller.passworsController,
+                  controller: controller.newPassworsController,
                   decoration: InputDecoration(
                     label: const Text("New Password"),
                     hintText: "tapez votre password ",
@@ -120,8 +120,8 @@ class NewPasswordScreen extends GetView<ProfileController> {
                   validator: (value) {
                     if (value!.isEmpty) {
                       return " sil vous plait tapez votre password";
-                    } else if (controller.passworsController!.text !=
-                        controller.confirmPassworsController!.text) {
+                    } else if (value !=
+                        controller.newPassworsController!.text) {
                       return "tapez un password valide";
                     }
                     return null;
@@ -142,7 +142,7 @@ class NewPasswordScreen extends GetView<ProfileController> {
                 onPressed: () {
                   if (controller.keyFormNewP.currentState!.validate()) {
                     print('form valide${controller.confirmPassworsController}');
-                    Get.to(const LoginScreen());
+                    controller.verifyCodePassword(context);
                   }
                 },
                 child: const Text(

@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pfefront/controllers/profile_controller.dart';
 import 'package:pfefront/core/widgets/app_text_form_field.dart';
+import 'package:pfefront/screens/profile/new_password_screen.dart';
 
 class VerifyCodeScreen extends GetView<ProfileController> {
   const VerifyCodeScreen({super.key});
@@ -188,7 +189,7 @@ class VerifyCodeScreen extends GetView<ProfileController> {
                         horizontal: 100, vertical: 20)),
                 onPressed: () {
                   if (controller.keyFormCode.currentState!.validate()) {
-                    controller.verifyCodePassword(context);
+                    Get.to(const NewPasswordScreen());
                   }
                 },
                 child: const Text(

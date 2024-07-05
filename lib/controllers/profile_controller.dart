@@ -219,6 +219,16 @@ class ProfileController extends GetxController {
   }
 
   signUp() async {
+    userNameController.text = "";
+    emailController.text = "";
+    phoneController!.text = "";
+    nationnaliteController.text = "";
+    villeDeNaissanceController.text = "";
+    countryControllerController.text = "";
+    codePostaleController.text = "";
+    print("***********");
+    selectedValueCivilityTitle = "";
+    photoController!.text = "";
     Map<String, dynamic> data = {
       "username": userNameController.text,
       "email": emailController.text,

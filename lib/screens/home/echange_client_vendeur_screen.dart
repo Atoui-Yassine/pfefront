@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:pfefront/controllers/home_controller.dart';
+import 'package:pfefront/core/storage/app_storage.dart';
 import 'package:pfefront/core/widgets/base_layout.dart';
 import 'package:widget_slider/widget_slider.dart';
 import 'package:intl/intl.dart';
@@ -107,6 +108,7 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
                 // if (controller.keyForm.currentState!.validate()) {
                 //   print('form valide');
                 // }
+                AppStorage.saveDate("${controller.m}/${controller.y}");
               },
               child: const Text(
                 "Choisir",
@@ -228,6 +230,7 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 60, vertical: 20)),
               onPressed: () {
+                AppStorage.saveDate("${controller.m}/${controller.y}");
                 // if (controller.keyForm.currentState!.validate()) {
                 //   print('form valide');
                 // }
@@ -339,8 +342,9 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
                 text: "${controller.m3}/${controller.d}/${controller.y}\t\t\t",
                 children: [
                   TextSpan(
-                      text:
-                          "         \t\t\t ${(montantFinan! / 4).toStringAsFixed(2)}dt")
+                    text:
+                        "         \t\t\t ${(montantFinan! / 4).toStringAsFixed(2)}dt",
+                  )
                 ],
                 style: const TextStyle(
                   fontSize: 15,
@@ -373,6 +377,7 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
                 // if (controller.keyForm.currentState!.validate()) {
                 //   print('form valide');
                 // }
+                AppStorage.saveDate("${controller.m}/${controller.y}");
               },
               child: const Text(
                 "Choisir",

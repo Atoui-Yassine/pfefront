@@ -1,4 +1,3 @@
-
 import 'package:pfefront/core/storage/storage.dart';
 
 class AppStorage {
@@ -15,7 +14,7 @@ class AppStorage {
   static const keyIdSituation = "situation";
 
   static const keyIdPresence = "idPre";
-  static const keyIdCat = "idcat";
+  static const keyDate = "date";
   static const keyIdParent = "idParent";
 
   static const keyCat = "categoryy";
@@ -107,12 +106,12 @@ class AppStorage {
     return SecureStorage.readSecureData(keyIdPersonnel);
   }
 
-  static saveIdCategory(idCate) {
-    SecureStorage.writeSecureData(key: keyIdCat, value: idCate);
+  static saveDate(date) {
+    SecureStorage.writeSecureData(key: keyDate, value: date);
   }
 
-  static String? readIdCategory() {
-    return SecureStorage.readSecureData(keyIdCat);
+  static String? readDate() {
+    return SecureStorage.readSecureData(keyDate);
   }
 
   static saveIdPresence(idPre) {

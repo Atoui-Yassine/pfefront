@@ -12,6 +12,7 @@ import 'package:pfefront/screens/profile/login_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:pfefront/screens/profile/verify_code_screen.dart';
+import 'package:pfefront/screens/protection_donnee_personnel_screen.dart';
 
 Future<void> main() async {
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -85,7 +86,7 @@ class MyApp extends StatelessWidget {
         gifPath: 'assets/images/example.gif',
         gifWidth: 269,
         gifHeight: 474,
-        nextScreen: const PageReserverAuVendeur(),
+        nextScreen: const ProtectionDonneePersonnelScreen(),
         duration: const Duration(milliseconds: 3515),
         onInit: () async {
           debugPrint("onInit");

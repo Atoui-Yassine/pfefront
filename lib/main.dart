@@ -6,7 +6,10 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:pfefront/core/bindings.dart';
 import 'package:pfefront/screens/home/echange_client_vendeur_screen.dart';
+import 'package:pfefront/screens/page_inscription_1.dart';
+import 'package:pfefront/screens/page_inscription_2.dart';
 import 'package:pfefront/screens/page_reserver_au_vendeur.dart';
+import 'package:pfefront/screens/paiment_screen.dart';
 import 'package:pfefront/screens/profile/edit_profile_screen.dart';
 import 'package:pfefront/screens/profile/login_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -17,7 +20,6 @@ import 'package:pfefront/screens/protection_donnee_personnel_screen.dart';
 Future<void> main() async {
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
 // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  await GetStorage.init();
 
   runApp(const MyApp()
       // DevicePreview(
@@ -86,7 +88,7 @@ class MyApp extends StatelessWidget {
         gifPath: 'assets/images/example.gif',
         gifWidth: 269,
         gifHeight: 474,
-        nextScreen: const ProtectionDonneePersonnelScreen(),
+        nextScreen: const PageInscription2(),
         duration: const Duration(milliseconds: 3515),
         onInit: () async {
           debugPrint("onInit");

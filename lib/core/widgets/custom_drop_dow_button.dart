@@ -35,8 +35,8 @@ class CustomDropDowButton extends StatelessWidget {
           child: Text(
             hintText!,
             style: hintStyle ??
-                TextStyle(
-                  fontSize: 14.sp,
+                const TextStyle(
+                  fontSize: 14,
                   fontWeight: FontWeight.w500,
                   color: Colors.black,
                 ),
@@ -46,9 +46,9 @@ class CustomDropDowButton extends StatelessWidget {
           //uses less vertical space
           isDense: true,
           contentPadding: contentPadding ??
-              EdgeInsets.symmetric(
-                horizontal: 20.w,
-                vertical: 18.h,
+              const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 18,
               ),
           focusedBorder: focusedBorder ??
               OutlineInputBorder(
@@ -100,8 +100,8 @@ class CustomDropDowButton extends StatelessWidget {
             child: Text(
               items,
               style: valueStyle ??
-                  TextStyle(
-                    fontSize: 14.sp,
+                  const TextStyle(
+                    fontSize: 14,
                     fontWeight: FontWeight.w500,
                     color: Colors.black,
                   ),

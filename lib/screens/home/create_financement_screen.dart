@@ -8,6 +8,7 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:pfefront/controllers/home_controller.dart';
 import 'package:pfefront/core/storage/app_storage.dart';
 import 'package:pfefront/core/widgets/base_layout.dart';
+import 'package:pfefront/core/widgets/custom_tranche.dart';
 import 'package:pfefront/screens/home/plan_financement.dart';
 import 'package:widget_slider/widget_slider.dart';
 import 'package:intl/intl.dart';
@@ -112,7 +113,26 @@ class CreateFinancement extends GetView<HomeController> {
                 //   print('form valide');
                 // }
                 AppStorage.saveDate("${controller.m}/${controller.y}");
-                Get.to(PlanFinancement());
+                Get.to(
+                  PlanFinancement(
+                    montantPremierTranche:
+                        "${(montantFinan! / 2).toStringAsFixed(2)} dt ",
+                    date: "${controller.m}/${controller.d}/${controller.y}",
+                    total: "$total dt",
+                    widget: Column(
+                      children: [
+                        CustomTranche(
+                          numTranche: '1ére mensualité',
+                          montant:
+                              '${(montantFinan! / 2).toStringAsFixed(2)}dt',
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                            "le ${controller.m1}/${controller.d}/${controller.y}"),
+                      ],
+                    ),
+                  ),
+                );
               },
               child: const Text(
                 "Choisir",

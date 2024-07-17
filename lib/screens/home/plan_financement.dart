@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:pfefront/core/widgets/custom_tranche.dart';
 
 class PlanFinancement extends StatelessWidget {
-  const PlanFinancement({super.key});
+  final String? montantPremierTranche;
+  final String? date;
+  final String? total;
+  final Widget? widget;
+  const PlanFinancement(
+      {super.key,
+      this.montantPremierTranche,
+      this.date,
+      this.total,
+      this.widget});
 
   @override
   Widget build(BuildContext context) {
@@ -51,32 +61,47 @@ class PlanFinancement extends StatelessWidget {
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.black),
                     ),
-                    child: const Column(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Versement du premier paiement comptant',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+                        Row(
+                          children: [
+                            const Text(
+                              'Versement du premier paiement comptant',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const Spacer(),
+                            Text(
+                              '$montantPremierTranche',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
-                        SizedBox(height: 8),
-                        Text('le 12/07/2024'),
-                        SizedBox(height: 16),
-                        Text(
-                          '1ère mensualité',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(height: 8),
-                        Text('le 09/08/2024'),
-                        SizedBox(height: 16),
-                        Text(
-                          'TOTAL',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+                        const SizedBox(height: 8),
+                        Text('le $date'),
+                        const SizedBox(height: 16),
+                        widget!,
+                        const SizedBox(height: 16),
+                        Row(
+                          children: [
+                            const Text(
+                              'TOTAL',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const Spacer(),
+                            Text(
+                              '$total',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),

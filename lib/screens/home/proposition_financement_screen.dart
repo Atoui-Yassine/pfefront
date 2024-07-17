@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:pfefront/controllers/home_controller.dart';
 import 'package:pfefront/core/widgets/base_layout.dart';
 import 'package:pfefront/core/widgets/custom_drawer.dart';
-import 'package:pfefront/screens/home/echange_client_vendeur_screen.dart';
+import 'package:pfefront/screens/home/create_financement_screen.dart';
 
 class PropositionFinancementScreen extends GetView<HomeController> {
   const PropositionFinancementScreen({super.key});

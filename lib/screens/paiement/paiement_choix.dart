@@ -1,0 +1,228 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Paiement',
+          style: TextStyle(
+            fontSize: 18.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Colors.teal,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.close),
+            onPressed: () {
+              // Handle close button press
+            },
+          ),
+        ],
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 16.0),
+              Image.asset(
+                "assets/images/paiement.png",
+                width: 300,
+                height: 200,
+              ),
+              const SizedBox(height: 16.0),
+              const Center(
+                child: Text(
+                  'Cliquer sur le bouton du mode de paiement souhaité',
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16.0),
+              const Row(
+                children: [
+                  Text(
+                    'Numéro de dossier',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Spacer(),
+                  Text(
+                    '82004768821',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8.0),
+              const Divider(
+                color: Colors.black,
+                height: 2,
+              ),
+              const SizedBox(height: 16.0),
+              const Row(
+                children: [
+                  Text(
+                    'Montant à financer',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Spacer(),
+                  Text(
+                    '1 000,00 €',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8.0),
+              const Divider(
+                color: Colors.black,
+                height: 2,
+              ),
+              const SizedBox(height: 16.0),
+              const Row(
+                children: [
+                  Text(
+                    '12/07/2024',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
+                  Spacer(),
+                  Text(
+                    '09/08/2024',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8.0),
+              const Divider(
+                color: Colors.black,
+                height: 2,
+              ),
+              const SizedBox(height: 16.0),
+              const Row(
+                children: [
+                  Text(
+                    '501,00 €',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
+                  Spacer(),
+                  Text(
+                    '499,00 €',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8.0),
+              const Divider(
+                color: Colors.black,
+                height: 2,
+              ),
+              const SizedBox(height: 50.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 30,
+                          vertical: 20,
+                        ),
+                      ),
+                      onPressed: () {
+                        // Handle SMARTPHONE button press
+                      },
+                      child: const Text(
+                        'SMARTPHONE',
+                        style: TextStyle(
+                          fontSize: 14.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 20)),
+                      onPressed: () {
+                        // Handle SMARTPHONE button press
+                      },
+                      child: const Text(
+                        'ENCAISS\'PHONE',
+                        style: TextStyle(fontSize: 14.0, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
+              const Text(
+                'Un seul des trois boutons « TPE » ou « MPOS » ou « SMARTPHONE » sera affiché selon le mode de paiement que vous aurez choisi',
+                style: TextStyle(fontSize: 16.0, color: Colors.red),
+              ),
+              const SizedBox(height: 16.0),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pfefront/core/networking/app_api.dart';
-import 'package:pfefront/screens/home/echange_client_vendeur_screen.dart';
+import 'package:pfefront/screens/home/create_financement_screen.dart';
 import 'package:widget_slider/widget_slider.dart';
 import 'package:intl/intl.dart';
 import 'dart:html' as html;
@@ -47,7 +47,7 @@ class HomeController extends GetxController {
         int m = int.parse(apportPersonnelController.text.isNotEmpty
             ? montantFinancierController.text
             : montantTotaleController.text);
-        Get.to(EchangeClientVendeurScreen(
+        Get.to(CreateFinancement(
             m,
             apportPersonnelController.text.isNotEmpty
                 ? montantFinancierController.text

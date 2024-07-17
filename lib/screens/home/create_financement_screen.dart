@@ -2,17 +2,20 @@ import 'package:fan_carousel_image_slider/fan_carousel_image_slider.dart';
 import 'package:flip_carousel/flip_carousel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:pfefront/controllers/home_controller.dart';
 import 'package:pfefront/core/storage/app_storage.dart';
 import 'package:pfefront/core/widgets/base_layout.dart';
+import 'package:pfefront/screens/home/plan_financement.dart';
 import 'package:widget_slider/widget_slider.dart';
 import 'package:intl/intl.dart';
 
-class EchangeClientVendeurScreen extends GetView<HomeController> {
+class CreateFinancement extends GetView<HomeController> {
   final int? montantFinan;
   final String? total;
-  const EchangeClientVendeurScreen(this.montantFinan, this.total, {super.key});
+  const CreateFinancement(this.montantFinan, this.total, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -109,6 +112,7 @@ class EchangeClientVendeurScreen extends GetView<HomeController> {
                 //   print('form valide');
                 // }
                 AppStorage.saveDate("${controller.m}/${controller.y}");
+                Get.to(PlanFinancement());
               },
               child: const Text(
                 "Choisir",

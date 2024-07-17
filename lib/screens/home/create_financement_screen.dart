@@ -120,6 +120,7 @@ class CreateFinancement extends GetView<HomeController> {
                     date: "${controller.m}/${controller.d}/${controller.y}",
                     total: "$total dt",
                     widget: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomTranche(
                           numTranche: '1ére mensualité',
@@ -258,6 +259,38 @@ class CreateFinancement extends GetView<HomeController> {
                 // if (controller.keyForm.currentState!.validate()) {
                 //   print('form valide');
                 // }
+                Get.to(
+                  PlanFinancement(
+                    montantPremierTranche:
+                        " ${(montantFinan! / 3).toStringAsFixed(2)} dt",
+                    date: "${controller.m}/${controller.d}/${controller.y}",
+                    total: "$total dt",
+                    widget: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomTranche(
+                          numTranche: '1ére mensualité',
+                          montant:
+                              '${(montantFinan! / 3).toStringAsFixed(2)}dt',
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                            "le ${controller.m1}/${controller.d}/${controller.y}"),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        CustomTranche(
+                          numTranche: '2éme mensualité',
+                          montant:
+                              '${(montantFinan! / 3).toStringAsFixed(2)} dt',
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                            "le ${controller.m2}/${controller.d}/${controller.y}"),
+                      ],
+                    ),
+                  ),
+                );
               },
               child: const Text(
                 "Choisir",
@@ -402,6 +435,51 @@ class CreateFinancement extends GetView<HomeController> {
                 //   print('form valide');
                 // }
                 AppStorage.saveDate("${controller.m}/${controller.y}");
+                Get.to(
+                  PlanFinancement(
+                    montantPremierTranche:
+                        " ${(montantFinan! / 4).toStringAsFixed(2)} dt",
+                    date: "${controller.m}/${controller.d}/${controller.y}",
+                    total: "$total dt",
+                    widget: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomTranche(
+                          numTranche: '1ére mensualité',
+                          montant:
+                              ' ${(montantFinan! / 4).toStringAsFixed(2)} dt',
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                            "le ${controller.m1}/${controller.d}/${controller.y}"),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        CustomTranche(
+                          numTranche: '2éme mensualité',
+                          montant:
+                              '${(montantFinan! / 4).toStringAsFixed(2)} dt',
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          "le ${controller.m2}/${controller.d}/${controller.y}",
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        CustomTranche(
+                          numTranche: '3éme mensualité',
+                          montant:
+                              '${(montantFinan! / 4).toStringAsFixed(2)}dt',
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          "le ${controller.m3}/${controller.d}/${controller.y}",
+                        ),
+                      ],
+                    ),
+                  ),
+                );
               },
               child: const Text(
                 "Choisir",

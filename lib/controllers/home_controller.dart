@@ -4,6 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pfefront/core/networking/app_api.dart';
+import 'package:pfefront/core/storage/app_storage.dart';
+import 'package:pfefront/models/contrat_model.dart';
 import 'package:pfefront/screens/home/create_financement_screen.dart';
 import 'package:widget_slider/widget_slider.dart';
 import 'package:intl/intl.dart';
@@ -164,5 +166,19 @@ class HomeController extends GetxController {
   void selectCountry(String country) {
     countryControllerController.text = country;
     update();
+  }
+
+  ContratModel? contratModel;
+  getContrat() async {
+    try {
+      var response =
+          await dio.get("${AppApi.getContratUrl}${AppStorage.readId()}");
+      if (response.statusCode == 200) {
+        contratModel = ContratModel.fromJson(response.data);
+        print("contrat model==========$contratModel");
+      }
+    } catch (e) {
+      print("error=============$e");
+    }
   }
 }

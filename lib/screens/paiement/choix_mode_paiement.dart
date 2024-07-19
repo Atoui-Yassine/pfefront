@@ -1,34 +1,9 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+class ChoixModePaiment extends StatelessWidget {
+  final String? numContrat;
+  const ChoixModePaiment({super.key, this.numContrat});
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +15,7 @@ class _MyHomePageState extends State<MyHomePage> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.blue,
         actions: [
           IconButton(
             icon: const Icon(Icons.close),
@@ -74,19 +49,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               const SizedBox(height: 16.0),
-              const Row(
+              Row(
                 children: [
-                  Text(
+                  const Text(
                     'Numéro de dossier',
                     style: TextStyle(
                       fontSize: 16.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Text(
-                    '82004768821',
-                    style: TextStyle(
+                    '$numContrat',
+                    style: const TextStyle(
                       fontSize: 16.0,
                     ),
                   ),

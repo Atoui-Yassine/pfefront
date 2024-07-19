@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:pfefront/controllers/home_controller.dart';
 import 'package:pfefront/core/widgets/custom_tranche.dart';
+import 'package:pfefront/screens/paiement/choix_mode_paiement.dart';
 
 class PlanFinancement extends StatelessWidget {
   final String? montantPremierTranche;
   final String? date;
   final String? total;
   final Widget? widget;
-  const PlanFinancement(
+  PlanFinancement(
       {super.key,
       this.montantPremierTranche,
       this.date,
       this.total,
       this.widget});
-
+  HomeController homeController = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,6 +119,10 @@ class PlanFinancement extends StatelessWidget {
                       //   print('form valide');
                       //   controller.createFinancement();
                       // }
+                      homeController.getContrat();
+                      Get.to(ChoixModePaiment(
+                        numContrat: homeController.contratModel!.codecontrat,
+                      ));
                     },
                     child: const Text(
                       "Confirmer",

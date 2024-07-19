@@ -10,4 +10,6 @@ class AppApi {
   static const String forgetPasswordUrl = "${baseUrl}Auth/forgetPassword";
   static const String verifyCodePasswordUrl = "${baseUrl}Auth/savePassword/";
   static const String logOutUrl = "${baseUrl}Auth/signout";
+  static const String getContratUrl =
+      "${baseUrl}contrat/findContratByIdclient/";
 }

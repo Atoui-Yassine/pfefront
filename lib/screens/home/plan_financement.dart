@@ -121,7 +121,7 @@ class PlanFinancement extends StatelessWidget {
                       // }
                       homeController.getContrat();
                       Get.to(ChoixModePaiment(
-                        numContrat: homeController.contratModel!.codecontrat,
+                        numContrat:"123",
                       ));
                     },
                     child: const Text(

@@ -44,9 +44,9 @@ class Clientmap {
   String? phone;
   String? photo;
   String? password;
-  Null role;
+  String? role;
   bool? confirm;
-  List<Null>? roles;
+  List<dynamic>? roles;
   String? passwordResetToken;
   int? codeclient;
   String? villedenaissance;

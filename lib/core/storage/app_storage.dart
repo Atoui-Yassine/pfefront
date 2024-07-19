@@ -5,57 +5,60 @@ class AppStorage {
   static const keyName = "fullName";
   static const keyEmail = "email";
   static const keyId = "id";
-  static const keyIdPersonnel = 'idp';
-  static const keyVille = 'ville';
-  static const keyStatus = 's';
-  static const keyTime = 'time';
+  static const keyDate1 = 'idp';
+  static const keyDate2 = 'ville';
+  static const keyDate3 = 's';
+  static const keyDate4 = 'time';
 
-  static const keyIdEvent = "eventid";
-  static const keyIdSituation = "situation";
+  static const keyMontant1 = "eventid";
+  static const keyMontant2 = "situation";
 
-  static const keyIdPresence = "idPre";
-  static const keyDate = "date";
-  static const keyIdParent = "idParent";
+  static const keyMontant3 = "idPre";
+  static const keyMontant4 = "date";
 
   static const keyCat = "categoryy";
+  static const keyDate = "categoryy";
 
   static const String keyToken = "token";
-  static const keyRole = "role";
-  static saveRole(role) {
-    SecureStorage.writeSecureData(key: keyRole, value: role);
+  static const keyNumContrat = "role";
+  static saveNumContrat(role) {
+    SecureStorage.writeSecureData(key: keyNumContrat, value: role);
   }
 
-  static String? readRole() {
-    return SecureStorage.readSecureData(keyRole);
+  static String? readNumContrat() {
+    return SecureStorage.readSecureData(keyNumContrat);
   }
 
-  static saveIdSituation(si) {
-    SecureStorage.writeSecureData(key: keyIdSituation, value: si);
+  static saveDate1(si) {
+    SecureStorage.writeSecureData(key: keyDate1, value: si);
   }
 
-  static String? readIdSituation() {
-    return SecureStorage.readSecureData(keyIdSituation);
+  static String? readDate1() {
+    return SecureStorage.readSecureData(keyDate1);
   }
 
-  static saveIdParent(parent) {
-    SecureStorage.writeSecureData(key: keyIdParent, value: parent);
+  static saveDate(si) {
+    SecureStorage.writeSecureData(key: keyDate, value: si);
   }
 
-  static String? readIdParent() {
-    return SecureStorage.readSecureData(keyIdParent);
+  static String? readDate() {
+    return SecureStorage.readSecureData(keyDate);
   }
 
-  static String? removeIdParent() {
-    SecureStorage.deleteSecureData(keyIdParent);
-    return null;
+  static saveDate2(parent) {
+    SecureStorage.writeSecureData(key: keyDate2, value: parent);
   }
 
-  static saveStatus(String status) {
-    SecureStorage.writeSecureData(key: keyStatus, value: status);
+  static String? readDate2() {
+    return SecureStorage.readSecureData(keyDate2);
   }
 
-  static String? readStatus() {
-    return SecureStorage.readSecureData(keyStatus);
+  static saveDate3(String status) {
+    SecureStorage.writeSecureData(key: keyDate3, value: status);
+  }
+
+  static String? readDate3() {
+    return SecureStorage.readSecureData(keyDate3);
   }
 
   static saveCat(String cat) {
@@ -66,12 +69,12 @@ class AppStorage {
     return SecureStorage.readSecureData(keyCat);
   }
 
-  static saveTime(time) {
-    SecureStorage.writeSecureData(key: keyTime, value: time);
+  static saveDate4(time) {
+    SecureStorage.writeSecureData(key: keyDate4, value: time);
   }
 
-  static String? readTime() {
-    return SecureStorage.readSecureData(keyTime);
+  static String? readDate4() {
+    return SecureStorage.readSecureData(keyDate4);
   }
 
   static saveToken(String token) {
@@ -98,28 +101,28 @@ class AppStorage {
     return SecureStorage.readSecureData(keyName);
   }
 
-  static saveIdPersonnel(idP) {
-    SecureStorage.writeSecureData(key: keyIdPersonnel, value: idP);
+  static saveMontant1(idP) {
+    SecureStorage.writeSecureData(key: keyMontant1, value: idP);
   }
 
-  static String? readIpPersonnel() {
-    return SecureStorage.readSecureData(keyIdPersonnel);
+  static String? readMontant1() {
+    return SecureStorage.readSecureData(keyMontant1);
   }
 
-  static saveDate(date) {
-    SecureStorage.writeSecureData(key: keyDate, value: date);
+  static saveMontant2(date) {
+    SecureStorage.writeSecureData(key: keyMontant2, value: date);
   }
 
-  static String? readDate() {
-    return SecureStorage.readSecureData(keyDate);
+  static String? readMontant2() {
+    return SecureStorage.readSecureData(keyMontant2);
   }
 
-  static saveIdPresence(idPre) {
-    SecureStorage.writeSecureData(key: keyIdPresence, value: idPre);
+  static saveMontant3(idPre) {
+    SecureStorage.writeSecureData(key: keyMontant3, value: idPre);
   }
 
-  static String? readIpPresence() {
-    return SecureStorage.readSecureData(keyIdPresence);
+  static String? readMontant3() {
+    return SecureStorage.readSecureData(keyMontant3);
   }
 
   static saveEmail(String email) {
@@ -138,12 +141,12 @@ class AppStorage {
     return SecureStorage.readSecureData(keyId);
   }
 
-  static saveIdEvent(id) {
-    SecureStorage.writeSecureData(key: keyIdEvent, value: id);
+  static saveMontant4(id) {
+    SecureStorage.writeSecureData(key: keyMontant4, value: id);
   }
 
-  static String? readIdEvent() {
-    return SecureStorage.readSecureData(keyIdEvent);
+  static String? readMontant4() {
+    return SecureStorage.readSecureData(keyMontant4);
   }
 
   static removeId() {

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:pfefront/core/storage/app_storage.dart';
+import 'package:pfefront/core/widgets/custom_row_paiement.dart';
 
 class ChoixModePaiment extends StatelessWidget {
-  final String? numContrat;
-  const ChoixModePaiment({super.key, this.numContrat});
+  final String? totale;
+
+  final Widget? widget;
+  const ChoixModePaiment({super.key, this.totale, this.widget});
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +64,7 @@ class ChoixModePaiment extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    '$numContrat',
+                    '${AppStorage.readNumContrat()}',
                     style: const TextStyle(
                       fontSize: 16.0,
                     ),
@@ -73,70 +77,27 @@ class ChoixModePaiment extends StatelessWidget {
                 height: 2,
               ),
               const SizedBox(height: 16.0),
-              const Row(
+              Row(
                 children: [
-                  Text(
+                  const Text(
                     'Montant à financer',
                     style: TextStyle(
                       fontSize: 16.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Text(
-                    '1 000,00 €',
-                    style: TextStyle(
+                    '$totale dt',
+                    style: const TextStyle(
                       fontSize: 16.0,
                     ),
                   ),
                 ],
               ),
               const SizedBox(height: 8.0),
-              const Divider(
-                color: Colors.black,
-                height: 2,
-              ),
-              const SizedBox(height: 16.0),
-              const Row(
-                children: [
-                  Text(
-                    '12/07/2024',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                    ),
-                  ),
-                  Spacer(),
-                  Text(
-                    '09/08/2024',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                    ),
-                  ),
-                ],
-              ),
+              widget ?? const SizedBox.shrink(),
               const SizedBox(height: 8.0),
-              const Divider(
-                color: Colors.black,
-                height: 2,
-              ),
-              const SizedBox(height: 16.0),
-              const Row(
-                children: [
-                  Text(
-                    '501,00 €',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                    ),
-                  ),
-                  Spacer(),
-                  Text(
-                    '499,00 €',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                    ),
-                  ),
-                ],
-              ),
               const SizedBox(height: 8.0),
               const Divider(
                 color: Colors.black,
@@ -188,6 +149,21 @@ class ChoixModePaiment extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 16.0),
+              Expanded(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 20)),
+                  onPressed: () {
+                    // Handle SMARTPHONE button press
+                  },
+                  child: const Text(
+                    'TPE',
+                    style: TextStyle(fontSize: 14.0, color: Colors.white),
+                  ),
+                ),
+              ),
               const SizedBox(height: 16.0),
               const Text(
                 'Un seul des trois boutons « TPE » ou « MPOS » ou « SMARTPHONE » sera affiché selon le mode de paiement que vous aurez choisi',

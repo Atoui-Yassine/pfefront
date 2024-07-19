@@ -1,17 +1,11 @@
-import 'package:fan_carousel_image_slider/fan_carousel_image_slider.dart';
 import 'package:flip_carousel/flip_carousel.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:pfefront/controllers/home_controller.dart';
 import 'package:pfefront/core/storage/app_storage.dart';
 import 'package:pfefront/core/widgets/base_layout.dart';
 import 'package:pfefront/core/widgets/custom_tranche.dart';
 import 'package:pfefront/screens/home/plan_financement.dart';
-import 'package:widget_slider/widget_slider.dart';
-import 'package:intl/intl.dart';
 
 class CreateFinancement extends GetView<HomeController> {
   final int? montantFinan;
@@ -41,6 +35,8 @@ class CreateFinancement extends GetView<HomeController> {
             //   blurRadius: 10,
             // ),
           ],
+      
+      
         ),
         child: Column(
           children: [
@@ -60,8 +56,9 @@ class CreateFinancement extends GetView<HomeController> {
                 text: "${controller.m}/${controller.d}/${controller.y}\t\t\t",
                 children: [
                   TextSpan(
-                      text:
-                          "         \t\t ${(montantFinan! / 2).toStringAsFixed(2)} dt")
+                    text:
+                        "         \t\t ${(montantFinan! / 2).toStringAsFixed(2)} dt",
+                  )
                 ],
                 style: const TextStyle(
                   fontSize: 15,
@@ -78,8 +75,9 @@ class CreateFinancement extends GetView<HomeController> {
                 text: "${controller.m1}/${controller.d}/${controller.y}\t\t\t",
                 children: [
                   TextSpan(
-                      text:
-                          "         \t\t\t ${(montantFinan! / 2).toStringAsFixed(2)}dt")
+                    text:
+                        "         \t\t\t ${(montantFinan! / 2).toStringAsFixed(2)}dt",
+                  )
                 ],
                 style: const TextStyle(
                   fontSize: 15,
@@ -113,8 +111,17 @@ class CreateFinancement extends GetView<HomeController> {
                 //   print('form valide');
                 // }
                 AppStorage.saveDate("${controller.m}/${controller.y}");
+                AppStorage.saveDate1(
+                    "${controller.m}/${controller.d}/${controller.y}");
+                AppStorage.saveDate2(
+                    "${controller.m1}/${controller.d}/${controller.y}");
+                AppStorage.saveMontant1(
+                    "${(montantFinan! / 2).toStringAsFixed(2)} dt ");
+                AppStorage.saveMontant2(
+                    "${(montantFinan! / 2).toStringAsFixed(2)} dt ");
                 Get.to(
                   PlanFinancement(
+                    nbrTranche: 2,
                     montantPremierTranche:
                         "${(montantFinan! / 2).toStringAsFixed(2)} dt ",
                     date: "${controller.m}/${controller.d}/${controller.y}",
@@ -188,8 +195,9 @@ class CreateFinancement extends GetView<HomeController> {
                 text: "${controller.m}/${controller.d}/${controller.y}\t\t\t",
                 children: [
                   TextSpan(
-                      text:
-                          "         \t\t\t  ${(montantFinan! / 3).toStringAsFixed(2)} dt")
+                    text:
+                        "         \t\t\t  ${(montantFinan! / 3).toStringAsFixed(2)} dt",
+                  )
                 ],
                 style: const TextStyle(
                   fontSize: 15,
@@ -206,8 +214,9 @@ class CreateFinancement extends GetView<HomeController> {
                 text: "${controller.m1}/${controller.d}/${controller.y}\t\t\t",
                 children: [
                   TextSpan(
-                      text:
-                          "         \t\t\t ${(montantFinan! / 3).toStringAsFixed(2)}dt")
+                    text:
+                        "         \t\t\t ${(montantFinan! / 3).toStringAsFixed(2)}dt",
+                  )
                 ],
                 style: const TextStyle(
                   fontSize: 15,
@@ -224,8 +233,9 @@ class CreateFinancement extends GetView<HomeController> {
                 text: "${controller.m2}/${controller.d}/${controller.y}\t\t\t",
                 children: [
                   TextSpan(
-                      text:
-                          "         \t\t\t ${(montantFinan! / 3).toStringAsFixed(2)} dt")
+                    text:
+                        "         \t\t\t ${(montantFinan! / 3).toStringAsFixed(2)} dt",
+                  )
                 ],
                 style: const TextStyle(
                   fontSize: 15,
@@ -251,16 +261,34 @@ class CreateFinancement extends GetView<HomeController> {
             const Spacer(),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 60, vertical: 20)),
+                backgroundColor: Colors.blue,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 60,
+                  vertical: 20,
+                ),
+              ),
               onPressed: () {
-                AppStorage.saveDate("${controller.m}/${controller.y}");
-                // if (controller.keyForm.currentState!.validate()) {
-                //   print('form valide');
-                // }
+                AppStorage.saveDate(
+                  "${controller.m}/${controller.y}",
+                );
+                AppStorage.saveDate1(
+                  "${controller.m}/${controller.d}/${controller.y}",
+                );
+                AppStorage.saveDate2(
+                  "${controller.m1}/${controller.d}/${controller.y}",
+                );
+                AppStorage.saveDate3(
+                  "${controller.m2}/${controller.d}/${controller.y}",
+                );
+                AppStorage.saveMontant1(
+                  "${(montantFinan! / 2).toStringAsFixed(2)} dt ",
+                );
+                AppStorage.saveMontant2(
+                  "${(montantFinan! / 2).toStringAsFixed(2)} dt ",
+                );
                 Get.to(
                   PlanFinancement(
+                    nbrTranche: 3,
                     montantPremierTranche:
                         " ${(montantFinan! / 3).toStringAsFixed(2)} dt",
                     date: "${controller.m}/${controller.d}/${controller.y}",
@@ -275,7 +303,8 @@ class CreateFinancement extends GetView<HomeController> {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                            "le ${controller.m1}/${controller.d}/${controller.y}"),
+                          "le ${controller.m1}/${controller.d}/${controller.y}",
+                        ),
                         const SizedBox(
                           height: 16,
                         ),
@@ -286,7 +315,8 @@ class CreateFinancement extends GetView<HomeController> {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                            "le ${controller.m2}/${controller.d}/${controller.y}"),
+                          "le ${controller.m2}/${controller.d}/${controller.y}",
+                        ),
                       ],
                     ),
                   ),
@@ -295,9 +325,10 @@ class CreateFinancement extends GetView<HomeController> {
               child: const Text(
                 "Choisir",
                 style: TextStyle(
-                    fontSize: 22,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+                  fontSize: 22,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             const SizedBox(
@@ -437,6 +468,7 @@ class CreateFinancement extends GetView<HomeController> {
                 AppStorage.saveDate("${controller.m}/${controller.y}");
                 Get.to(
                   PlanFinancement(
+                    nbrTranche: 4,
                     montantPremierTranche:
                         " ${(montantFinan! / 4).toStringAsFixed(2)} dt",
                     date: "${controller.m}/${controller.d}/${controller.y}",

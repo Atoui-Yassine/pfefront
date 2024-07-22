@@ -87,7 +87,7 @@ class ChoixModePaiment extends StatelessWidget {
                 ),
                 const Spacer(),
                 Text(
-                  '$totale dt',
+                  '$totale',
                   style: const TextStyle(
                     fontSize: 16.0,
                   ),
@@ -95,7 +95,7 @@ class ChoixModePaiment extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8.0),
-           widget ?? const SizedBox.shrink(),
+            widget ?? const SizedBox.shrink(),
             const SizedBox(height: 8.0),
             const SizedBox(height: 8.0),
             const Divider(

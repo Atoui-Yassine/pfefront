@@ -35,8 +35,6 @@ class CreateFinancement extends GetView<HomeController> {
             //   blurRadius: 10,
             // ),
           ],
-      
-      
         ),
         child: Column(
           children: [
@@ -281,10 +279,13 @@ class CreateFinancement extends GetView<HomeController> {
                   "${controller.m2}/${controller.d}/${controller.y}",
                 );
                 AppStorage.saveMontant1(
-                  "${(montantFinan! / 2).toStringAsFixed(2)} dt ",
+                  "${(montantFinan! / 3).toStringAsFixed(2)} dt ",
                 );
                 AppStorage.saveMontant2(
-                  "${(montantFinan! / 2).toStringAsFixed(2)} dt ",
+                  "${(montantFinan! / 3).toStringAsFixed(2)} dt ",
+                );
+                AppStorage.saveMontant3(
+                  "${(montantFinan! / 3).toStringAsFixed(2)} dt ",
                 );
                 Get.to(
                   PlanFinancement(
@@ -466,6 +467,31 @@ class CreateFinancement extends GetView<HomeController> {
                 //   print('form valide');
                 // }
                 AppStorage.saveDate("${controller.m}/${controller.y}");
+
+                AppStorage.saveDate1(
+                  "${controller.m}/${controller.d}/${controller.y}",
+                );
+                AppStorage.saveDate2(
+                  "${controller.m1}/${controller.d}/${controller.y}",
+                );
+                AppStorage.saveDate3(
+                  "${controller.m2}/${controller.d}/${controller.y}",
+                );
+                AppStorage.saveDate4(
+                  "${controller.m3}/${controller.d}/${controller.y}",
+                );
+                AppStorage.saveMontant1(
+                  "${(montantFinan! / 4).toStringAsFixed(2)} dt ",
+                );
+                AppStorage.saveMontant2(
+                  "${(montantFinan! / 4).toStringAsFixed(2)} dt ",
+                );
+                AppStorage.saveMontant3(
+                  "${(montantFinan! / 4).toStringAsFixed(2)} dt ",
+                );
+                AppStorage.saveMontant4(
+                  "${(montantFinan! / 4).toStringAsFixed(2)} dt ",
+                );
                 Get.to(
                   PlanFinancement(
                     nbrTranche: 4,

@@ -23,6 +23,7 @@ class PlanFinancement extends StatelessWidget {
   HomeController homeController = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
+     homeController.getContrat();
     return Scaffold(
       appBar: AppBar(
           leading: IconButton(
@@ -123,60 +124,64 @@ class PlanFinancement extends StatelessWidget {
                       //   print('form valide');
                       //   controller.createFinancement();
                       // }
-                      homeController.getContrat();
+                     
+                      print("nombre=$nbrTranche");
                       Get.to(
                         ChoixModePaiment(
                           totale: total,
-                          widget: nbrTranche == 2
-                              ? Column(
+                          widget:
+                           nbrTranche == 2
+                            ?
+                            
+                                Column(
                                   children: [
-                                    CustomRowPaiement(
-                                      date: AppStorage.readDate1(),
-                                      montant: AppStorage.readMontant1(),
-                                    ),
-                                    CustomRowPaiement(
-                                      date: AppStorage.readDate2(),
+                                     CustomRowPaiement(
+                                       date: AppStorage.readDate1(),
+                                       montant: AppStorage.readMontant1(),
+                                     ),
+                                     CustomRowPaiement(
+                                       date: AppStorage.readDate2(),
                                       montant: AppStorage.readMontant2(),
-                                    ),
-                                  ],
-                                )
-                              : (nbrTranche == 3)
+                                     ),
+                                   ],
+                                 )
+                               : (nbrTranche == 3)
                                   ? Column(
-                                      children: [
-                                        CustomRowPaiement(
-                                          date: AppStorage.readDate1(),
-                                          montant: AppStorage.readMontant1(),
-                                        ),
-                                        CustomRowPaiement(
-                                          date: AppStorage.readDate2(),
-                                          montant: AppStorage.readMontant2(),
-                                        ),
-                                        CustomRowPaiement(
+                                       children: [
+                                         CustomRowPaiement(
+                                           date: AppStorage.readDate1(),
+                                           montant: AppStorage.readMontant1(),
+                                         ),
+                                         CustomRowPaiement(
+                                           date: AppStorage.readDate2(),
+                                           montant: AppStorage.readMontant2(),
+                                         ),
+                                         CustomRowPaiement(
+                                          date: AppStorage.readDate3(),
+                                           montant: AppStorage.readMontant3(),
+                                         ),
+                                      ],
+                                     )
+                                   : Column(
+                                       children: [
+                                         CustomRowPaiement(
+                                           date: AppStorage.readDate1(),
+                                           montant: AppStorage.readMontant1(),
+                                         ),
+                                         CustomRowPaiement(
+                                           date: AppStorage.readDate2(),
+                                           montant: AppStorage.readMontant2(),
+                                         ),
+                                         CustomRowPaiement(
                                           date: AppStorage.readDate3(),
                                           montant: AppStorage.readMontant3(),
                                         ),
-                                      ],
-                                    )
-                                  : Column(
-                                      children: [
-                                        CustomRowPaiement(
-                                          date: AppStorage.readDate1(),
-                                          montant: AppStorage.readMontant1(),
-                                        ),
-                                        CustomRowPaiement(
-                                          date: AppStorage.readDate2(),
-                                          montant: AppStorage.readMontant2(),
-                                        ),
-                                        CustomRowPaiement(
-                                          date: AppStorage.readDate3(),
-                                          montant: AppStorage.readMontant3(),
-                                        ),
-                                        CustomRowPaiement(
-                                          date: AppStorage.readDate4(),
-                                          montant: AppStorage.readMontant4(),
+                                         CustomRowPaiement(
+                                         date: AppStorage.readDate4(),
+                                           montant: AppStorage.readMontant4(),
                                         ),
                                       ],
-                                    ),
+                                     ),
                         ),
                       );
                     },

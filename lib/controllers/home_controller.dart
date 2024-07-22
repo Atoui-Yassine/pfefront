@@ -176,6 +176,7 @@ class HomeController extends GetxController {
       if (response.statusCode == 200) {
         contratModel = ContratModel.fromJson(response.data);
         print("contrat model==========$contratModel");
+        AppStorage.saveNumContrat(contratModel!.codecontrat);
       }
     } catch (e) {
       print("error=============$e");

@@ -481,22 +481,22 @@ class CreateFinancement extends GetView<HomeController> {
                   "${controller.m3}/${controller.d}/${controller.y}",
                 );
                 AppStorage.saveMontant1(
-                  "${(montantFinan! / 4).toStringAsFixed(2)} dt ",
+                  (montantFinan! / 4).toStringAsFixed(2),
                 );
                 AppStorage.saveMontant2(
-                  "${(montantFinan! / 4).toStringAsFixed(2)} dt ",
+                  (montantFinan! / 4).toStringAsFixed(2),
                 );
                 AppStorage.saveMontant3(
-                  "${(montantFinan! / 4).toStringAsFixed(2)} dt ",
+                  (montantFinan! / 4).toStringAsFixed(2),
                 );
                 AppStorage.saveMontant4(
-                  "${(montantFinan! / 4).toStringAsFixed(2)} dt ",
+                  (montantFinan! / 4).toStringAsFixed(2),
                 );
                 Get.to(
                   PlanFinancement(
                     nbrTranche: 4,
                     montantPremierTranche:
-                        " ${(montantFinan! / 4).toStringAsFixed(2)} dt",
+                        " ${(montantFinan! / 4).toStringAsFixed(2)}",
                     date: "${controller.m}/${controller.d}/${controller.y}",
                     total: "$total dt",
                     widget: Column(
@@ -504,8 +504,7 @@ class CreateFinancement extends GetView<HomeController> {
                       children: [
                         CustomTranche(
                           numTranche: '1ére mensualité',
-                          montant:
-                              ' ${(montantFinan! / 4).toStringAsFixed(2)} dt',
+                          montant: ' ${(montantFinan! / 4).toStringAsFixed(2)}',
                         ),
                         const SizedBox(height: 8),
                         Text(
@@ -515,8 +514,7 @@ class CreateFinancement extends GetView<HomeController> {
                         ),
                         CustomTranche(
                           numTranche: '2éme mensualité',
-                          montant:
-                              '${(montantFinan! / 4).toStringAsFixed(2)} dt',
+                          montant: (montantFinan! / 4).toStringAsFixed(2),
                         ),
                         const SizedBox(height: 8),
                         Text(
@@ -527,8 +525,7 @@ class CreateFinancement extends GetView<HomeController> {
                         ),
                         CustomTranche(
                           numTranche: '3éme mensualité',
-                          montant:
-                              '${(montantFinan! / 4).toStringAsFixed(2)}dt',
+                          montant: (montantFinan! / 4).toStringAsFixed(2),
                         ),
                         const SizedBox(height: 8),
                         Text(

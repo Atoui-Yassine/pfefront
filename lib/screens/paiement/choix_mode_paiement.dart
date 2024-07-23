@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:pfefront/core/storage/app_storage.dart';
 import 'package:pfefront/core/widgets/custom_row_paiement.dart';
+import 'package:pfefront/screens/paiement/paiement_smart_phone.dart';
 
 class ChoixModePaiment extends StatelessWidget {
   final String? totale;
@@ -116,7 +119,7 @@ class ChoixModePaiment extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      // Handle SMARTPHONE button press
+                      Get.to(const PaymentSmartPhone());
                     },
                     child: const Text(
                       'SMARTPHONE',

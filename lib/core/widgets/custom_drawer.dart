@@ -2,7 +2,7 @@ import 'package:babstrap_settings_screen/babstrap_settings_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'dart:html' as html;
+//import 'dart:html' as html;
 import 'dart:html';
 import 'dart:typed_data';
 import 'package:pfefront/core/networking/app_api.dart';
@@ -30,64 +30,67 @@ class CustomDrawer extends GetView<ProfileController> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Container(
-                      //     padding: const EdgeInsets.all(10.0),
-                      decoration: BoxDecoration(
-                        //  color: APP,
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          GetBuilder<ProfileController>(
-                            builder: (controller) => InkWell(
-                              child: controller.pickedFile != null &&
-                                      controller.fileBytes != null
-                                  ? CircleAvatar(
-                                      radius: 50.0,
-                                      backgroundImage: MemoryImage(
-                                        controller.fileBytes!,
-                                      ),
-                                    )
-                                  : CircleAvatar(
-                                      radius: 30.0,
-                                      backgroundImage: NetworkImage(
-                                        "${AppApi.getImageUrl}${controller.photoController!.text}",
-                                      ),
-                                    ),
-                              onTap: () {
-                                controller.pickFile();
-                              },
-                            ),
-                          ),
-                          const SizedBox(width: 5),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                Text(
-                                  '${AppStorage.readName()}', // Afficher dynamiquement le nom d'utilisateur
-                                  style: const TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Text(
-                                  '${AppStorage.readEmail()}', // Afficher dynamiquement l'e-mail
-                                  style: TextStyle(
-                                    fontSize: 14.0,
-                                    color: Colors.grey[600],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    // Container(
+                    //   //     padding: const EdgeInsets.all(10.0),
+                    //   decoration: BoxDecoration(
+                    //     //  color: APP,
+                    //     borderRadius: BorderRadius.circular(15.0),
+                    //   ),
+                    //   child: Row(
+                    //     crossAxisAlignment: CrossAxisAlignment.start,
+                    //     children: [
+                    //       GetBuilder<ProfileController>(
+                    //         builder: (controller) => InkWell(
+                    //           child: controller.pickedFile != null &&
+                    //                   controller.fileBytes != null
+                    //               ? CircleAvatar(
+                    //                   radius: 50.0,
+                    //                   backgroundImage: MemoryImage(
+                    //                     controller.fileBytes!,
+                    //                   ),
+                    //                 )
+                    //               : CircleAvatar(
+                    //                   radius: 30.0,
+                    //                   backgroundImage: NetworkImage(
+                    //                     "${AppApi.getImageUrl}${controller.photoController!.text}",
+                    //                   ),
+                    //                 ),
+                    //           onTap: () {
+                    //             controller.pickFile();
+                    //           },
+                    //         ),
+                    //       ),
+                    //       const SizedBox(width: 5),
+                    //       Expanded(
+                    //         child: Column(
+                    //           crossAxisAlignment: CrossAxisAlignment.start,
+                    //           children: [
+                    //             const SizedBox(
+                    //               height: 20,
+                    //             ),
+                    //             Text(
+                    //               '${AppStorage.readName()}', // Afficher dynamiquement le nom d'utilisateur
+                    //               style: const TextStyle(
+                    //                 fontSize: 16.0,
+                    //                 fontWeight: FontWeight.w600,
+                    //               ),
+                    //             ),
+                    //             Text(
+                    //               '${AppStorage.readEmail()}', // Afficher dynamiquement l'e-mail
+                    //               style: TextStyle(
+                    //                 fontSize: 14.0,
+                    //                 color: Colors.grey[600],
+                    //               ),
+                    //             ),
+                    //           ],
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+                 
+                 
+                 
                     const SizedBox(height: 20),
                     Container(
                       decoration: BoxDecoration(

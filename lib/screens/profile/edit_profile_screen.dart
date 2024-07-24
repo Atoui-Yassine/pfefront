@@ -47,27 +47,30 @@ class EditProfileScreen extends GetView<ProfileController> {
                   ),
                 ),
 
-                GetBuilder<ProfileController>(
-                  builder: (controller) => InkWell(
-                    child: controller.pickedFile != null &&
-                            controller.fileBytes != null
-                        ? CircleAvatar(
-                            radius: 50.0,
-                            backgroundImage: MemoryImage(
-                              controller.fileBytes!,
-                            ),
-                          )
-                        : CircleAvatar(
-                            radius: 50.0,
-                            backgroundImage: NetworkImage(
-                              "${AppApi.getImageUrl}${controller.photoController!.text}",
-                            ),
-                          ),
-                    onTap: () {
-                      controller.pickFile();
-                    },
-                  ),
-                ),
+                // GetBuilder<ProfileController>(
+                //   builder: (controller) => InkWell(
+                //     child: controller.pickedFile != null &&
+                //             controller.fileBytes != null
+                //         ? CircleAvatar(
+                //             radius: 50.0,
+                //             backgroundImage: MemoryImage(
+                //               controller.fileBytes!,
+                //             ),
+                //           )
+                //         : CircleAvatar(
+                //             radius: 50.0,
+                //             backgroundImage: NetworkImage(
+                //               "${AppApi.getImageUrl}${controller.photoController!.text}",
+                //             ),
+                //           ),
+                //     onTap: () {
+                //       controller.pickFile();
+                //     },
+                //   ),
+                // ),
+             
+             
+             
                 const SizedBox(
                   height: 25,
                 ),

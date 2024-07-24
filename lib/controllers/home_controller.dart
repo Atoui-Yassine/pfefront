@@ -1,15 +1,20 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
+import 'package:dio/dio.dart' as dio_;
+import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pfefront/core/networking/app_api.dart';
 import 'package:pfefront/core/storage/app_storage.dart';
 import 'package:pfefront/models/contrat_model.dart';
 import 'package:pfefront/screens/home/create_financement_screen.dart';
 import 'package:widget_slider/widget_slider.dart';
 import 'package:intl/intl.dart';
-import 'dart:html' as html;
+// import 'dart:html' as html;
 
 class HomeController extends GetxController {
   GlobalKey<FormState> keyForm = GlobalKey<FormState>();
@@ -33,6 +38,60 @@ class HomeController extends GetxController {
     duration: const Duration(milliseconds: 600),
   );
   final dio = Dio();
+//------------------------------------image-------------------
+
+  File? image; // Variable to hold the selected image
+  final picker = ImagePicker(); // Image picker instance
+//Image Picker function to get image from gallery
+  Future getImageFromGallery() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      image = File(pickedFile.path);
+    }
+    update(); // Update the UI to reflect the selected image
+  }
+
+  //Image Picker function to get image from camera
+  Future getImageFromCamera() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+
+    if (pickedFile != null) {
+      image = File(pickedFile.path);
+    }
+    update(); // Update the UI to reflect the selected image
+  }
+
+  //Show options to get image from camera or gallery
+  Future showOptions(BuildContext context) async {
+    showCupertinoModalPopup(
+      context: context,
+      builder: (context) => CupertinoActionSheet(
+        actions: [
+          CupertinoActionSheetAction(
+            child: const Text('Photo Gallery'),
+            onPressed: () {
+              // close the options modal
+              Navigator.of(context).pop();
+              // get image from gallery
+              getImageFromGallery();
+            },
+          ),
+          CupertinoActionSheetAction(
+            child: const Text('Camera'),
+            onPressed: () {
+              // close the options modal
+              Navigator.of(context).pop();
+              // get image from camera
+              getImageFromCamera();
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+//------------------------------------image-------------------
 
   createFinancement() async {
     Map<String, dynamic> data = {
@@ -66,53 +125,13 @@ class HomeController extends GetxController {
     update();
   }
 
-  html.File? pickedFile;
+  XFile? pickedFile;
   Uint8List? fileBytes;
   List<String> listCarte = ["Carte Nationale d'Identité", "Passeport"];
   String? selectedValueMaritalStatus;
   void onChnagedDropDownMaritalStatus(String value) {
     selectedValueMaritalStatus = value;
     update();
-  }
-
-  void pickFile() {
-    html.FileUploadInputElement uploadInput = html.FileUploadInputElement();
-    uploadInput.click();
-    uploadInput.onChange.listen((event) {
-      final files = uploadInput.files;
-      if (files != null && files.isNotEmpty) {
-        final reader = html.FileReader();
-        reader.readAsArrayBuffer(files[0]);
-        reader.onLoadEnd.listen((event) {
-          pickedFile = files[0];
-          print('file=========================$pickedFile');
-          fileBytes = reader.result as Uint8List?;
-          // visibility = false;
-          update();
-        });
-      }
-    });
-  }
-
-  html.File? pickedFileFace2;
-  Uint8List? fileBytesFace2;
-  void pickFileFace2() {
-    html.FileUploadInputElement uploadInput = html.FileUploadInputElement();
-    uploadInput.click();
-    uploadInput.onChange.listen((event) {
-      final files = uploadInput.files;
-      if (files != null && files.isNotEmpty) {
-        final reader = html.FileReader();
-        reader.readAsArrayBuffer(files[0]);
-        reader.onLoadEnd.listen((event) {
-          pickedFileFace2 = files[0];
-          print('file=========================$pickedFileFace2');
-          fileBytesFace2 = reader.result as Uint8List?;
-          // visibility = false;
-          update();
-        });
-      }
-    });
   }
 
   String? selectedValueCivilityTitle;

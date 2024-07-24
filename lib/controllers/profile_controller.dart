@@ -4,7 +4,7 @@ import 'package:dio/dio.dart' as dio_;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'dart:html' as html;
+//import 'dart:html' as html;
 import 'dart:html';
 import 'dart:typed_data';
 
@@ -69,9 +69,9 @@ class ProfileController extends GetxController {
 
   List<String> listRole = ["Vendeur", "Client"];
   String? tempPath;
-  List<File> images = [];
+  //List<File> images = [];
   XFile? image;
-  html.File? pickedFile;
+  //html.File? pickedFile;
   Uint8List? fileBytes;
   @override
   void onInit() {
@@ -89,24 +89,24 @@ class ProfileController extends GetxController {
     update();
   }
 
-  void pickFile() {
-    html.FileUploadInputElement uploadInput = html.FileUploadInputElement();
-    uploadInput.click();
-    uploadInput.onChange.listen((event) {
-      final files = uploadInput.files;
-      if (files != null && files.isNotEmpty) {
-        final reader = html.FileReader();
-        reader.readAsArrayBuffer(files[0]);
-        reader.onLoadEnd.listen((event) {
-          pickedFile = files[0];
-          print('file=========================$pickedFile');
-          fileBytes = reader.result as Uint8List?;
-          visibility = false;
-          update();
-        });
-      }
-    });
-  }
+  // void pickFile() {
+  //   html.FileUploadInputElement uploadInput = html.FileUploadInputElement();
+  //   uploadInput.click();
+  //   uploadInput.onChange.listen((event) {
+  //     final files = uploadInput.files;
+  //     if (files != null && files.isNotEmpty) {
+  //       final reader = html.FileReader();
+  //       reader.readAsArrayBuffer(files[0]);
+  //       reader.onLoadEnd.listen((event) {
+  //         pickedFile = files[0];
+  //         print('file=========================$pickedFile');
+  //         fileBytes = reader.result as Uint8List?;
+  //         visibility = false;
+  //         update();
+  //       });
+  //     }
+  //   });
+  // }
 
   void onChnagedDropDown(String value) {
     selectedValue = value;
@@ -244,7 +244,7 @@ class ProfileController extends GetxController {
     dio_.FormData data_ = dio_.FormData.fromMap({
       "file": dio_.MultipartFile.fromBytes(
         fileBytes!,
-        filename: pickedFile!.name,
+        //   filename: pickedFile!.name,
       ),
     });
     try {
@@ -274,15 +274,15 @@ class ProfileController extends GetxController {
       "civilité": selectedValueCivilityTitle
     };
     dio_.FormData data_ = dio_.FormData.fromMap({
-      "file": pickedFile != null && fileBytes != null
-          ? dio_.MultipartFile.fromBytes(
-              fileBytes!,
-              filename: pickedFile!.name,
-            )
-          : dio_.MultipartFile.fromString(
-              photoController!.text,
-              //  filename: pickedFile!.name,
-            ),
+      // "file": pickedFile != null && fileBytes != null
+      //     ? dio_.MultipartFile.fromBytes(
+      //         fileBytes!,
+      //         filename: pickedFile!.name,
+      //       )
+      //     : dio_.MultipartFile.fromString(
+      //         photoController!.text,
+      //         //  filename: pickedFile!.name,
+      //       ),
     });
     try {
       var response = await dio.put(

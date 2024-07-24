@@ -7,6 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:pfefront/core/bindings.dart';
 import 'package:pfefront/screens/home/create_financement_screen.dart';
 import 'package:pfefront/screens/home/plan_financement.dart';
+import 'package:pfefront/screens/page_inscription_1.dart';
 import 'package:pfefront/screens/page_reserver_au_vendeur.dart';
 import 'package:pfefront/screens/paiement/choix_mode_paiement.dart';
 import 'package:pfefront/screens/paiement/paiement_smart_phone.dart';
@@ -89,7 +90,7 @@ class MyApp extends StatelessWidget {
         gifPath: 'assets/images/example.gif',
         gifWidth: 269,
         gifHeight: 474,
-        nextScreen: const PaymentSmartPhone(),
+        nextScreen: const PageInscription1(),
         duration: const Duration(milliseconds: 3515),
         onInit: () async {
           debugPrint("onInit");

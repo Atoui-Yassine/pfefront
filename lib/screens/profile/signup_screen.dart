@@ -318,23 +318,24 @@ GetBuilder<ProfileController>(
                               ),
                               child: const Text('ajouter un image')),
                           onTap: () {
-                            controller.pickFile();
+                        //    controller.pickFile();
                           },
                         ),
                       ),
-                      controller.pickedFile != null &&
-                              controller.fileBytes != null
-                          ? Column(
-                              children: [
-                                Image.memory(
-                                  controller.fileBytes!,
-                                  width: 50,
-                                  height: 50,
-                                ),
-                                Text(controller.pickedFile!.name),
-                              ],
-                            )
-                          : const SizedBox(),
+                      // controller.pickedFile != null &&
+                      //         controller.fileBytes != null
+                      //     ? Column(
+                      //         children: [
+                      //           Image.memory(
+                      //             controller.fileBytes!,
+                      //             width: 50,
+                      //             height: 50,
+                      //           ),
+                      //           Text(controller.pickedFile!.name),
+                      //         ],
+                      //       )
+                      //     :
+                           const SizedBox(),
                     ],
                   ),
                 ),

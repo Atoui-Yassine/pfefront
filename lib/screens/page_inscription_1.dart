@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -143,8 +145,8 @@ class PageInscription1 extends GetView<HomeController> {
                           //  radius: 50.0,
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                            image: MemoryImage(
-                              controller.fileBytes!,
+                            image: FileImage(
+                              controller.image!,
                             ),
                           )),
                         )
@@ -155,7 +157,8 @@ class PageInscription1 extends GetView<HomeController> {
                           child: const Center(child: Text('prendre un photo')),
                         ),
                   onTap: () {
-                    controller.pickFile();
+                    // controller.pickFile();
+                    controller.showOptions(context);
                   },
                 ),
               ),
@@ -175,15 +178,14 @@ class PageInscription1 extends GetView<HomeController> {
               ),
               GetBuilder<HomeController>(
                 builder: (controller) => InkWell(
-                  child: controller.pickedFileFace2 != null &&
-                          controller.fileBytesFace2 != null
+                  child: controller.image != null
                       ? Container(
                           width: 150, height: 150,
                           //  radius: 50.0,
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                            image: MemoryImage(
-                              controller.fileBytesFace2!,
+                            image: FileImage(
+                              controller.image!,
                             ),
                           )),
                         )
@@ -194,7 +196,7 @@ class PageInscription1 extends GetView<HomeController> {
                           child: const Center(child: Text('prendre un photo')),
                         ),
                   onTap: () {
-                    controller.pickFile();
+                    controller.showOptions(context);
                   },
                 ),
               ),

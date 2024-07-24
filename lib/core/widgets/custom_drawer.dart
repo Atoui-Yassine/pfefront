@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 //import 'dart:html' as html;
-import 'dart:html';
+//import 'dart:html';
 import 'dart:typed_data';
 import 'package:pfefront/core/networking/app_api.dart';
 

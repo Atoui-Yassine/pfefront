@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 //import 'dart:html' as html;
-import 'dart:html';
+//import 'dart:html';
 import 'dart:typed_data';
 
 import 'package:image_picker/image_picker.dart';

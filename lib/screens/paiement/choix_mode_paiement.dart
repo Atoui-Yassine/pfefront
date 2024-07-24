@@ -168,7 +168,7 @@ class ChoixModePaiment extends StatelessWidget {
             ),
             const SizedBox(height: 16.0),
             const Text(
-              'Un seul des trois boutons « TPE » ou « MPOS » ou « SMARTPHONE » sera affiché selon le mode de paiement que vous aurez choisi',
+              'Un seul des trois boutons « TPE » ou «  » ou « SMARTPHONE » sera affiché selon le mode de paiement que vous aurez choisi',
               style: TextStyle(fontSize: 16.0, color: Colors.red),
             ),
             const SizedBox(height: 16.0),

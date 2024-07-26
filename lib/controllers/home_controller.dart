@@ -40,30 +40,39 @@ class HomeController extends GetxController {
   final dio = Dio();
 //------------------------------------image-------------------
 
-  File? image; // Variable to hold the selected image
+  File? image;
+  File? imageFace2;
   final picker = ImagePicker(); // Image picker instance
 //Image Picker function to get image from gallery
-  Future getImageFromGallery() async {
+  Future getImageFromGallery(int a) async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
-      image = File(pickedFile.path);
+      if (a == 1) {
+        image = File(pickedFile.path);
+      } else if (a == 2) {
+        imageFace2 = File(pickedFile.path);
+      }
     }
     update(); // Update the UI to reflect the selected image
   }
 
   //Image Picker function to get image from camera
-  Future getImageFromCamera() async {
+  Future getImageFromCamera(int a) async {
     final pickedFile = await picker.pickImage(source: ImageSource.camera);
 
     if (pickedFile != null) {
-      image = File(pickedFile.path);
+      if (a == 1) {
+        image = File(pickedFile.path);
+      } else if (a == 2) {
+        imageFace2 = File(pickedFile.path);
+      }
     }
     update(); // Update the UI to reflect the selected image
   }
 
   //Show options to get image from camera or gallery
-  Future showOptions(BuildContext context) async {
+  Future showOptions(BuildContext context, int a) async {
     showCupertinoModalPopup(
       context: context,
       builder: (context) => CupertinoActionSheet(
@@ -74,7 +83,7 @@ class HomeController extends GetxController {
               // close the options modal
               Navigator.of(context).pop();
               // get image from gallery
-              getImageFromGallery();
+              getImageFromGallery(a);
             },
           ),
           CupertinoActionSheetAction(
@@ -83,13 +92,14 @@ class HomeController extends GetxController {
               // close the options modal
               Navigator.of(context).pop();
               // get image from camera
-              getImageFromCamera();
+              getImageFromCamera(a);
             },
           ),
         ],
       ),
     );
   }
+
 
 //------------------------------------image-------------------
 

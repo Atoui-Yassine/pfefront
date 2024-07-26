@@ -158,7 +158,7 @@ class PageInscription1 extends GetView<HomeController> {
                         ),
                   onTap: () {
                     // controller.pickFile();
-                    controller.showOptions(context);
+                    controller.showOptions(context,1);
                   },
                 ),
               ),
@@ -178,7 +178,7 @@ class PageInscription1 extends GetView<HomeController> {
               ),
               GetBuilder<HomeController>(
                 builder: (controller) => InkWell(
-                  child: controller.image != null
+                  child: controller.imageFace2 != null
                       ? Container(
                           width: 150, height: 150,
                           //  radius: 50.0,
@@ -196,7 +196,7 @@ class PageInscription1 extends GetView<HomeController> {
                           child: const Center(child: Text('prendre un photo')),
                         ),
                   onTap: () {
-                    controller.showOptions(context);
+                    controller.showOptions(context,2);
                   },
                 ),
               ),

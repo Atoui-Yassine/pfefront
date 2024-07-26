@@ -184,7 +184,7 @@ class PageInscription1 extends GetView<HomeController> {
                           decoration: BoxDecoration(
                               image: DecorationImage(
                             image: FileImage(
-                              controller.imageFcae2!,
+                              controller.imageFace2!,
                             ),
                           )),
                         )

@@ -138,8 +138,7 @@ class PageInscription1 extends GetView<HomeController> {
               ),
               GetBuilder<HomeController>(
                 builder: (controller) => InkWell(
-                  child: controller.pickedFile != null &&
-                          controller.fileBytes != null
+                  child: controller.image != null 
                       ? Container(
                           width: 150, height: 150,
                           //  radius: 50.0,
@@ -185,7 +184,7 @@ class PageInscription1 extends GetView<HomeController> {
                           decoration: BoxDecoration(
                               image: DecorationImage(
                             image: FileImage(
-                              controller.image!,
+                              controller.imageFcae2!,
                             ),
                           )),
                         )

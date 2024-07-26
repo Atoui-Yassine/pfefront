@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:dio/dio.dart' as dio_;
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -69,9 +72,7 @@ class ProfileController extends GetxController {
 
   List<String> listRole = ["Vendeur", "Client"];
   String? tempPath;
-  //List<File> images = [];
-  XFile? image;
-  //html.File? pickedFile;
+
   Uint8List? fileBytes;
   @override
   void onInit() {
@@ -326,5 +327,57 @@ class ProfileController extends GetxController {
     } else {
       print('Token d\'accès introuvable');
     }
+  }
+  //------------------------------------image-------------------
+
+  File? image;
+  File? imageFace2;
+  final picker = ImagePicker(); // Image picker instance
+//Image Picker function to get image from gallery
+  Future getImageFromGallery() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      image = File(pickedFile.path);
+    }
+    update(); // Update the UI to reflect the selected image
+  }
+
+  //Image Picker function to get image from camera
+  Future getImageFromCamera() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+
+    if (pickedFile != null) {
+      image = File(pickedFile.path);
+    }
+    update(); // Update the UI to reflect the selected image
+  }
+
+  Future showOptions(BuildContext context) async {
+    showCupertinoModalPopup(
+      context: context,
+      builder: (context) => CupertinoActionSheet(
+        actions: [
+          CupertinoActionSheetAction(
+            child: const Text('Photo Gallery'),
+            onPressed: () {
+              // close the options modal
+              Navigator.of(context).pop();
+              // get image from gallery
+              getImageFromGallery();
+            },
+          ),
+          CupertinoActionSheetAction(
+            child: const Text('Camera'),
+            onPressed: () {
+              // close the options modal
+              Navigator.of(context).pop();
+              // get image from camera
+              getImageFromCamera();
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

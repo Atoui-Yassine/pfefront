@@ -15,6 +15,7 @@ import 'package:pfefront/screens/profile/edit_profile_screen.dart';
 import 'package:pfefront/screens/profile/login_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
+import 'package:pfefront/screens/profile/signup_screen.dart';
 import 'package:pfefront/screens/profile/verify_code_screen.dart';
 import 'package:pfefront/screens/protection_donnee_personnel_screen.dart';
 
@@ -90,7 +91,7 @@ class MyApp extends StatelessWidget {
         gifPath: 'assets/images/example.gif',
         gifWidth: 269,
         gifHeight: 474,
-        nextScreen: const PageInscription1(),
+        nextScreen: const SignUpScreen(),
         duration: const Duration(milliseconds: 3515),
         onInit: () async {
           debugPrint("onInit");

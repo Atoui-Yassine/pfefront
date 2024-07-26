@@ -152,70 +152,69 @@ class SignUpScreen extends GetView<ProfileController> {
                 const SizedBox(
                   height: 15,
                 ),
-GetBuilder<ProfileController>(
+                GetBuilder<ProfileController>(
                     builder: (controller) => TextFormField(
-                      readOnly: true,
-                      onTap: () =>    showCountryPicker(
-                              context: context,
-                              useSafeArea: true,
-                              //Optional.  Can be used to exclude(remove) one ore more country from the countries list (optional).
-                              exclude: <String>['KN', 'MF'],
-                              favorite: <String>['SE'],
-                              //Optional. Shows phone code before the country name.
-                              showPhoneCode: true,
-                              onSelect: (Country country) {
-                                controller.selectCountry(
-                                    country.displayNameNoCountryCode);
-                                print(
-                                    'Select country: ${country.displayName} ${country.e164Sc} ${country.e164Key} ');
-                              },
-                              // Optional. Sheet moves when keyboard opens.
-                              moveAlongWithKeyboard: false,
-                              // Optional. Sets the theme for the country list picker.
-                              countryListTheme: CountryListThemeData(
-                                // Optional. Sets the border radius for the bottomsheet.
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(40.0),
-                                  topRight: Radius.circular(40.0),
-                                ),
-                                // Optional. Styles the search field.
-                                inputDecoration: InputDecoration(
-                                  labelText: 'Search',
-                                  hintText: 'Start typing to search',
-                                  prefixIcon: const Icon(Icons.search),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: const Color(0xFF8C98A8)
-                                          .withOpacity(0.2),
-                                    ),
+                          readOnly: true,
+                          onTap: () => showCountryPicker(
+                            context: context,
+                            useSafeArea: true,
+                            //Optional.  Can be used to exclude(remove) one ore more country from the countries list (optional).
+                            exclude: <String>['KN', 'MF'],
+                            favorite: <String>['SE'],
+                            //Optional. Shows phone code before the country name.
+                            showPhoneCode: true,
+                            onSelect: (Country country) {
+                              controller.selectCountry(
+                                  country.displayNameNoCountryCode);
+                              print(
+                                  'Select country: ${country.displayName} ${country.e164Sc} ${country.e164Key} ');
+                            },
+                            // Optional. Sheet moves when keyboard opens.
+                            moveAlongWithKeyboard: false,
+                            // Optional. Sets the theme for the country list picker.
+                            countryListTheme: CountryListThemeData(
+                              // Optional. Sets the border radius for the bottomsheet.
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(40.0),
+                                topRight: Radius.circular(40.0),
+                              ),
+                              // Optional. Styles the search field.
+                              inputDecoration: InputDecoration(
+                                labelText: 'Search',
+                                hintText: 'Start typing to search',
+                                prefixIcon: const Icon(Icons.search),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: const Color(0xFF8C98A8)
+                                        .withOpacity(0.2),
                                   ),
                                 ),
-                                // Optional. Styles the text in the search field
-                                searchTextStyle: const TextStyle(
-                                  color: Colors.blue,
-                                  fontSize: 18,
-                                ),
                               ),
-                            )
-                          ,
-                      controller: controller.countryControllerController,
-                      decoration: const InputDecoration(
-                        label: Text("Pays De Naissance"),
-                        //   hintText: "tapez votre Ville De Naissance ",
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(
-                          Icons.villa,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      //   validator: (value) {
-                      //     if (value!.isEmpty) {
-                      //       return " sil vous plait tapez votre Ville De Naissance";
-                      //     }
-                      //     return null;
-                      //   },
-      )),
-            const SizedBox(
+                              // Optional. Styles the text in the search field
+                              searchTextStyle: const TextStyle(
+                                color: Colors.blue,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                          controller: controller.countryControllerController,
+                          decoration: const InputDecoration(
+                            label: Text("Pays De Naissance"),
+                            //   hintText: "tapez votre Ville De Naissance ",
+                            border: OutlineInputBorder(),
+                            prefixIcon: Icon(
+                              Icons.villa,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          //   validator: (value) {
+                          //     if (value!.isEmpty) {
+                          //       return " sil vous plait tapez votre Ville De Naissance";
+                          //     }
+                          //     return null;
+                          //   },
+                        )),
+                const SizedBox(
                   height: 15,
                 ),
                 TextFormField(
@@ -318,24 +317,22 @@ GetBuilder<ProfileController>(
                               ),
                               child: const Text('ajouter un image')),
                           onTap: () {
-                        //    controller.pickFile();
+                            controller.showOptions(context);
                           },
                         ),
                       ),
-                      // controller.pickedFile != null &&
-                      //         controller.fileBytes != null
-                      //     ? Column(
-                      //         children: [
-                      //           Image.memory(
-                      //             controller.fileBytes!,
-                      //             width: 50,
-                      //             height: 50,
-                      //           ),
-                      //           Text(controller.pickedFile!.name),
-                      //         ],
-                      //       )
-                      //     :
-                           const SizedBox(),
+                      controller.image != null
+                          ? Column(
+                              children: [
+                                Image.file(
+                                  controller.image!,
+                                  width: 50,
+                                  height: 50,
+                                ),
+                                //      Text(controller.image!.path),
+                              ],
+                            )
+                          : const SizedBox(),
                     ],
                   ),
                 ),

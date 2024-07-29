@@ -243,9 +243,9 @@ class ProfileController extends GetxController {
       "civilité": selectedValueCivilityTitle
     };
     dio_.FormData data_ = dio_.FormData.fromMap({
-      "file": dio_.MultipartFile.fromBytes(
-        fileBytes!,
-        //   filename: pickedFile!.name,
+      "file": dio_.MultipartFile.fromFile(
+        image!.path,
+        filename: image!.path.split('/').last,
       ),
     });
     try {
@@ -339,8 +339,8 @@ class ProfileController extends GetxController {
 
     if (pickedFile != null) {
       image = File(pickedFile.path);
-            print('image============>$image');
-
+      print('image============>$image');
+      visibility = false;
     }
     update(); // Update the UI to reflect the selected image
   }
@@ -352,6 +352,7 @@ class ProfileController extends GetxController {
     if (pickedFile != null) {
       image = File(pickedFile.path);
       print('image============>$image');
+      visibility = false;
     }
     update(); // Update the UI to reflect the selected image
   }

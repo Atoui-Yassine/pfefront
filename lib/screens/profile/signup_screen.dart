@@ -326,8 +326,8 @@ class SignUpScreen extends GetView<ProfileController> {
                               children: [
                                 Image.file(
                                   controller.image!,
-                                  width: 50,
-                                  height: 50,
+                                  width: 350,
+                                  height: 80,
                                 ),
                                 //      Text(controller.image!.path),
                               ],

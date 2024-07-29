@@ -339,6 +339,8 @@ class ProfileController extends GetxController {
 
     if (pickedFile != null) {
       image = File(pickedFile.path);
+            print('image============>$image');
+
     }
     update(); // Update the UI to reflect the selected image
   }
@@ -349,6 +351,7 @@ class ProfileController extends GetxController {
 
     if (pickedFile != null) {
       image = File(pickedFile.path);
+      print('image============>$image');
     }
     update(); // Update the UI to reflect the selected image
   }

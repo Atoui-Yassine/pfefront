@@ -220,16 +220,16 @@ class ProfileController extends GetxController {
   }
 
   signUp() async {
-    userNameController.text = "";
-    emailController.text = "";
-    phoneController!.text = "";
-    nationnaliteController.text = "";
-    villeDeNaissanceController.text = "";
-    countryControllerController.text = "";
-    codePostaleController.text = "";
-    print("***********");
-    selectedValueCivilityTitle = "";
-    photoController!.text = "";
+    // userNameController.text = "";
+    // emailController.text = "";
+    // phoneController!.text = "";
+    // nationnaliteController.text = "";
+    // villeDeNaissanceController.text = "";
+    // countryControllerController.text = "";
+    // codePostaleController.text = "";
+    // print("***********");
+    // selectedValueCivilityTitle = "";
+    // photoController!.text = "";
     Map<String, dynamic> data = {
       "username": userNameController.text,
       "email": emailController.text,
@@ -243,9 +243,11 @@ class ProfileController extends GetxController {
       "civilité": selectedValueCivilityTitle
     };
     dio_.FormData data_ = dio_.FormData.fromMap({
-      "file": dio_.MultipartFile.fromFile(
-        image!.path,
-        filename: image!.path.split('/').last,
+      "file": dio_.MultipartFile.fromBytes(
+        await
+        image!.readAsBytes(),
+        filename:image!.uri.pathSegments.last,
+        //   filename: pickedFile!.name,
       ),
     });
     try {
@@ -256,7 +258,7 @@ class ProfileController extends GetxController {
         Get.to(const LoginScreen());
       }
     } catch (e) {
-      print('error================$e');
+      print('errorsingup================$e');
     }
   }
 
@@ -339,7 +341,7 @@ class ProfileController extends GetxController {
 
     if (pickedFile != null) {
       image = File(pickedFile.path);
-      print('image============>$image');
+      print('image2============>${image!.path}');
       visibility = false;
     }
     update(); // Update the UI to reflect the selected image
@@ -351,7 +353,7 @@ class ProfileController extends GetxController {
 
     if (pickedFile != null) {
       image = File(pickedFile.path);
-      print('image============>$image');
+      print('image2============>${image!.path}');
       visibility = false;
     }
     update(); // Update the UI to reflect the selected image

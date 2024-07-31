@@ -118,7 +118,7 @@ class ChoixModePaiment extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Get.to(const PaymentSmartPhone());
+                    Get.to( PaymentSmartPhone());
                   },
                   child: const Text(
                     'SMARTPHONE',

@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:pfefront/core/storage/app_storage.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class PaymentSmartPhone extends StatelessWidget {
-  const PaymentSmartPhone({super.key});
-
+  PaymentSmartPhone({super.key});
+  QRViewController? controller;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +80,10 @@ class PaymentSmartPhone extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  // Handle SMARTPHONE button press
+                  if (Platform.isAndroid) {
+                    controller!.pauseCamera();
+                  }
+                  controller!.resumeCamera();
                 },
                 child: const Text(
                   'QRCODE',

@@ -68,7 +68,6 @@ class _QRViewExampleState extends State<QRViewExample> {
                     Text(
                         // ignore: deprecated_member_use
                         '   Data-----: ${result!.code}----')
-                        
                   else
                     const Text('Scan a code'),
                   Row(
@@ -173,6 +172,7 @@ class _QRViewExampleState extends State<QRViewExample> {
     controller.scannedDataStream.listen((scanData) {
       setState(() {
         result = scanData;
+        controller.pauseCamera();
       });
     });
   }

@@ -22,7 +22,7 @@ class CustomRowPaiement extends StatelessWidget {
                 fontSize: 16.0,
               ),
             ),
-            const Spacer(),
+            const SizedBox(width: 20,),
             Text(
               '$montant dt',
               style: const TextStyle(

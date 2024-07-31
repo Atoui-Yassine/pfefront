@@ -32,7 +32,7 @@ class ChoixModePaiment extends StatelessWidget {
           ),
         ],
       ),
-      body: Container(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +64,7 @@ class ChoixModePaiment extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Spacer(),
+                const SizedBox(width: 20,),
                 Text(
                   '${AppStorage.readNumContrat()}',
                   style: const TextStyle(
@@ -88,7 +88,7 @@ class ChoixModePaiment extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Spacer(),
+                const SizedBox(width: 20,),
                 Text(
                   '$totale',
                   style: const TextStyle(
@@ -109,61 +109,55 @@ class ChoixModePaiment extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 30,
-                        vertical: 20,
-                      ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 20,
                     ),
-                    onPressed: () {
-                      Get.to(const PaymentSmartPhone());
-                    },
-                    child: const Text(
-                      'SMARTPHONE',
-                      style: TextStyle(
-                        fontSize: 14.0,
-                        color: Colors.white,
-                      ),
+                  ),
+                  onPressed: () {
+                    Get.to(const PaymentSmartPhone());
+                  },
+                  child: const Text(
+                    'SMARTPHONE',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      color: Colors.white,
                     ),
                   ),
                 ),
                 const SizedBox(
                   width: 5,
                 ),
-                Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 30, vertical: 20)),
-                    onPressed: () {
-                      // Handle SMARTPHONE button press
-                    },
-                    child: const Text(
-                      'ENCAISS\'PHONE',
-                      style: TextStyle(fontSize: 14.0, color: Colors.white),
-                    ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 20)),
+                  onPressed: () {
+                    // Handle SMARTPHONE button press
+                  },
+                  child: const Text(
+                    'ENCAISS\'PHONE',
+                    style: TextStyle(fontSize: 14.0, color: Colors.white),
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 16.0),
-            Expanded(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 30, vertical: 20)),
-                onPressed: () {
-                  // Handle SMARTPHONE button press
-                },
-                child: const Text(
-                  'TPE',
-                  style: TextStyle(fontSize: 14.0, color: Colors.white),
-                ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 30, vertical: 20)),
+              onPressed: () {
+                // Handle SMARTPHONE button press
+              },
+              child: const Text(
+                'TPE',
+                style: TextStyle(fontSize: 14.0, color: Colors.white),
               ),
             ),
             const SizedBox(height: 16.0),

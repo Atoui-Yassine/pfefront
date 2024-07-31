@@ -247,7 +247,6 @@ class ProfileController extends GetxController {
       "file": await dio_.MultipartFile.fromFile(
         image!.path,
         filename: image!.uri.pathSegments.last,
-        //   filename: pickedFile!.name,
       ),
     });
     try {
@@ -278,15 +277,15 @@ class ProfileController extends GetxController {
       "civilité": selectedValueCivilityTitle
     };
     dio_.FormData data_ = dio_.FormData.fromMap({
-      // "file": pickedFile != null && fileBytes != null
-      //     ? dio_.MultipartFile.fromBytes(
-      //         fileBytes!,
-      //         filename: pickedFile!.name,
-      //       )
-      //     : dio_.MultipartFile.fromString(
-      //         photoController!.text,
-      //         //  filename: pickedFile!.name,
-      //       ),
+      "file": image != null
+          ? await dio_.MultipartFile.fromFile(
+              image!.path,
+              filename: image!.uri.pathSegments.last,
+            )
+          : dio_.MultipartFile.fromString(
+              photoController!.text,
+              filename: image!.uri.pathSegments.last,
+            ),
     });
     try {
       var response = await dio.put(

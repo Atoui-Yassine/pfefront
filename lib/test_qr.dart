@@ -172,7 +172,7 @@ class _QRViewExampleState extends State<QRViewExample> {
     controller.scannedDataStream.listen((scanData) {
       setState(() {
         result = scanData;
-        controller.pauseCamera();
+        controller.dispose();
       });
     });
   }

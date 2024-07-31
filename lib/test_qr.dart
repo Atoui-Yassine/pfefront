@@ -66,7 +66,9 @@ class _QRViewExampleState extends State<QRViewExample> {
                 children: <Widget>[
                   if (result != null)
                     Text(
-                        'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
+                        // ignore: deprecated_member_use
+                        '   Data-----: ${result!.code}----')
+                        
                   else
                     const Text('Scan a code'),
                   Row(

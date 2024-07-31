@@ -103,7 +103,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         ),
         title: const Text('Payment Interface'),
       ),
-      body: (
+      body: Container(
         padding: const EdgeInsets.all(20.0),
         child: Form(
           key: keyForm,

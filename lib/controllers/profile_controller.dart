@@ -230,6 +230,7 @@ class ProfileController extends GetxController {
     // print("***********");
     // selectedValueCivilityTitle = "";
     // photoController!.text = "";
+    print('image=============$image===============path${image!.path}');
     Map<String, dynamic> data = {
       "username": userNameController.text,
       "email": emailController.text,
@@ -243,14 +244,14 @@ class ProfileController extends GetxController {
       "civilité": selectedValueCivilityTitle
     };
     dio_.FormData data_ = dio_.FormData.fromMap({
-      "file": dio_.MultipartFile.fromBytes(
-        await
-        image!.readAsBytes(),
-        filename:image!.uri.pathSegments.last,
+      "file": await dio_.MultipartFile.fromFile(
+        image!.path,
+        filename: image!.uri.pathSegments.last,
         //   filename: pickedFile!.name,
       ),
     });
     try {
+      print('data signup=============${data}');
       var response =
           await dio.post(AppApi.signupUrl, queryParameters: data, data: data_);
       if (response.statusCode == 200) {

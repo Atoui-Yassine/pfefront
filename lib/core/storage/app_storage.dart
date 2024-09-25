@@ -5,6 +5,7 @@ class AppStorage {
   static const keyName = "fullName";
   static const keyEmail = "email";
   static const keyId = "id";
+  static const keyIdcontrat = "idcontrat";
   static const keyDate1 = 'idp';
   static const keyDate2 = 'ville';
   static const keyDate3 = 's';
@@ -21,6 +22,17 @@ class AppStorage {
 
   static const String keyToken = "token";
   static const keyNumContrat = "role";
+
+  static const keyProcessInstanceId = "processInstanceId";
+
+  static saveProcessInstanceId(String processInstanceId) {
+    SecureStorage.writeSecureData(key: keyProcessInstanceId, value: processInstanceId);
+  }
+
+  static String? readProcessInstanceId() {
+    return SecureStorage.readSecureData(keyProcessInstanceId);
+  }
+
   static saveNumContrat(role) {
     SecureStorage.writeSecureData(key: keyNumContrat, value: role);
   }
@@ -151,5 +163,13 @@ class AppStorage {
 
   static removeId() {
     SecureStorage.deleteSecureData(keyId);
+  }
+
+  static saveIdcontrat(idcontrat) {
+    SecureStorage.writeSecureData(key: keyIdcontrat, value: idcontrat);
+  }
+
+  static String? readIdcontrat() {
+    return SecureStorage.readSecureData(keyIdcontrat);
   }
 }

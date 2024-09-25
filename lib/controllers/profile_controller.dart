@@ -1,8 +1,10 @@
 import 'dart:io';
+import 'dart:io' as io; // Import dart:io for mobile platforms (Android/iOS)
 
 import 'package:dio/dio.dart';
 import 'package:dio/dio.dart' as dio_;
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -12,6 +14,7 @@ import 'package:get/get.dart';
 import 'dart:typed_data';
 
 import 'package:image_picker/image_picker.dart';
+import 'package:pfefront/controllers/home_controller.dart';
 import 'package:pfefront/core/networking/app_api.dart';
 import 'package:pfefront/core/storage/app_storage.dart';
 import 'package:pfefront/models/login_model.dart';
@@ -23,6 +26,7 @@ import 'package:pfefront/screens/profile/new_password_screen.dart';
 import 'package:pfefront/screens/profile/verify_code_screen.dart';
 
 class ProfileController extends GetxController {
+  
   GlobalKey<FormState> keyForm = GlobalKey<FormState>();
 
   GlobalKey<FormState> keyFormCode = GlobalKey<FormState>();
@@ -72,11 +76,15 @@ class ProfileController extends GetxController {
 
   List<String> listRole = ["Vendeur", "Client"];
   String? tempPath;
-
+  io.File? image;
   Uint8List? fileBytes;
+  File? image2;
+  File? imageFace2;
+  Uint8List? imageBytes;
   @override
   void onInit() {
     countryControllerController.text = "country";
+    
     super.onInit();
   }
 
@@ -134,13 +142,34 @@ class ProfileController extends GetxController {
         getUser();
         emailController.text = '';
         passworsController!.text = '';
+        
+      
+      
         Get.to(const PropositionFinancementScreen());
+        await startProcess("Process_7607");
       }
     } catch (e) {
       print('error================$e');
     }
   }
+startProcess(String processKey) async {
+  String startUrl = "${AppApi.baseUrl}api/process/start/$processKey";
 
+  try {
+    var response = await dio.post(startUrl, data: {});
+
+    if (response.statusCode == 200) {
+      print("Process: ${response.data}");
+      var processInstanceId = response.data;
+
+      print("Process started successfully with ID: $processInstanceId");
+
+      AppStorage.saveProcessInstanceId(processInstanceId);
+    }
+  } catch (e) {
+    print('Error starting process: $e');
+  }
+}
   forgotPassword(BuildContext context) async {
     Map<String, dynamic> data = {
       "email": emailController.text,
@@ -230,7 +259,8 @@ class ProfileController extends GetxController {
     // print("***********");
     // selectedValueCivilityTitle = "";
     // photoController!.text = "";
-    print('image=============$image===============path${image!.path}');
+    
+    // print('image=============$image2===============path${image2!.path}');
     Map<String, dynamic> data = {
       "username": userNameController.text,
       "email": emailController.text,
@@ -243,16 +273,35 @@ class ProfileController extends GetxController {
       "nationnalité": nationnaliteController.text,
       "civilité": selectedValueCivilityTitle
     };
-    dio_.FormData data_ = dio_.FormData.fromMap({
-      "file": await dio_.MultipartFile.fromFile(
+   dio_.FormData formData = dio_.FormData();
+
+  // Ajouter le fichier s'il existe
+  if (image != null) { // Pour les plateformes mobiles
+    formData.files.add(MapEntry(
+      "file",
+      await dio_.MultipartFile.fromFile(
         image!.path,
         filename: image!.uri.pathSegments.last,
       ),
-    });
+    ));
+  } else if (imageBytes != null) { // Pour le web (où l'image est stockée sous forme d'octets)
+    formData.files.add(MapEntry(
+      "file",
+      dio_.MultipartFile.fromBytes(
+        imageBytes!,
+        filename: 'image_uploaded.png', // Nom par défaut pour l'image sur le web
+      ),
+    ));
+  }
+
+  // Debug : Afficher le contenu des données
+  print('Données JSON : $data');
+  print('Fichiers dans FormData : ${formData.files.map((f) => f.value.filename).toList()}');
+
     try {
       print('data signup=============${data}');
       var response =
-          await dio.post(AppApi.signupUrl, queryParameters: data, data: data_);
+          await dio.post(AppApi.signupUrl, queryParameters: data, data: formData);
       if (response.statusCode == 200) {
         print('signUp success---------------------');
         Get.to(const LoginScreen());
@@ -319,7 +368,7 @@ class ProfileController extends GetxController {
           AppApi.logOutUrl,
           options: options,
         );
-
+        this.killProcess();
         // AppStorage.clearUserData();
         Get.to(const LoginScreen());
         print('Déconnexion réussie');
@@ -330,33 +379,61 @@ class ProfileController extends GetxController {
       print('Token d\'accès introuvable');
     }
   }
+  Future<void> killProcess() async {
+  try {
+    String?  processInstanceId =AppStorage.readProcessInstanceId();
+    String url = "${AppApi.baseUrl}api/process/kill/$processInstanceId";
+
+    var response = await Dio().delete(url);
+
+    if (response.statusCode == 200) {
+      print("Process with ID $processInstanceId killed successfully.");
+    } else {
+      print("Failed to kill process. Status code: ${response.statusCode}");
+    }
+  } catch (e) {
+    print("Error killing process: $e");
+  }
+}
   //------------------------------------image-------------------
 
-  File? image;
-  File? imageFace2;
   final picker = ImagePicker(); // Image picker instance
 //Image Picker function to get image from gallery
   Future getImageFromGallery() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-
-    if (pickedFile != null) {
-      image = File(pickedFile.path);
-      print('image2============>${image!.path}');
-      visibility = false;
-    }
-    update(); // Update the UI to reflect the selected image
+    if (kIsWeb) {
+      // Handle image picking for web
+      final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+      if (pickedFile != null) {
+        imageBytes =
+            await pickedFile.readAsBytes(); // Read image as bytes for web
+        visibility = false;
+        update(); // Update UI after picking image
+      }
+    } else {
+      // Handle image picking for mobile
+      final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+      if (pickedFile != null) {
+        image2 = io.File(pickedFile.path); // Load image as File for mobile
+        visibility = false;
+        update(); // Update UI after picking image
+      }
+    } // Update the UI to reflect the selected image
   }
 
   //Image Picker function to get image from camera
   Future getImageFromCamera() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.camera);
-
-    if (pickedFile != null) {
-      image = File(pickedFile.path);
-      print('image2============>${image!.path}');
-      visibility = false;
-    }
-    update(); // Update the UI to reflect the selected image
+    if (kIsWeb) {
+      // Currently, web support for camera access is limited
+      print("Camera access is not fully supported on web");
+    } else {
+      // Handle image picking from camera for mobile
+      final pickedFile = await picker.pickImage(source: ImageSource.camera);
+      if (pickedFile != null) {
+        image = io.File(pickedFile.path); // Load image as File for mobile
+        visibility = false;
+        update(); // Update UI after picking image
+      }
+    } // Update the UI to reflect the selected image
   }
 
   Future showOptions(BuildContext context) async {
@@ -367,21 +444,18 @@ class ProfileController extends GetxController {
           CupertinoActionSheetAction(
             child: const Text('Photo Gallery'),
             onPressed: () {
-              // close the options modal
-              Navigator.of(context).pop();
-              // get image from gallery
-              getImageFromGallery();
+              Navigator.of(context).pop(); // Close modal
+              getImageFromGallery(); // Pick image from gallery
             },
           ),
-          CupertinoActionSheetAction(
-            child: const Text('Camera'),
-            onPressed: () {
-              // close the options modal
-              Navigator.of(context).pop();
-              // get image from camera
-              getImageFromCamera();
-            },
-          ),
+          if (!kIsWeb) // Camera is only supported on mobile platforms
+            CupertinoActionSheetAction(
+              child: const Text('Camera'),
+              onPressed: () {
+                Navigator.of(context).pop(); // Close modal
+                getImageFromCamera(); // Pick image from camera
+              },
+            ),
         ],
       ),
     );

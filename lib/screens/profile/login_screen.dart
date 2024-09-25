@@ -123,7 +123,7 @@ class LoginScreen extends GetView<ProfileController> {
                     //  if (controller.keyForm.currentState!.validate()) {
                     print('form valide');
                     print(
-                        'email===========>${controller.emailController.text}');
+                        'email===========>${controller.userNameController.text}');
                     controller.login();
                     // }
                   },

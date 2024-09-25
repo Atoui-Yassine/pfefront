@@ -35,6 +35,23 @@ class ContratModel {
     pieceidentites = json['pieceidentites'];
     conditiongenerales = json['conditiongenerales'];
   }
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['codecontrat'] = codecontrat;
+    data['datedebut'] = datedebut;
+    data['datefin'] = datefin;
+    if (clientmap != null) {
+      data['clientmap'] = clientmap!.toJson();
+    }
+    if (clientModel != null) {
+      data['clientModel'] = clientModel!.toJson();
+    }
+    data['piecejustfs'] = piecejustfs;
+    data['pieceidentites'] = pieceidentites;
+    data['conditiongenerales'] = conditiongenerales;
+    return data;
+  }
 }
 
 class Clientmap {
@@ -92,5 +109,24 @@ class Clientmap {
     paysdenaissance = json['paysdenaissance'];
     civilit = json['civilité'];
     nationnalit = json['nationnalité'];
+  }
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['username'] = username;
+    data['email'] = email;
+    data['phone'] = phone;
+    data['photo'] = photo;
+    data['password'] = password;
+    data['role'] = role;
+    data['confirm'] = confirm;
+    data['roles'] = roles;
+    data['passwordResetToken'] = passwordResetToken;
+    data['codeclient'] = codeclient;
+    data['villedenaissance'] = villedenaissance;
+    data['codepostaledenaissance'] = codepostaledenaissance;
+    data['paysdenaissance'] = paysdenaissance;
+    
+    return data;
   }
 }

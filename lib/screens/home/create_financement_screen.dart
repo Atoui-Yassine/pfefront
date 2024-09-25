@@ -1,6 +1,7 @@
 import 'package:flip_carousel/flip_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pfefront/controllers/TaskInfo%20.dart';
 import 'package:pfefront/controllers/home_controller.dart';
 import 'package:pfefront/core/storage/app_storage.dart';
 import 'package:pfefront/core/widgets/base_layout.dart';
@@ -104,10 +105,16 @@ class CreateFinancement extends GetView<HomeController> {
                   backgroundColor: Colors.blue,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 60, vertical: 20)),
-              onPressed: () {
+              onPressed: () async {
                 // if (controller.keyForm.currentState!.validate()) {
                 //   print('form valide');
                 // }
+                TaskInfo? taskInfo = await controller.getCurrentTask();
+                if (taskInfo != null && taskInfo.taskDefinitionKey == "Activity_1j7ae56") {
+                     print("Task Definition Key: Activity_1j7ae56");
+                     controller.completeTask(taskInfo.id, {
+                      "numTranche": "2", // You can set this as "" if needed
+                    });
                 AppStorage.saveDate("${controller.m}/${controller.y}");
                 AppStorage.saveDate1(
                     "${controller.m}/${controller.d}/${controller.y}");
@@ -139,6 +146,9 @@ class CreateFinancement extends GetView<HomeController> {
                     ),
                   ),
                 );
+                 }else{
+                    print("Task Definition Key does not match or taskInfo is null.");
+                }
               },
               child: const Text(
                 "Choisir",
@@ -265,7 +275,13 @@ class CreateFinancement extends GetView<HomeController> {
                   vertical: 20,
                 ),
               ),
-              onPressed: () {
+              onPressed: () async {
+                  TaskInfo? taskInfo = await controller.getCurrentTask();
+                if (taskInfo != null && taskInfo.taskDefinitionKey == "Activity_1j7ae56") {
+                     print("Task Definition Key: Activity_1j7ae56");
+                     controller.completeTask(taskInfo.id, {
+                      "numTranche": "3", // You can set this as "" if needed
+                    });
                 AppStorage.saveDate(
                   "${controller.m}/${controller.y}",
                 );
@@ -322,6 +338,9 @@ class CreateFinancement extends GetView<HomeController> {
                     ),
                   ),
                 );
+                 }else{
+                    print("Task Definition Key does not match or taskInfo is null.");
+                }
               },
               child: const Text(
                 "Choisir",
@@ -462,10 +481,14 @@ class CreateFinancement extends GetView<HomeController> {
                   backgroundColor: Colors.blue,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 60, vertical: 20)),
-              onPressed: () {
-                // if (controller.keyForm.currentState!.validate()) {
-                //   print('form valide');
-                // }
+              onPressed: () async {
+                 
+                 TaskInfo? taskInfo = await controller.getCurrentTask();
+                if (taskInfo != null && taskInfo.taskDefinitionKey == "Activity_1j7ae56") {
+                     print("Task Definition Key: Activity_1j7ae56");
+                     controller.completeTask(taskInfo.id, {
+                      "numTranche": "4", // You can set this as "" if needed
+                    });
                 AppStorage.saveDate("${controller.m}/${controller.y}");
 
                 AppStorage.saveDate1(
@@ -492,6 +515,8 @@ class CreateFinancement extends GetView<HomeController> {
                 AppStorage.saveMontant4(
                   (montantFinan! / 4).toStringAsFixed(2),
                 );
+                
+                
                 Get.to(
                   PlanFinancement(
                     nbrTranche: 4,
@@ -535,6 +560,9 @@ class CreateFinancement extends GetView<HomeController> {
                     ),
                   ),
                 );
+                }else{
+                    print("Task Definition Key does not match or taskInfo is null.");
+                }
               },
               child: const Text(
                 "Choisir",

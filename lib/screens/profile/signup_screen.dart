@@ -3,8 +3,9 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'dart:io' as io;
 import 'package:get/get.dart';
-
+import 'package:flutter/foundation.dart';
 import 'package:pfefront/controllers/profile_controller.dart';
 import 'package:pfefront/core/widgets/base_layout.dart';
 import 'package:pfefront/core/widgets/custom_drop_dow_button.dart';
@@ -303,36 +304,44 @@ class SignUpScreen extends GetView<ProfileController> {
                       Visibility(
                         visible: controller.visibility,
                         child: InkWell(
-                          child: Container(
-                              width: MediaQuery.sizeOf(context).width *
-                                  0.9, // Largeur du container
-                              //   height: 150, // Hauteur du container
-                              padding: const EdgeInsets.all(
-                                  18), // Espace intérieur du container
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(
-                                    color: Colors
-                                        .black), // Bordure arrondie du container
-                              ),
-                              child: const Text('ajouter un image')),
                           onTap: () {
                             controller.showOptions(context);
                           },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width *
+                                0.9, // Fixed MediaQuery usage
+                            padding: const EdgeInsets.all(
+                                18), // Padding inside the container
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                  color: Colors.black), // Container border
+                            ),
+                            child: const Text('Ajouter une image'),
+                          ),
                         ),
                       ),
-                      controller.image != null
-                          ? Column(
-                              children: [
-                                Image.file(
-                                  controller.image!,
-                                  width: 350,
-                                  height: 80,
-                                ),
-                                //      Text(controller.image!.path),
-                              ],
-                            )
-                          : const SizedBox(),
+                      const SizedBox(
+                          width: 10), // Add some spacing between widgets
+                      if (controller.image != null)
+                        kIsWeb
+                            ? Image.memory(
+                                // For web, use Image.memory to display image from bytes
+                                controller
+                                    .imageBytes!, // You should pass the image as bytes
+                                width: 350,
+                                height: 80,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.file(
+                                // For mobile (Android/iOS), use Image.file
+                                io.File(controller.image!.path),
+                                width: 350,
+                                height: 80,
+                                fit: BoxFit.cover,
+                              )
+                      else
+                        const SizedBox(), // Empty placeholder when no image is selected
                     ],
                   ),
                 ),
@@ -383,6 +392,15 @@ class SignUpScreen extends GetView<ProfileController> {
                           horizontal: 150, vertical: 20)),
                   onPressed: () {
                     if (controller.keyFormSignUp.currentState!.validate()) {
+                      print('Formulaire valide !');
+    print('Nom d\'utilisateur: ${controller.userNameController.text}');
+    print('Email: ${controller.emailController.text}');
+    print('Téléphone: ${controller.phoneController?.text}');
+    print('Mot de passe: ${controller.passworsController?.text}');
+    print('Ville de naissance: ${controller.villeDeNaissanceController.text}');
+    print('Code postal: ${controller.codePostaleController.text}');
+    print('Pays de naissance: ${controller.imageBytes}');
+    
                       controller.signUp();
                       print('form valide');
                     }
